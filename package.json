@@ -1,0 +1,26 @@
+{
+  "name": "FACEMAN-Revamped",
+  "version": "1.0.0",
+  "description": "<a href=\"https://kinkatse.github.io/FACE-MAN/\" target=\"_blank\" rel=\"noopener noreferrer\">FACE-MAN</a> is a face recognition app that checks for two key movements, a person’s open mouth and a person’s closed eyes. The app will recognize which of the two specific facial actions you take and display an animation for when your mouth is open or eyes are closed. This game would use technologies like MediaDevices, TensorFlow, Javascript, P5, Node.js, HTML, CSS. The video stream is a loop of video frames captured through the live feed of your camera. The facial movement detection will use algorithms utilizing TensorFlow's ability to acertain points of interest on the face and react to any large movements of the mouth or eyes. (Currently outdated)",
+  "main": "index.js",
+  "dependencies": {
+    "webpack-cli": "^4.9.2",
+    "webpack": "^5.72.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "webpack --watch --mode=development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kinkatse/FACEMAN.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kinkatse/FACEMAN/issues"
+  },
+  "homepage": "https://github.com/kinkatse/FACEMAN#readme"
+}
