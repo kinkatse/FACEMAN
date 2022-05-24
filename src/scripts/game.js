@@ -1,4 +1,4 @@
-class Test {
+class Game {
     constructor() {
         this.createdNewInstance()
     }
@@ -8,4 +8,4 @@ class Test {
     }
 }
 
-module.exports = Test
+module.exports = Game

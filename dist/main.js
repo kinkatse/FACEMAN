@@ -15,17 +15,17 @@
   \**********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const Test = __webpack_require__(/*! ./scripts/test */ \"./src/scripts/test.js\")\r\n\r\ndocument.addEventListener(\"DOMContentLoaded\", () => {\r\n    new Test()\r\n})\n\n//# sourceURL=webpack://FACEMAN-Revamped/./src/index.js?");
+eval("const Game = __webpack_require__(/*! ./scripts/game */ \"./src/scripts/game.js\")\r\n// const View = require(\"./scripts/view\")\r\n\r\ndocument.addEventListener(\"DOMContentLoaded\", () => {\r\n    const canvasEl = document.getElementById(\"canvas\");\r\n    canvasEl.height = 450;\r\n    canvasEl.width = 700;\r\n    const ctx = canvasEl.getContext(\"2d\");\r\n    ctx.fillStyle = \"grey\";\r\n    ctx.fillRect(0, 0, 700, 450);\r\n    const game = new Game;\r\n})\n\n//# sourceURL=webpack://FACEMAN-Revamped/./src/index.js?");
 
 /***/ }),
 
-/***/ "./src/scripts/test.js":
+/***/ "./src/scripts/game.js":
 /*!*****************************!*\
-  !*** ./src/scripts/test.js ***!
+  !*** ./src/scripts/game.js ***!
   \*****************************/
 /***/ ((module) => {
 
-eval("class Test {\r\n    constructor() {\r\n        this.createdNewInstance()\r\n    }\r\n\r\n    createdNewInstance() {\r\n        console.log('test')\r\n    }\r\n}\r\n\r\nmodule.exports = Test\n\n//# sourceURL=webpack://FACEMAN-Revamped/./src/scripts/test.js?");
+eval("class Game {\r\n    constructor() {\r\n        this.createdNewInstance()\r\n    }\r\n\r\n    createdNewInstance() {\r\n        console.log('test')\r\n    }\r\n}\r\n\r\nmodule.exports = Game\n\n//# sourceURL=webpack://FACEMAN-Revamped/./src/scripts/game.js?");
 
 /***/ })
 
