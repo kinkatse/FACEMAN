@@ -4,13 +4,25 @@
   "description": "<a href=\"https://kinkatse.github.io/FACE-MAN/\" target=\"_blank\" rel=\"noopener noreferrer\">FACE-MAN</a> is a face recognition app that checks for two key movements, a person’s open mouth and a person’s closed eyes. The app will recognize which of the two specific facial actions you take and display an animation for when your mouth is open or eyes are closed. This game would use technologies like MediaDevices, TensorFlow, Javascript, P5, Node.js, HTML, CSS. The video stream is a loop of video frames captured through the live feed of your camera. The facial movement detection will use algorithms utilizing TensorFlow's ability to acertain points of interest on the face and react to any large movements of the mouth or eyes. (Currently outdated)",
   "main": "index.js",
   "dependencies": {
-    "webpack-cli": "^4.9.2",
-    "webpack": "^5.72.1"
+    "@babel/core": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
+    "babel-loader": "^8.2.5",
+    "core-js": "^3.22.8",
+    "css-loader": "^6.7.1",
+    "mini-css-extract-plugin": "^2.6.0",
+    "regenerator-runtime": "^0.13.9",
+    "sass": "^1.52.1",
+    "sass-loader": "^13.0.0",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.9.2"
   },
   "devDependencies": {},
+  "browserslist": [
+    "defaults"
+  ],
   "scripts": {
-    "start": "webpack --watch --mode=development",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "webpack --watch --mode=development",
+    "build": "webpack --mode=production"
   },
   "repository": {
     "type": "git",
