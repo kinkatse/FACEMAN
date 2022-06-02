@@ -1,33 +1,44 @@
-// import Game from "./scripts/game"
+import Game from "./scripts/game"
 
 document.addEventListener("DOMContentLoaded", () => {
     const canvasEl = document.getElementById("canvas");
     canvasEl.height = 450;
     canvasEl.width = 700;
     const ctx = canvasEl.getContext("2d");
-    ctx.fillStyle = "grey";
-    ctx.fillRect(0, 0, 700, 450);
+    // ctx.fillStyle = "grey";
+    // ctx.fillRect(0, 0, 700, 450);
 
-//     navigator.mediaDevices.getUserMedia({
-//         video: {width: 700, height: 450},
-//         audio: false,
-//     }).then((stream) => {
-//         video.srcObject = stream;
-//     });
-//     ctx.drawImage(video, 0, 0, 1000, 600);
-//     video = document.getElementById("video");
-//     // this.ctx.drawImage(video, 0, 0, 1000, 600);
-
-//     // const model = faceLandmarksDetection.SupportedModels.MediaPipeFaceMesh;
-//     // const detectorConfig = {
-//     // runtime: 'mediapipe', // or 'tfjs'
-//     // solutionPath: 'https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh',
-//     // }
-//     // const detector = await faceLandmarksDetection.createDetector(model, detectorConfig);
-//     // const faces = await detector.estimateFaces(image);
-
-//     const game = new Game(ctx);
+    const game = new Game(ctx);
 })
+
+// document.addEventListener("DOMContentLoaded", () => {
+//     const canvasEl = document.getElementById("canvas");
+//     canvasEl.height = 450;
+//     canvasEl.width = 700;
+//     const ctx = canvasEl.getContext("2d");
+//     ctx.fillStyle = "grey";
+//     ctx.fillRect(0, 0, 700, 450);
+
+    // navigator.mediaDevices.getUserMedia({
+    //     video: {width: 700, height: 450},
+    //     audio: false,
+    // }).then((stream) => {
+    //     video.srcObject = stream;
+    // });
+    // ctx.drawImage(video, 0, 0, 1000, 600);
+    // video = document.getElementById("video");
+    // this.ctx.drawImage(video, 0, 0, 1000, 600);
+
+    // const model = faceLandmarksDetection.SupportedModels.MediaPipeFaceMesh;
+    // const detectorConfig = {
+    // runtime: 'mediapipe', // or 'tfjs'
+    // solutionPath: 'https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh',
+    // }
+    // const detector = await faceLandmarksDetection.createDetector(model, detectorConfig);
+    // const faces = await detector.estimateFaces(image);
+
+    // const game = new Game(ctx);
+// })
 
 // document.addEventListener("DOMContentLoaded", () => {
 //     // let video = document.getElementById("video");

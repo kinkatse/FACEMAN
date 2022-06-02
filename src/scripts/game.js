@@ -1,36 +1,56 @@
 class Game {
     constructor(ctx) {
-        this.video;
+        this.video = document.getElementById("video");
         this.model;
-        this.ctx = ctx;
+        // this.model = faceLandmarksDetection.SupportedModels.MediaPipeFaceMesh;
 
         this.createdNewInstance()
-        this.setup()
+        this.setupCamera(ctx)
+        // this.draw()
     }
 
     createdNewInstance() {
         console.log('test')
     }
 
-    setup() {
+    setupCamera(ctx) {
         // this.video = createCapture(VIDEO);
         // this.video.hide();
         // loadFaceModel();
         navigator.mediaDevices.getUserMedia({
             video: {width: 700, height: 450},
             audio: false,
-        }).then((stream) => {
-            video.srcObject = stream;
-            video = document.getElementById("video");
-            this.ctx.drawImage(video, 0, 0, 1000, 600);
+        }).then( stream => {
+            this.video.srcObject = stream;
+            // video = document.getElementById("video");
+            // ctx.drawImage(video, 0, 0, 1000, 600);
+            // ctx.drawImage(this.video.srcObject, 0, 0, 700, 450);
         });
-        // context.drawImage(video, 0, 0, 1000, 600);
-        // video = document.getElementById("video");
-        // this.ctx.drawImage(video, 0, 0, 1000, 600);
+        // this.video = document.getElementById("video");
+        // ctx.drawImage(this.video, 0, 0, 1000, 600);
         // loadFaceModel();
+
+        // this.video.addEventListener("loadeddata", async () => {
+        //     this.model = await faceLandmarksDetection.load(
+        //         faceLandmarksDetection.SupportedPackages.mediapipeFacemesh
+        //     );
+        //     this.detectFace()
+        // })
+
+        this.loadFaceModel()
     }
 
     loadFaceModel() {
+
+        this.video.addEventListener("loadeddata", async () => {
+            this.model = await faceLandmarksDetection.load(
+                faceLandmarksDetection.SupportedPackages.mediapipeFacemesh
+            );
+            this.detectFace()
+        })
+
+
+
         // this.model = faceLandmarksDetection.SupportedModels.MediaPipeFaceMesh;
         // const detectorConfig = {
         //     runtime: 'mediapipe',
@@ -41,6 +61,15 @@ class Game {
         // this.model = await faceLandmarksDetection.load(
         //     faceLandmarksDetection.SupportedPackages.mediapipeFacemesh
         // );
+    }
+
+    async detectFace() {
+        const prediction = await this.model.estimateFaces({
+            input: document.querySelector('video')
+        })
+
+        // debugger
+        // console.log(prediction)
     }
 }
 
