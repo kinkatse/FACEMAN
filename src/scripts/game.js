@@ -36,7 +36,7 @@ class Game {
         });
     }
 
-    async detectFace(ctx) {
+    async detectFace() {
         // Here we grab the model we waited from the API for and grab its preditions
         // from estimatFaces function passing in the video element in order to detect those faces
         const prediction = await this.model.estimateFaces({
@@ -51,7 +51,7 @@ class Game {
     draw() {
         // This is so that we don't error out before out video loads up
         if (this.model !== undefined) {
-            this.detectFace(this.ctx);
+            this.detectFace();
         }
     }
 
