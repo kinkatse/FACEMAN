@@ -60,6 +60,17 @@ class Game {
 
     }
 
+    scaleCoord(pt) {
+        let x = pt[0];
+        let y = pt[1];
+        let z = pt[2];
+        return [x, y];
+        // debugger
+        // let x = map(pt[0], 0,video.width, 0,width);
+        // let y = map(pt[1], 0,video.height, 0,height);
+        // return createVector(x, y);
+    }
+
     // Load face models predictions before drawing which happens in the detectFace function
     draw() {
         // This is so that we don't error out before out video loads up
