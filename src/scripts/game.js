@@ -89,6 +89,35 @@ class Game {
             }
         }
     
+        // When filters are clicked, they are revealed here
+
+        // temporarily on for testing
+        const faceMaskDots = true
+        if (faceMaskDots && this.face !== undefined) {
+            for (let pt of this.face.scaledMesh) {
+                this.ctx.beginPath();
+                this.ctx.strokeStyle = "black";
+                pt = this.scaleCoord(pt);
+                let x = pt[0];
+                let y = pt[1];
+                this.ctx.arc(x, y, 0.5, 0, 2 * Math.PI);
+                this.ctx.fillStyle = "black";
+                this.ctx.fill();
+                this.ctx.stroke();
+              }
+        }
+
+        // For Mouth!
+        // if (faceMaskDots && this.face !== undefined) {
+        //     this.ctx.lineWidth = 3;
+        //     this.ctx.strokeStyle = "black"
+        //     this.ctx.beginPath()
+        //     for (let pt of this.face.scaledMesh) {
+        //         pt = this.scaleCoord(pt);
+        //         this.ctx.lineTo(...pt)
+        //       }
+        //     this.ctx.stroke();
+        // }
     }
 
 }
