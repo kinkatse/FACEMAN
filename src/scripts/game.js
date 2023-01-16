@@ -1,7 +1,7 @@
 class Game {
 
-    constructor(ctx) {
-        this.video = document.getElementById("video");
+    constructor(ctx, video) {
+        this.video = video
         this.ctx = ctx;
         this.mode = "gameon";
         this.model;
@@ -32,7 +32,7 @@ class Game {
     loadFaceModel() {
         // Waiting for the video to have a stream from the setupCamera function
         this.video.addEventListener("loadeddata", async () => {
-            // Then loads the face detection API
+            // Then load up the face detection API
             this.model = await faceLandmarksDetection.load(
                 faceLandmarksDetection.SupportedPackages.mediapipeFacemesh
             );
@@ -41,9 +41,9 @@ class Game {
 
     async detectFace() {
         // Here we grab the model we waited from the API for and grab its preditions
-        // from estimatFaces function passing in the video element in order to detect those faces
+        // from estimateFaces function passing in the video element in order to detect those faces
         const facePredictions = await this.model.estimateFaces({
-            input: document.querySelector('video')
+            input: this.video
         });
 
         // Below are errors to restrict user
@@ -78,6 +78,7 @@ class Game {
             this.detectFace();
             this.ctx.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
             // console.log(this.face)
+            // debugger
         }
         // Logic for error handling when face is too far or too close
         if (this.face !== undefined) {
@@ -123,17 +124,28 @@ class Game {
             }
         }
 
-        // For Mouth!
-        // if (faceMaskDots && this.face !== undefined) {
-        //     this.ctx.lineWidth = 3;
-        //     this.ctx.strokeStyle = "black"
-        //     this.ctx.beginPath()
-        //     for (let pt of this.face.scaledMesh) {
-        //         pt = this.scaleCoord(pt);
-        //         this.ctx.lineTo(...pt)
-        //       }
-        //     this.ctx.stroke();
-        // }
+        // My attempt to distort the face
+        const sadFace = true
+        if (sadFace && this.face !== undefined) {
+            // debugger
+            // for (let pt of this.face.annotations.lipsLowerOuter) {
+            for (let i = 0; i < this.face.annotations.lipsLowerOuter.length; i++) {
+                // let pts = this.face.annotations.lipsLowerOuter;
+                // debugger
+                this.face.annotations.lipsLowerOuter[i][0] -= 500;
+                this.face.annotations.lipsLowerOuter[i][1] -= 500;
+                // Is it required to draw it out first?
+                this.ctx.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
+                const imgData = this.ctx.getImageData(0,0,this.DIM_width, this.DIM_height)
+                console.log(imgData)
+                // Cool, now I can manipulate the ctx data points before it draws it out
+                debugger
+                // debugger
+                // pts[i][0] -= 20;
+                // pts[i][1] -= 20;
+                // pt[2] -= 20;
+            }
+        }
     }
 
 }

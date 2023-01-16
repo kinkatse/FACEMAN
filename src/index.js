@@ -8,5 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.fillStyle = "grey";
     ctx.fillRect(0, 0, 700, 450);
 
-    const game = new Game(ctx);
+    const video = document.getElementById("video");
+    const game = new Game(ctx, video);
 })
