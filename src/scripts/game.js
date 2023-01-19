@@ -14,7 +14,8 @@ class Game {
             this.setupCamera();
             this.loadFaceModel();
             // Sets interval to loop the draw function (which loses context)
-            setInterval(this.draw.bind(this), 20);
+            // setInterval(this.draw.bind(this), 20);
+            requestAnimationFrame(this.animate.bind(this))
         }
     }
 
@@ -60,6 +61,11 @@ class Game {
 
     }
 
+    animate() {
+        this.draw()
+        requestAnimationFrame(this.animate.bind(this))
+    }
+
     scaleCoord(pt) {
         let x = pt[0];
         let y = pt[1];
@@ -70,6 +76,29 @@ class Game {
         // let y = map(pt[1], 0,video.height, 0,height);
         // return createVector(x, y);
     }
+
+    // getPixelMatrix(imgData) {
+    //     const mat = new Array(imgData.height);
+    //     for (let i = 0; i < imgData.height; i++) {
+    //         mat[i] = new Array(imgData.weight);
+    //     }
+
+    //     for (let i = 0; i < imgData.data.length; i+=4) {
+    //         const pixelColor = {
+    //             r: imgData.data[i+0],
+    //             g: imgData.data[i+1],
+    //             b: imgData.data[i+2],
+    //             a: imgData.data[i+3]
+    //         }
+
+    //         const pixelIdx = i/4;
+    //         const x = pixelIdx%imgData.width;
+    //         const y = Math.floor(pixelIdx/imgData.width);
+
+    //         mat[y][x] = pixelColor
+    //     }
+    //     return mat;
+    // }
 
     // Load face models predictions before drawing which happens in the detectFace function
     draw() {
@@ -92,7 +121,29 @@ class Game {
     
         // When filters are clicked, they are revealed here
 
-        // temporarily on for testing
+        // My attempt to distort the face
+        // const sadFace = true
+        // if (sadFace && this.face !== undefined) {
+        //     for (let i = 0; i < this.face.annotations.lipsLowerOuter.length; i++) {
+        //         // I manipulated the face object from the API but it doesn't correlate to the video or canvas
+        //         // Instead of just subtracting two points, I probably need to do some math to figure out
+        //         // how to distort a section of the face
+        //         this.face.annotations.lipsLowerOuter[i][0] -= 50;
+        //         this.face.annotations.lipsLowerOuter[i][1] -= 50;
+        //         // I could do one of two things:
+        //         // Manipulate the video before I draw the ctx
+        //         // or manipulate the ctx after I drew it
+
+        //         // Method 2 attempt
+        //         this.ctx.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
+        //         const imgData = this.ctx.getImageData(0,0,this.DIM_width, this.DIM_height)
+        //         console.log(imgData)
+        //         const mat = this.getPixelMatrix(imgData);
+        //         console.log(mat)
+        //         // Cool, now I can manipulate the ctx data points and draw it again
+        //     }
+        // }
+
         const faceMaskDots = true
         if (faceMaskDots && this.face !== undefined) {
             // Making blue mask around face
@@ -121,29 +172,6 @@ class Game {
                 this.ctx.fillStyle = "black";
                 this.ctx.fill();
                 this.ctx.stroke();
-            }
-        }
-
-        // My attempt to distort the face
-        const sadFace = true
-        if (sadFace && this.face !== undefined) {
-            // debugger
-            // for (let pt of this.face.annotations.lipsLowerOuter) {
-            for (let i = 0; i < this.face.annotations.lipsLowerOuter.length; i++) {
-                // let pts = this.face.annotations.lipsLowerOuter;
-                // debugger
-                this.face.annotations.lipsLowerOuter[i][0] -= 500;
-                this.face.annotations.lipsLowerOuter[i][1] -= 500;
-                // Is it required to draw it out first?
-                this.ctx.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
-                const imgData = this.ctx.getImageData(0,0,this.DIM_width, this.DIM_height)
-                console.log(imgData)
-                // Cool, now I can manipulate the ctx data points before it draws it out
-                debugger
-                // debugger
-                // pts[i][0] -= 20;
-                // pts[i][1] -= 20;
-                // pt[2] -= 20;
             }
         }
     }
