@@ -1,11 +1,12 @@
+import MovingObject from "../entities/movingObject.js"
+
 class Filter {
 
     constructor(options) {
+        // super(); // important for not error since this is considered a moving object
+
         this.face = options.face;
         this.ctx = options.ctx;
-        // this.video = options.video;
-        // this.DIM_X = options.DIM_X;
-        // this.DIM_Y = options.DIM_Y;
         this.draw();
     }
 

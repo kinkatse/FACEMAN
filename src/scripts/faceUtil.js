@@ -1,4 +1,4 @@
-const Util = {
+const FaceUtil = {
     scaleCoord: (pt) => {
         let x = pt[0];
         let y = pt[1];
@@ -33,4 +33,4 @@ const Util = {
     }
 };
 
-export default Util;
+export default FaceUtil;

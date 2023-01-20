@@ -1,5 +1,5 @@
 import Filter from '../filter.js'
-import Util from '../util.js';
+import FaceUtil from '../faceUtil.js';
 
 class Mustache extends Filter {
 

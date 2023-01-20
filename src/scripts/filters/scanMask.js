@@ -1,5 +1,5 @@
-import Filter from '../filter.js'
-import Util from '../util.js';
+import Filter from './filter.js'
+import FaceUtil from '../faceUtil.js';
 
 class ScanMask extends Filter {
 
@@ -12,10 +12,10 @@ class ScanMask extends Filter {
         this.ctx.strokeStyle = 'rgba(0, 150, 255, 0.5)';
         this.ctx.beginPath();
         let startpt = this.face.annotations.silhouette[0];
-        startpt = Util.scaleCoord(startpt);
+        startpt = FaceUtil.scaleCoord(startpt);
 
         for (let pt of this.face.annotations.silhouette) {
-            pt = Util.scaleCoord(pt);
+            pt = FaceUtil.scaleCoord(pt);
             this.ctx.lineTo(...pt)
         }
 
@@ -29,7 +29,7 @@ class ScanMask extends Filter {
         for (let pt of this.face.scaledMesh) {
             this.ctx.beginPath();
             this.ctx.strokeStyle = "black";
-            pt = Util.scaleCoord(pt);
+            pt = FaceUtil.scaleCoord(pt);
             let x = pt[0];
             let y = pt[1];
             this.ctx.arc(x, y, 0.5, 0, 2 * Math.PI);
