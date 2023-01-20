@@ -8,6 +8,7 @@ class Game {
         this.prevTwoVideo = video;
         this.prevThreeVideo = video;
         this.prevFourVideo = video;
+        this.videoFrames = [];
         this.ctx = ctx;
         this.hiddenCTX = hiddenCTX;
         this.hiddenCanvasEl = hiddenCanvasEl;
@@ -23,8 +24,8 @@ class Game {
             this.setupCamera();
             this.loadFaceModel();
             // Sets interval to loop the draw function (which loses context)
-            setInterval(this.draw.bind(this), 5);
-            // requestAnimationFrame(this.animate.bind(this))
+            // setInterval(this.draw.bind(this), 1);
+            requestAnimationFrame(this.animate.bind(this))
         }
     }
 
@@ -77,20 +78,29 @@ class Game {
 
     grabPrevCtx() {
         // debugger
-        this.prevFourVideo = this.prevThreeVideo;
-        this.prevThreeVideo = this.prevTwoVideo;
-        this.prevTwoVideo = this.prevOneVideo;
+        // if (this.prevFourVideo instanceof VideoFrame) this.prevFourVideo.close();
+        // this.prevFourVideo = this.prevThreeVideo;
+        // this.prevThreeVideo = this.prevTwoVideo;
+        // this.prevTwoVideo = this.prevOneVideo;
+
+        
 
         // this.hiddenCTX.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
         // const imageData = this.hiddenCTX.getImageData(0, 0, 700, 450);
 
-        this.prevOneVideo = new VideoFrame(this.video)
+        // this.prevOneVideo = new VideoFrame(this.video)
+
+
+        const frame = new VideoFrame(this.video)
+        this.videoFrames.push(frame);
+        if (this.videoFrames.length > 1) this.videoFrames.shift().close();
+        return this.videoFrames[0]
 
         // this.prevOneVideo = new Image();
         // this.prevFourVideo.src = this.hiddenCanvasEl.toDataURL();
         // debugger
 
-        return this.prevFourVideo;
+        // return this.prevFourVideo;
     }
 
     // Load face models predictions before drawing which happens in the detectFace function
