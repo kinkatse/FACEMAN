@@ -8,13 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.fillStyle = "grey";
     ctx.fillRect(0, 0, 700, 450);
 
-    const hiddenCanvasEl = document.getElementById("hidden-canvas");
-    hiddenCanvasEl.height = 450;
-    hiddenCanvasEl.width = 700;
-    const hiddenCTX = hiddenCanvasEl.getContext("2d");
-    hiddenCTX.fillStyle = "grey";
-    hiddenCTX.fillRect(0, 0, 700, 450);
-
     const video = document.getElementById("video");
-    const game = new Game(ctx, video, hiddenCTX, hiddenCanvasEl);
+    const game = new Game(ctx, video);
 })

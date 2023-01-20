@@ -2,16 +2,10 @@ import ScanMask from "./filters/scanMask";
 
 class Game {
 
-    constructor(ctx, video, hiddenCTX, hiddenCanvasEl) {
+    constructor(ctx, video) {
         this.video = video;
-        this.prevOneVideo = video;
-        this.prevTwoVideo = video;
-        this.prevThreeVideo = video;
-        this.prevFourVideo = video;
         this.videoFrames = [];
         this.ctx = ctx;
-        this.hiddenCTX = hiddenCTX;
-        this.hiddenCanvasEl = hiddenCanvasEl;
         this.mode = "gameon";
         this.model;
         this.face;
@@ -77,30 +71,10 @@ class Game {
     }
 
     grabPrevCtx() {
-        // debugger
-        // if (this.prevFourVideo instanceof VideoFrame) this.prevFourVideo.close();
-        // this.prevFourVideo = this.prevThreeVideo;
-        // this.prevThreeVideo = this.prevTwoVideo;
-        // this.prevTwoVideo = this.prevOneVideo;
-
-        
-
-        // this.hiddenCTX.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
-        // const imageData = this.hiddenCTX.getImageData(0, 0, 700, 450);
-
-        // this.prevOneVideo = new VideoFrame(this.video)
-
-
-        const frame = new VideoFrame(this.video)
+        const frame = new VideoFrame(this.video);
         this.videoFrames.push(frame);
-        if (this.videoFrames.length > 1) this.videoFrames.shift().close();
-        return this.videoFrames[0]
-
-        // this.prevOneVideo = new Image();
-        // this.prevFourVideo.src = this.hiddenCanvasEl.toDataURL();
-        // debugger
-
-        // return this.prevFourVideo;
+        if (this.videoFrames.length > 4) this.videoFrames.shift().close();
+        return this.videoFrames[0];
     }
 
     // Load face models predictions before drawing which happens in the detectFace function
