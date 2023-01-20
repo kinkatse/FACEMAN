@@ -12,6 +12,7 @@ class Game {
         this.DIM_width = 700;
         this.DIM_height = 450;
         this.filterOn = false;
+        this.filterMatch = false;
 
         // Checks to see if game is playing to set up camera and load face models
         if (this.mode === "gameon"){
@@ -86,13 +87,13 @@ class Game {
         // This is so that we don't error out before out video loads up
         if (this.model !== undefined) {
             this.detectFace();
-            if (this.filterOn === false) {
-                this.ctx.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
-            } else {
+            if (this.filterOn && this.filterMatch) {
                 // this is for when we apply a filter and we want the filter to match the face on the same frame
                 // I could not find a solid reason for why the drawing of the filter is delayed, so I made the
-                // frame that the application shows delayed as well. This results in a cost of framerate though.
+                // frame that the application shows delayed as well. This results in a cost of a bit of framerate though.
                 this.ctx.drawImage(this.grabPrevVideoFrame(), 0, 0, this.DIM_width, this.DIM_height);
+            } else {
+                this.ctx.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
             }
         }
         // Logic for error handling when face is too far or too close
@@ -133,6 +134,7 @@ class Game {
         const faceMaskDots = true
         if (faceMaskDots && this.face !== undefined) {
             this.filterOn = true;
+            this.filterMatch = true;
             new ScanMask({
                 face: this.face,
                 ctx: this.ctx,
