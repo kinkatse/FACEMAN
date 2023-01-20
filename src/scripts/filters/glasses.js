@@ -1,7 +1,7 @@
 import Filter from '../filter.js'
 import Util from '../util.js';
 
-class Template extends Filter {
+class Glasses extends Filter {
 
     constructor(options) {
         super(options)
@@ -12,4 +12,4 @@ class Template extends Filter {
 
 }
 
-export default Template;
+export default Glasses;

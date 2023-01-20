@@ -2,22 +2,29 @@ import ScanMask from "./filters/scanMask";
 
 class Game {
 
-    constructor(ctx, video) {
-        this.video = video
+    constructor(ctx, video, hiddenCTX, hiddenCanvasEl) {
+        this.video = video;
+        this.prevOneVideo = video;
+        this.prevTwoVideo = video;
+        this.prevThreeVideo = video;
+        this.prevFourVideo = video;
         this.ctx = ctx;
+        this.hiddenCTX = hiddenCTX;
+        this.hiddenCanvasEl = hiddenCanvasEl;
         this.mode = "gameon";
         this.model;
         this.face;
         this.DIM_width = 700;
         this.DIM_height = 450;
+        this.filterOn = false;
 
         // Checks to see if game is playing to set up camera and load face models
         if (this.mode === "gameon"){
             this.setupCamera();
             this.loadFaceModel();
             // Sets interval to loop the draw function (which loses context)
-            // setInterval(this.draw.bind(this), 20);
-            requestAnimationFrame(this.animate.bind(this))
+            setInterval(this.draw.bind(this), 5);
+            // requestAnimationFrame(this.animate.bind(this))
         }
     }
 
@@ -68,13 +75,35 @@ class Game {
         requestAnimationFrame(this.animate.bind(this))
     }
 
+    grabPrevCtx() {
+        // debugger
+        this.prevFourVideo = this.prevThreeVideo;
+        this.prevThreeVideo = this.prevTwoVideo;
+        this.prevTwoVideo = this.prevOneVideo;
+
+        // this.hiddenCTX.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
+        // const imageData = this.hiddenCTX.getImageData(0, 0, 700, 450);
+
+        this.prevOneVideo = new VideoFrame(this.video)
+
+        // this.prevOneVideo = new Image();
+        // this.prevFourVideo.src = this.hiddenCanvasEl.toDataURL();
+        // debugger
+
+        return this.prevFourVideo;
+    }
 
     // Load face models predictions before drawing which happens in the detectFace function
     draw() {
         // This is so that we don't error out before out video loads up
         if (this.model !== undefined) {
             this.detectFace();
-            this.ctx.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
+            if (this.filterOn === false) {
+                this.ctx.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
+            } else {
+                // this.ctx.clearRect(0, 0, 700, 450)
+                this.ctx.drawImage(this.grabPrevCtx(), 0, 0, this.DIM_width, this.DIM_height);
+            }
         }
         // Logic for error handling when face is too far or too close
         if (this.face !== undefined) {
@@ -113,7 +142,59 @@ class Game {
 
         const faceMaskDots = true
         if (faceMaskDots && this.face !== undefined) {
-            new ScanMask({face: this.face, ctx: this.ctx})
+            this.filterOn = true;
+            new ScanMask({
+                face: this.face,
+                ctx: this.ctx,
+            });
+        }
+
+        const pacmanFilter = false
+        if (pacmanFilter && this.face !== undefined) {
+            new PacMan({
+                face: this.face,
+                ctx: this.ctx
+            });
+        }
+
+        const kirbyFilter = false
+        if (kirbyFilter && this.face !== undefined) {
+            new Kirby({
+                face: this.face,
+                ctx: this.ctx
+            });
+        }
+
+        const pikachuFilter = false
+        if (pikachuFilter && this.face !== undefined) {
+            new Pikachu({
+                face: this.face,
+                ctx: this.ctx
+            });
+        }
+
+        const prettyFilter = false
+        if (prettyFilter && this.face !== undefined) {
+            new Pretty({
+                face: this.face,
+                ctx: this.ctx
+            });
+        }
+
+        const mustacheFilter = false
+        if (mustacheFilter && this.face !== undefined) {
+            new Mustache({
+                face: this.face,
+                ctx: this.ctx
+            });
+        }
+
+        const glassesFilter = false
+        if (glassesFilter && this.face !== undefined) {
+            new Glasses({
+                face: this.face,
+                ctx: this.ctx
+            });
         }
     }
 
