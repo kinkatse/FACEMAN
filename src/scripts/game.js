@@ -70,9 +70,13 @@ class Game {
         requestAnimationFrame(this.animate.bind(this))
     }
 
-    grabPrevCtx() {
+    grabPrevVideoFrame() {
+        // Using video frame object to grab a specific frame and push into arrray
         const frame = new VideoFrame(this.video);
         this.videoFrames.push(frame);
+        // We limit this by how delayed we want it, and in this sense, the video will now be delayed
+        // by 4 frames. We have to shift them out once it reaches the max, and VideoFrame objects
+        // require us to .close() them after we don't use them to reduce lag
         if (this.videoFrames.length > 4) this.videoFrames.shift().close();
         return this.videoFrames[0];
     }
@@ -85,8 +89,10 @@ class Game {
             if (this.filterOn === false) {
                 this.ctx.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
             } else {
-                // this.ctx.clearRect(0, 0, 700, 450)
-                this.ctx.drawImage(this.grabPrevCtx(), 0, 0, this.DIM_width, this.DIM_height);
+                // this is for when we apply a filter and we want the filter to match the face on the same frame
+                // I could not find a solid reason for why the drawing of the filter is delayed, so I made the
+                // frame that the application shows delayed as well. This results in a cost of framerate though.
+                this.ctx.drawImage(this.grabPrevVideoFrame(), 0, 0, this.DIM_width, this.DIM_height);
             }
         }
         // Logic for error handling when face is too far or too close
