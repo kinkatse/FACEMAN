@@ -47,3 +47,8 @@ img {
 #canvas {
   border: 5px solid red;
 }
+
+#canvas {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+}

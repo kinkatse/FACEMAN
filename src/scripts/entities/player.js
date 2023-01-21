@@ -6,7 +6,7 @@ class Player {
     }
 
     pos() {
-        
+
     }
 
     updateFace(face) {
@@ -15,9 +15,11 @@ class Player {
 
     takeDamage(damage) {
         this.health -= damage;
+        console.log("Player got hit!");
+        console.log(this.health);
         if (this.health <= 0) {
             // Game over function
-            alert("Game over!")
+            alert("Game over!");
         }
     }
 }

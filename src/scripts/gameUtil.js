@@ -23,14 +23,15 @@ const GameUtil = {
             return coord;
         }
     },
-    // Returns distance between two positions
+    // Returns distance between two positions, but since this is a vector
+    // we do pythagorean theorem to get a single distance and not a position
     dist: (pos1, pos2) => {
-        const distX = pos1[0] - pos2[0]
-        const distY = pos1[1] - pos2[1]
-        return [distX, distY]
-        // return Math.sqrt(
-        //   Math.pow(pos1[0] - pos2[0], 2) + Math.pow(pos1[1] - pos2[1], 2)
-        // );
+        const distX = pos1[0] - pos2[0];
+        const distY = pos1[1] - pos2[1];
+        const squaredX = Math.pow(distX, 2);
+        const squaredY = Math.pow(distY, 2);
+        const dist = Math.sqrt(squaredX + squaredY)
+        return dist;
     },
 };
 

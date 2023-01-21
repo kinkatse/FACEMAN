@@ -18,7 +18,7 @@ class Game {
         return {
             DIM_X: 700,
             DIM_Y: 450,
-            NUM_BOMBS: 5
+            NUM_BOMBS: 2
         };
     }
 
@@ -34,7 +34,7 @@ class Game {
             bomb.update();
         });
         // Check collisions
-        this.checkCollisions()
+        if (this.player.face) this.checkCollisions()
     }
 
     add(object) {
@@ -84,7 +84,8 @@ class Game {
     checkCollisions() {
         for (let i = 0; i < this.bombs.length; i++) {
             const obj = this.bombs[i];
-            obj.collision(this.player)
+            // So far only collision for player
+            obj.collisionDetection(this.player)
         }
 
         // const allObjects = this.allObjects();

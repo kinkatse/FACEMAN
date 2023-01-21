@@ -1,4 +1,5 @@
 import GameUtil from '../gameUtil.js';
+import FaceUtil from '../faceUtil.js';
 
 class MovingObject {
     constructor (options) {
@@ -20,13 +21,25 @@ class MovingObject {
       ctx.fill();
     };
 
-    collision(otherObject) {
+    collisionDetection(player) {
       // checks with position of both objects, bomb and face (iterate through each face outer position)
       // if true, player takes damage for bomb
       // respawn new bomb
 
-      const centerDist = GameUtil.dist(this.pos, otherObject.pos);
-      return centerDist < (this.radius + otherObject.radius);
+      // Grab each point on the edge of the face
+      for (let pt of player.face.annotations.silhouette) {
+        pt = FaceUtil.scaleCoord(pt);
+        // Grab distance between face edge point and bomb
+        const centerDist = GameUtil.dist(this.pos, pt);
+        // Logic for when the bomb radius is within range of the face edge
+        if (centerDist < this.radius) {
+          player.takeDamage(this.damage);
+          this.remove()
+        };
+      }
+
+      // const centerDist = GameUtil.dist(this.pos, otherObject.pos);
+      // return centerDist < (this.radius + otherObject.radius);
     };
 
     update() {
