@@ -29,24 +29,24 @@ class MovingObject {
     };
 
     update(timeDelta) {
-        const FRAMEDELTA = 1000 / 60;
-        const velocityScale = timeDelta / FRAMEDELTA,
-            offsetX = this.vel[0] * velocityScale,
-            offsetY = this.vel[1] * velocityScale;
+        // const FRAMEDELTA = 1000 / 60;
+        // const velocityScale = timeDelta / FRAMEDELTA,
+        //     offsetX = this.vel[0] * velocityScale,
+        //     offsetY = this.vel[1] * velocityScale;
       
-        this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+        // this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
       
-        if (this.game.isOutOfBounds(this.pos)) {
-          if (this.isWrappable) {
-            this.pos = this.game.wrap(this.pos);
-          } else {
-            this.remove();
-          }
-        }
+        // if (this.game.isOutOfBounds(this.pos)) {
+        //   if (this.isWrappable) {
+        //     this.pos = this.game.wrap(this.pos);
+        //   } else {
+        //     this.remove();
+        //   }
+        // }
     };
 
     remove() {
-        // this.game.remove(this);
+        this.game.remove(this);
     };
 }
 

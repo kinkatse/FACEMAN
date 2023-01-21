@@ -23,7 +23,7 @@ class GameView {
 
         // Checks to see if game is playing to set up game functions
         if (this.mode === "gameon"){
-            this.game = new Game();
+            this.game = new Game(this.face);
         } else if (this.mode === "justfilters") {
             this.filterOn = false;
         }
@@ -103,6 +103,8 @@ class GameView {
                 this.ctx.drawImage(this.grabPrevVideoFrame(), 0, 0, this.DIM_width, this.DIM_height);
                 this.drawFilters();
                 this.game.draw(this.ctx, this.face)
+                this.game.remove()
+                this.game.addBombs();
                 console.log(this.game.bombs)
             } else {
                 this.ctx.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
