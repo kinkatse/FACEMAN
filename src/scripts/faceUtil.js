@@ -1,4 +1,8 @@
 const FaceUtil = {
+    faceBoundsLeftX: (face) => face.boundingBox.topLeft[0],
+    faceBoundsRightX: (face) => face.boundingBox.bottomRight[0],
+    faceBoundsTopY: (face) => face.boundingBox.topLeft[1],
+    faceBoundsBottomY: (face) => face.boundingBox.bottomRight[1],
     scaleCoord: (pt) => {
         let x = pt[0];
         let y = pt[1];

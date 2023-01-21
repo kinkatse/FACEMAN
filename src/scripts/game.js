@@ -1,5 +1,5 @@
 import Bomb from "./entities/bomb";
-import GameUtil from "./gameUtil";
+import faceUtil from "./faceUtil";
 
 class Game {
     constructor(face) {
@@ -16,7 +16,7 @@ class Game {
         return {
             DIM_X: 700,
             DIM_Y: 450,
-            NUM_BOMBS: 5
+            NUM_BOMBS: 2
         };
     }
 
@@ -73,10 +73,10 @@ class Game {
             let x = Game.defaults.DIM_X * Math.random();
             let y = Game.defaults.DIM_Y * Math.random();
             while ( this.user
-                && x < GameUtil.faceBoundsRightX(this.user)
-                && x > GameUtil.faceBoundsLeftX(this.user)
-                && y > GameUtil.faceBoundsTopY(this.user)
-                && y < GameUtil.faceBoundsBottomY(this.user)
+                && x < faceUtil.faceBoundsRightX(this.user)
+                && x > faceUtil.faceBoundsLeftX(this.user)
+                && y > faceUtil.faceBoundsTopY(this.user)
+                && y < faceUtil.faceBoundsBottomY(this.user)
                 ) {
                     x = Game.defaults.DIM_X * Math.random();
                     y = Game.defaults.DIM_Y * Math.random();
@@ -91,19 +91,19 @@ class Game {
     }
 
     remove(object) {
-        if (object === undefined) {
-            this.bombs.shift()
-            this.bombs.shift()
-            this.bombs.shift()
-        }
-        // if (object instanceof Bomb) {
-        //     this.bombs.splice(this.bombs.indexOf(object), 1)
-        // } else if (object instanceof Heart) {
-        // } else if (object instanceof Coin) {
-        // } else if (object instanceof Ghost) {
-        // } else {
-        //     throw new Error("unknown type of object");
+        // if (object === undefined) {
+        //     this.bombs.shift()
+        //     this.bombs.shift()
+        //     this.bombs.shift()
         // }
+        if (object instanceof Bomb) {
+            this.bombs.splice(this.bombs.indexOf(object), 1)
+        } else if (object instanceof Heart) {
+        } else if (object instanceof Coin) {
+        } else if (object instanceof Ghost) {
+        } else {
+            throw new Error("unknown type of object");
+        }
     }
 }
 
