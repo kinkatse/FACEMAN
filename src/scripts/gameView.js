@@ -12,29 +12,24 @@ class GameView {
         this.face;
         this.DIM_width = 700;
         this.DIM_height = 450;
-        // this.filterOn = false;
-        // this.filterMatch = false;
         this.game = null;
 
-        const start = document.getElementById("start-button")
-        start.addEventListener("click", () => {
-            // set mode to gameon and create game instance
-            this.mode = "gameon"
-            this.game = new Game(this.face);
-        })
+        this.runEventListeners();
 
         this.setupCamera();
         this.loadFaceModel();
         // Sets interval to loop the draw function (which loses context)
         // setInterval(this.draw.bind(this), 1);
         requestAnimationFrame(this.animate.bind(this))
+    }
 
-        // // Checks to see if game is playing to set up game functions
-        // if (this.mode === "gameon"){
-        //     this.game = new Game(this.face);
-        // } else if (this.mode === "justfilters") {
-        //     this.filterOn = false;
-        // }
+    runEventListeners() {
+        const start = document.getElementById("start-button")
+        start.addEventListener("click", () => {
+            // set mode to gameon and create game instance
+            this.mode = "gameon"
+            this.game = new Game(this.face);
+        })
     }
 
     setupCamera() {
@@ -97,24 +92,9 @@ class GameView {
 
     // Load face models predictions before drawing which happens in the detectFace function
     draw() {
-
-        // // Checks to see if game is playing to set up game functions
-        // if (this.mode === "gameon"){
-        //     this.game = new Game(this.face);
-        // } else if (this.mode === "justfilters") {
-        //     this.filterOn = false;
-        // }
-
         // This is so that we don't error out before out video loads up
         if (this.model !== undefined) {
             this.detectFace();
-            // if (this.filterOn && this.filterMatch && this.mode !== "gameon") {
-                // this is for when we apply a filter and we want the filter to match the face on the same frame
-                // I could not find a solid reason for why the drawing of the filter is delayed, so I made the
-                // frame that the application shows delayed as well. This results in a cost of a bit of framerate though.
-                // this.ctx.drawImage(this.grabPrevVideoFrame(), 0, 0, this.DIM_width, this.DIM_height);
-                // this.drawFilters();
-            // } else 
             if (this.mode === "gameon") {
                 this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
                 this.ctx.drawImage(this.grabPrevVideoFrame(), 0, 0, this.DIM_width, this.DIM_height);
@@ -148,8 +128,6 @@ class GameView {
 
         const faceMaskDots = true
         if (faceMaskDots && this.face !== undefined) {
-            // this.filterOn = true;
-            // this.filterMatch = true;
             new ScanMask({
                 face: this.face,
                 ctx: this.ctx,
