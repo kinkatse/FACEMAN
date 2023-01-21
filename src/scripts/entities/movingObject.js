@@ -6,6 +6,7 @@ class MovingObject {
       this.pos = options.pos || options.game.spawnPosition(this);
       this.vel = options.vel;
       this.radius = options.radius;
+      this.distance = this.radius * 2;
       this.color = options.color;
       this.game = options.game;
       this.isWrappable = true;
@@ -19,13 +20,19 @@ class MovingObject {
         this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
       );
       ctx.fill();
+      
+      ctx.beginPath();
+      ctx.lineWidth = 2;
+      ctx.moveTo(this.pos[0], this.pos[1] - 20);
+      ctx.bezierCurveTo(
+        this.pos[0], this.pos[1] - 30,
+        this.pos[0] + 10, this.pos[1] - 30,
+        this.pos[0] + 10, this.pos[1] - 25
+      );
+      ctx.stroke();
     };
 
     collisionDetection(player) {
-      // checks with position of both objects, bomb and face (iterate through each face outer position)
-      // if true, player takes damage for bomb
-      // respawn new bomb
-
       // Grab each point on the edge of the face
       for (let pt of player.face.annotations.silhouette) {
         pt = FaceUtil.scaleCoord(pt);
