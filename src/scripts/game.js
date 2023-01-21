@@ -1,10 +1,11 @@
 import Bomb from "./entities/bomb";
+import Player from "./entities/user";
 import FaceUtil from "./faceUtil";
 import GameUtil from "./gameUtil";
 
 class Game {
     constructor(face) {
-        this.user = face;
+        this.player = new Player(face);
         this.bombs = [];
         this.hearts = [];
         this.coins = [];
@@ -22,7 +23,7 @@ class Game {
     }
 
     draw(ctx, face) {
-        this.user = face;
+        if (this.player) this.player.face = face;
         this.bombs.forEach(bomb => {
             bomb.draw(ctx);
         });
@@ -61,11 +62,11 @@ class Game {
         if (object instanceof Bomb) {
             let x = Game.defaults.DIM_X * Math.random();
             let y = Game.defaults.DIM_Y * Math.random();
-            while ( this.user
-                && x < FaceUtil.faceBoundsRightX(this.user)
-                && x > FaceUtil.faceBoundsLeftX(this.user)
-                && y > FaceUtil.faceBoundsTopY(this.user)
-                && y < FaceUtil.faceBoundsBottomY(this.user)
+            while ( this.player.face
+                && x < FaceUtil.faceBoundsRightX(this.player.face)
+                && x > FaceUtil.faceBoundsLeftX(this.player.face)
+                && y > FaceUtil.faceBoundsTopY(this.player.face)
+                && y < FaceUtil.faceBoundsBottomY(this.player.face)
                 ) {
                     x = Game.defaults.DIM_X * Math.random();
                     y = Game.defaults.DIM_Y * Math.random();

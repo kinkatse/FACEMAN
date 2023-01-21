@@ -10,6 +10,8 @@ class Bomb extends MovingObject {
         options.vel = options.vel || GameUtil.randomVec(Bomb.defaults.SPEED);
 
         super(options);
+
+        this.damage = 5;
     }
 
     static get defaults() {
