@@ -16,7 +16,7 @@ class Game {
         return {
             DIM_X: 700,
             DIM_Y: 450,
-            NUM_BOMBS: 2
+            NUM_BOMBS: 5
         };
     }
 
@@ -98,6 +98,7 @@ class Game {
         // }
         if (object instanceof Bomb) {
             this.bombs.splice(this.bombs.indexOf(object), 1)
+            if (this.bombs.length === 0) this.addBombs();
         } else if (object instanceof Heart) {
         } else if (object instanceof Coin) {
         } else if (object instanceof Ghost) {
@@ -105,6 +106,11 @@ class Game {
             throw new Error("unknown type of object");
         }
     }
+
+    isOutOfBounds(pos) {
+        return (pos[0] < 0) || (pos[1] < 0) ||
+        (pos[0] > Game.defaults.DIM_X) || (pos[1] > Game.defaults.DIM_Y);
+    };
 }
 
 export default Game;

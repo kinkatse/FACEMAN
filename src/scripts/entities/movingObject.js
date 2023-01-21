@@ -29,20 +29,25 @@ class MovingObject {
     };
 
     update(timeDelta) {
+        // debugger
+        // // How fast our app should be playing in time essentially
         // const FRAMEDELTA = 1000 / 60;
-        // const velocityScale = timeDelta / FRAMEDELTA,
-        //     offsetX = this.vel[0] * velocityScale,
-        //     offsetY = this.vel[1] * velocityScale;
+        // const velocityScale = timeDelta / FRAMEDELTA;
+        // // Use vector and scale it to know the new direction for the pos
+        // const offsetX = this.vel[0] * velocityScale;
+        // const offsetY = this.vel[1] * velocityScale;
       
+        // Set new position
         // this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+        this.pos = [this.pos[0] + this.vel[0], this.pos[1] + this.vel[1]];
       
-        // if (this.game.isOutOfBounds(this.pos)) {
+        if (this.game.isOutOfBounds(this.pos)) {
         //   if (this.isWrappable) {
         //     this.pos = this.game.wrap(this.pos);
         //   } else {
-        //     this.remove();
+            this.remove();
         //   }
-        // }
+        }
     };
 
     remove() {

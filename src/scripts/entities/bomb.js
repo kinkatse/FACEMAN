@@ -7,7 +7,7 @@ class Bomb extends MovingObject {
         options.color = Bomb.defaults.COLOR;
         options.pos = options.pos
         options.radius = Bomb.defaults.RADIUS;
-        // options.vel = options.vel || GameUtil.randomVec(Bomb.defaults.SPEED);
+        options.vel = options.vel || GameUtil.randomVec(Bomb.defaults.SPEED);
 
         super(options);
     }
