@@ -1,5 +1,6 @@
 import Bomb from "./entities/bomb";
-import faceUtil from "./faceUtil";
+import FaceUtil from "./faceUtil";
+import GameUtil from "./gameUtil";
 
 class Game {
     constructor(face) {
@@ -61,10 +62,10 @@ class Game {
             let x = Game.defaults.DIM_X * Math.random();
             let y = Game.defaults.DIM_Y * Math.random();
             while ( this.user
-                && x < faceUtil.faceBoundsRightX(this.user)
-                && x > faceUtil.faceBoundsLeftX(this.user)
-                && y > faceUtil.faceBoundsTopY(this.user)
-                && y < faceUtil.faceBoundsBottomY(this.user)
+                && x < FaceUtil.faceBoundsRightX(this.user)
+                && x > FaceUtil.faceBoundsLeftX(this.user)
+                && y > FaceUtil.faceBoundsTopY(this.user)
+                && y < FaceUtil.faceBoundsBottomY(this.user)
                 ) {
                     x = Game.defaults.DIM_X * Math.random();
                     y = Game.defaults.DIM_Y * Math.random();
@@ -98,6 +99,13 @@ class Game {
     isOutOfBounds(pos) {
         return (pos[0] < 0) || (pos[1] < 0) ||
         (pos[0] > Game.defaults.DIM_X) || (pos[1] > Game.defaults.DIM_Y);
+    };
+
+    wrap(pos) {
+        return [
+          GameUtil.wrap(pos[0], Game.defaults.DIM_X),
+          GameUtil.wrap(pos[1], Game.defaults.DIM_Y)
+        ];
     };
 }
 
