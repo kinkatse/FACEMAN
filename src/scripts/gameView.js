@@ -102,7 +102,7 @@ class GameView {
                 this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
                 this.ctx.drawImage(this.grabPrevVideoFrame(), 0, 0, this.DIM_width, this.DIM_height);
                 this.drawFilters();
-                this.game.draw(this.ctx)
+                this.game.draw(this.ctx, this.face)
                 console.log(this.game.bombs)
             } else {
                 this.ctx.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
@@ -111,39 +111,19 @@ class GameView {
         }
         // Logic for error handling when face is too far or too close
         if (this.face !== undefined) {
-            if (this.face.boundingBox.bottomRight[0] - this.face.boundingBox.topLeft[0] - 40 < 100 || this.face.boundingBox.bottomRight[1] - this.face.boundingBox.topLeft[1] + 110 < 175) {
-                console.log("Error: Bring your face closer and keep it straight")
+            if (this.face.boundingBox.bottomRight[0] - this.face.boundingBox.topLeft[0] - 40 < 100
+                || this.face.boundingBox.bottomRight[1] - this.face.boundingBox.topLeft[1] + 110 < 175) {
+                    console.log("Error: Bring your face closer and keep it straight")
             }
-             else if (this.face.boundingBox.bottomRight[0] - this.face.boundingBox.topLeft[0] - 40 > 300 || this.face.boundingBox.bottomRight[1] - this.face.boundingBox.topLeft[1] + 110 > 375) {
-                console.log("Error: Back up a bit and keep your head straight")
+             else if (this.face.boundingBox.bottomRight[0] - this.face.boundingBox.topLeft[0] - 40 > 300
+                || this.face.boundingBox.bottomRight[1] - this.face.boundingBox.topLeft[1] + 110 > 375) {
+                    console.log("Error: Back up a bit and keep your head straight")
             }
         }
     }
 
     // When filters are clicked, they are revealed here
     drawFilters() {
-        // My attempt to distort the face
-        // const sadFace = true
-        // if (sadFace && this.face !== undefined) {
-        //     for (let i = 0; i < this.face.annotations.lipsLowerOuter.length; i++) {
-        //         // I manipulated the face object from the API but it doesn't correlate to the video or canvas
-        //         // Instead of just subtracting two points, I probably need to do some math to figure out
-        //         // how to distort a section of the face
-        //         this.face.annotations.lipsLowerOuter[i][0] -= 50;
-        //         this.face.annotations.lipsLowerOuter[i][1] -= 50;
-        //         // I could do one of two things:
-        //         // Manipulate the video before I draw the ctx
-        //         // or manipulate the ctx after I drew it
-
-        //         // Method 2 attempt
-        //         this.ctx.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
-        //         const imgData = this.ctx.getImageData(0,0,this.DIM_width, this.DIM_height)
-        //         console.log(imgData)
-        //         const mat = this.getPixelMatrix(imgData);
-        //         console.log(mat)
-        //         // Cool, now I can manipulate the ctx data points and draw it again
-        //     }
-        // }
 
         const faceMaskDots = true
         if (faceMaskDots && this.face !== undefined) {
@@ -202,6 +182,29 @@ class GameView {
                 ctx: this.ctx
             });
         }
+
+        // My attempt to distort the face
+        // const sadFace = true
+        // if (sadFace && this.face !== undefined) {
+        //     for (let i = 0; i < this.face.annotations.lipsLowerOuter.length; i++) {
+        //         // I manipulated the face object from the API but it doesn't correlate to the video or canvas
+        //         // Instead of just subtracting two points, I probably need to do some math to figure out
+        //         // how to distort a section of the face
+        //         this.face.annotations.lipsLowerOuter[i][0] -= 50;
+        //         this.face.annotations.lipsLowerOuter[i][1] -= 50;
+        //         // I could do one of two things:
+        //         // Manipulate the video before I draw the ctx
+        //         // or manipulate the ctx after I drew it
+
+        //         // Method 2 attempt
+        //         this.ctx.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
+        //         const imgData = this.ctx.getImageData(0,0,this.DIM_width, this.DIM_height)
+        //         console.log(imgData)
+        //         const mat = this.getPixelMatrix(imgData);
+        //         console.log(mat)
+        //         // Cool, now I can manipulate the ctx data points and draw it again
+        //     }
+        // }
     }
 
 }

@@ -4,8 +4,7 @@ class Bomb extends MovingObject {
     constructor(options) {
         options = options || {};
         options.color = Bomb.defaults.COLOR;
-        // options.pos = options.pos || options.game.randomPosition();
-        options.pos = options.pos || [700 * Math.random(), 450 * Math.random()]
+        options.pos = options.pos
         options.radius = Bomb.defaults.RADIUS;
         // options.vel = options.vel || Util.randomVec(Bomb.defaults.SPEED);
 

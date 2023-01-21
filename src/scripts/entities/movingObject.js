@@ -2,7 +2,7 @@ import GameUtil from '../gameUtil.js';
 
 class MovingObject {
     constructor (options) {
-        this.pos = options.pos;
+        this.pos = options.pos || options.game.spawnPosition(this);
         this.vel = options.vel;
         this.radius = options.radius;
         this.color = options.color;
@@ -28,24 +28,21 @@ class MovingObject {
         // return centerDist < (this.radius + otherObject.radius);
     };
 
-    move(timeDelta) {
-        // // timeDelta is number of milliseconds since last move
-        // // if the computer is busy the time delta will be larger
-        // // in this case the MovingObject should move farther in this frame
-        // // velocity of object is how far it should move in 1/60th of a second
-        // const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
-        //     offsetX = this.vel[0] * velocityScale,
-        //     offsetY = this.vel[1] * velocityScale;
+    update(timeDelta) {
+        const FRAMEDELTA = 1000 / 60;
+        const velocityScale = timeDelta / FRAMEDELTA,
+            offsetX = this.vel[0] * velocityScale,
+            offsetY = this.vel[1] * velocityScale;
       
-        // this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+        this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
       
-        // if (this.game.isOutOfBounds(this.pos)) {
-        //   if (this.isWrappable) {
-        //     this.pos = this.game.wrap(this.pos);
-        //   } else {
-        //     this.remove();
-        //   }
-        // }
+        if (this.game.isOutOfBounds(this.pos)) {
+          if (this.isWrappable) {
+            this.pos = this.game.wrap(this.pos);
+          } else {
+            this.remove();
+          }
+        }
     };
 
     remove() {
