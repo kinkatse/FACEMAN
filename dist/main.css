@@ -45,10 +45,245 @@ img {
 }
 
 #canvas {
-  border: 5px solid red;
-}
-
-#canvas {
+  border: 7px solid rgb(28, 29, 30);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
   transform: rotateY(180deg);
   -webkit-transform: rotateY(180deg);
+}
+
+.canvas-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+@keyframes colorrotate {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+@keyframes rotate {
+  from {
+    filter: hue-rotate(0deg);
+    transform: scale(1) rotate(1deg);
+    /* height: 50px; */
+  }
+  50% {
+    filter: hue-rotate(360deg);
+    transform: scale(1.1) rotate(360deg);
+    /* height: 55px;
+    margin: -2.5px; */
+  }
+  to {
+    filter: hue-rotate(720deg);
+    transform: scale(1) rotate(720deg);
+    /* height: 50px; */
+  }
+}
+@keyframes pop {
+  from, to {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(-10deg);
+  }
+}
+@keyframes fadein {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+body {
+  background: linear-gradient(217deg, rgb(50, 50, 50), rgb(32, 32, 32) 70.71%);
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  height: 1200px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  padding: 0px 25px;
+  border: 1px solid rgb(212, 212, 212);
+  background: rgb(245, 245, 245);
+  z-index: 5;
+}
+
+.logo {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0px;
+}
+
+.logo img {
+  height: 50px;
+  animation-duration: 3s;
+  animation-name: colorrotate;
+  animation-iteration-count: infinite;
+}
+
+.logo:hover img {
+  opacity: 65%;
+  animation-duration: 0.5s;
+  animation-name: rotate;
+  animation-iteration-count: infinite;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 1.5%;
+  margin-right: 61.5%;
+  font-size: 25px;
+  color: rgb(196, 30, 30);
+  -webkit-text-stroke-width: 0.75px;
+  -webkit-text-stroke-color: #165555;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.title:hover {
+  opacity: 65%;
+}
+
+.letter1 {
+  color: #85F7EA;
+}
+
+.letter2 {
+  color: #A0E5E6;
+}
+
+.letter3 {
+  color: #B9D4E1;
+}
+
+.letter4 {
+  color: #CCCFE3;
+}
+
+.letter5 {
+  color: #71AA92;
+}
+
+.letter6 {
+  color: #FAC47A;
+}
+
+.letter7 {
+  color: #F7EE89;
+}
+
+.letter8 {
+  color: #E0F2B8;
+}
+
+.nav-a {
+  display: flex;
+}
+
+.nav-a > div {
+  width: 100%;
+}
+
+.nav-links img {
+  height: 30px;
+}
+
+.nav-links:hover img {
+  opacity: 65%;
+  animation-duration: 0.75s;
+  animation-name: pop;
+  animation-iteration-count: infinite;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+  color: rgb(9, 147, 189);
+  border-bottom: 1px solid rgb(9, 147, 189);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  margin: 15px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 3px;
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltip {
+  font-weight: 600;
+}
+
+.tooltiptext {
+  margin-left: 20%;
+  margin-right: 20%;
+  position: relative;
+  right: -87%;
+  top: 150%;
+  font-weight: 100;
+}
+
+.tooltip:hover {
+  position: relative;
+  z-index: 5;
+  animation-duration: 1.5s;
+  animation-name: fadein;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
+  left: 25%;
+  width: 50%;
+  margin: 15px;
+}
+
+button {
+  padding: 5px;
+  margin: 5px;
+  background-color: rgba(0, 0, 0, 0);
+  border: 3px solid white;
+  border-radius: 5px;
+  color: rgb(255, 248, 240);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  animation-duration: 3s;
+  animation-name: fadein;
+}
+
+button:hover {
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+  background: linear-gradient(220deg, rgb(120, 120, 120), rgba(200, 200, 200, 0.5) 80%);
+}
+
+button:active {
+  background: rgba(180, 244, 255, 0.65);
 }

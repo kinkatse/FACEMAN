@@ -33,7 +33,7 @@ class Game {
         this.bombs.forEach(bomb => {
             bomb.update();
         });
-        // Check collisions
+        // Check collisions after we have a player face loaded
         if (this.player.face) this.checkCollisions()
     }
 
@@ -87,26 +87,6 @@ class Game {
             // So far only collision for player
             obj.collisionDetection(this.player)
         }
-
-        // const allObjects = this.allObjects();
-        // for (let i = 0; i < allObjects.length; i++) {
-        //   for (let j = 0; j < allObjects.length; j++) {
-        //     // This is checking all pairs twice, not optimized
-        //     // We should make it unique pairs only
-        //     // Much more optimized if you iterate over the asteroids first loop
-        //     // and the second loop is none asteroids, since thats the only object
-        //     // with a working collideWith(obj) function. The way this worked was
-        //     // running each class' inherited collideWith(obj) function which did
-        //     // nothing and was a waste of space and time for everyone :/
-        //     const obj1 = allObjects[i];
-        //     const obj2 = allObjects[j];
-      
-        //     if (obj1.isCollidedWith(obj2)) {
-        //       const collision = obj1.collideWith(obj2);
-        //       if (collision) return;
-        //     }
-        //   }
-        // }
       };
 
     remove(object) {

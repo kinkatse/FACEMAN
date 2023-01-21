@@ -20,20 +20,12 @@ class MovingObject {
         this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
       );
       ctx.fill();
-      
-      ctx.beginPath();
-      ctx.lineWidth = 2;
-      // Lol don't forget that I flipped the canvas so coords should be flipped too
-      ctx.moveTo(this.pos[0], this.pos[1] - 20);
-      ctx.bezierCurveTo(
-        this.pos[0], this.pos[1] - 30,
-        this.pos[0] + 10, this.pos[1] - 30,
-        this.pos[0] + 10, this.pos[1] - 25
-      );
-      ctx.stroke();
-      ctx.lineWidth = 1;
+
     };
 
+    // Flaw is that sometimes in between a frame, a player can move onto
+    // a bomb and the bomb exists inside the face area. This only checks
+    // if they hit the player face edge so it's something to work on later
     collisionDetection(player) {
       // Grab each point on the edge of the face
       for (let pt of player.face.annotations.silhouette) {
@@ -49,9 +41,6 @@ class MovingObject {
           // point which the same bomb is hitting to be considered and run
         };
       }
-
-      // const centerDist = GameUtil.dist(this.pos, otherObject.pos);
-      // return centerDist < (this.radius + otherObject.radius);
     };
 
     update() {

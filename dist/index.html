@@ -16,7 +16,54 @@
     <script src="main.js"></script>
 </head>
 <body>
-    <canvas id="canvas"></canvas>
+    <div class="navbar">
+        <span class="logo">
+            <img src="https://cdn.discordapp.com/attachments/597985513701376013/870506369223102514/FACE-MAN_Logo_1.png"/>
+        </span>
+        <h1 class="title">
+            <span class="letter1">F</span>
+            <span class="letter2">A</span>
+            <span class="letter3">C</span>
+            <span class="letter4">E</span>
+            <span class="letter5">-</span>
+            <span class="letter6">M</span>
+            <span class="letter7">A</span>
+            <span class="letter8">N</span>
+        </h1>
+        <div class="nav-a">
+            <div class="tooltip">About Me!
+                <span class="tooltiptext">I am Kin Ka Tse and I programmed this in a week! Technologies include TensorFlow and P5.</span>
+            </div>
+            <div class="tooltip">How To Use!
+                <span class="tooltiptext">Enable your camera and try a filter! Some filters will have animations when you open your mouth or close your eyes. If you want to see closed eyes animations, try squinting! Try winking too! If you would like to switch, either click the same one to toggle it off or clear. Actually, some can be combined depending on if they fit so test some of them together and see what happens!</span>
+            </div>
+        </div>
+        <a class="nav-a" href="https://github.com/kinkatse" target="_blank" rel="noopener noreferrer">
+            <span class="nav-links"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2048px-Octicons-mark-github.svg.png"/></span>
+        </a>
+        <a class="nav-a" href="https://angel.co/u/kin-ka-tse" target="_blank" rel="noopener noreferrer">
+            <span class="nav-links"><img src="https://media.discordapp.net/attachments/597985513701376013/879923537681449031/Angellist_logo.png"/></span>
+        </a>
+        <a class="nav-a" href="https://www.linkedin.com/in/kin-ka-tse/" target="_blank" rel="noopener noreferrer">
+            <span class="nav-links"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/LinkedIn_icon_circle.svg/1200px-LinkedIn_icon_circle.svg.png"/></span>
+        </a>
+    </div>
+
+    <div class="buttons">
+        <button>Scan Mask</button>
+        <button>Pacman</button>
+        <button>Kirby</button>
+        <button>Pikachu</button>
+        <button>Toggle Hitbox</button>
+        <button>Pretty</button>
+        <button>Mustache</button>
+        <button>Glasses</button>
+        <button>Clear Filters</button>
+    </div>
+
+    <div class="canvas-container">
+        <canvas id="canvas"></canvas>
+    </div>
     <video id="video" autoplay style="display: none" ></video>
 </body>
 </html>
