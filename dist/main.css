@@ -255,12 +255,21 @@ body {
   animation-name: fadein;
 }
 
-.buttons {
+.filter-buttons {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   position: relative;
   left: 25%;
+  width: 50%;
+  margin: 15px;
+}
+
+.game-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
   width: 50%;
   margin: 15px;
 }

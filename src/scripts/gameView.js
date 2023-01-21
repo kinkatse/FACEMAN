@@ -7,13 +7,21 @@ class GameView {
         this.video = video;
         this.videoFrames = [];
         this.ctx = ctx;
-        this.mode = "gameon";
+        this.mode = "justfilters";
         this.model;
         this.face;
         this.DIM_width = 700;
         this.DIM_height = 450;
         this.filterOn = false;
         this.filterMatch = false;
+        this.game = null;
+
+        const start = document.getElementById("start-button")
+        start.addEventListener("click", () => {
+            // set mode to gameon and create game instance
+            this.mode = "gameon"
+            this.game = new Game(this.face);
+        })
 
         this.setupCamera();
         this.loadFaceModel();
@@ -21,12 +29,12 @@ class GameView {
         // setInterval(this.draw.bind(this), 1);
         requestAnimationFrame(this.animate.bind(this))
 
-        // Checks to see if game is playing to set up game functions
-        if (this.mode === "gameon"){
-            this.game = new Game(this.face);
-        } else if (this.mode === "justfilters") {
-            this.filterOn = false;
-        }
+        // // Checks to see if game is playing to set up game functions
+        // if (this.mode === "gameon"){
+        //     this.game = new Game(this.face);
+        // } else if (this.mode === "justfilters") {
+        //     this.filterOn = false;
+        // }
     }
 
     setupCamera() {
@@ -89,6 +97,14 @@ class GameView {
 
     // Load face models predictions before drawing which happens in the detectFace function
     draw() {
+
+        // // Checks to see if game is playing to set up game functions
+        // if (this.mode === "gameon"){
+        //     this.game = new Game(this.face);
+        // } else if (this.mode === "justfilters") {
+        //     this.filterOn = false;
+        // }
+
         // This is so that we don't error out before out video loads up
         if (this.model !== undefined) {
             this.detectFace();
@@ -98,7 +114,7 @@ class GameView {
                 // frame that the application shows delayed as well. This results in a cost of a bit of framerate though.
                 this.ctx.drawImage(this.grabPrevVideoFrame(), 0, 0, this.DIM_width, this.DIM_height);
                 this.drawFilters();
-            } else if (this.mode = "gameon") {
+            } else if (this.mode === "gameon") {
                 this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
                 this.ctx.drawImage(this.grabPrevVideoFrame(), 0, 0, this.DIM_width, this.DIM_height);
                 this.drawFilters();
