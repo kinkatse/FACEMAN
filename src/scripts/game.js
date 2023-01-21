@@ -1,4 +1,5 @@
 import Bomb from "./entities/bomb";
+import GameUtil from "./gameUtil";
 
 class Game {
     constructor(face) {
@@ -65,15 +66,18 @@ class Game {
             faceBounds_topY = this.user.boundingBox.topLeft[1];
             faceBounds_bottomY = this.user.boundingBox.bottomRight[1];
         }
+
         // This is to make sure we get a random position, and
         // try again if the position is in the face's bounds
         if (object instanceof Bomb) {
             let x = Game.defaults.DIM_X * Math.random();
             let y = Game.defaults.DIM_Y * Math.random();
-            // debugger
-            while (x < faceBounds_rightX && x > faceBounds_leftX
-                && y > faceBounds_topY && y < faceBounds_bottomY) {
-                    // debugger
+            while ( this.user
+                && x < GameUtil.faceBoundsRightX(this.user)
+                && x > GameUtil.faceBoundsLeftX(this.user)
+                && y > GameUtil.faceBoundsTopY(this.user)
+                && y < GameUtil.faceBoundsBottomY(this.user)
+                ) {
                     x = Game.defaults.DIM_X * Math.random();
                     y = Game.defaults.DIM_Y * Math.random();
             }
@@ -88,6 +92,8 @@ class Game {
 
     remove(object) {
         if (object === undefined) {
+            this.bombs.shift()
+            this.bombs.shift()
             this.bombs.shift()
         }
         // if (object instanceof Bomb) {

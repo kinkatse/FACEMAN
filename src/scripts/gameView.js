@@ -103,6 +103,7 @@ class GameView {
                 this.ctx.drawImage(this.grabPrevVideoFrame(), 0, 0, this.DIM_width, this.DIM_height);
                 this.drawFilters();
                 this.game.draw(this.ctx, this.face)
+                // Testing bombs spawn randomly
                 this.game.remove()
                 this.game.addBombs();
                 console.log(this.game.bombs)
