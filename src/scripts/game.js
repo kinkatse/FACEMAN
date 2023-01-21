@@ -1,5 +1,5 @@
 import Bomb from "./entities/bomb";
-import Player from "./entities/user";
+import Player from "./entities/player";
 import FaceUtil from "./faceUtil";
 import GameUtil from "./gameUtil";
 
