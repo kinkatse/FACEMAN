@@ -19,8 +19,7 @@ class GameView {
         this.loadFaceModel();
         // Sets interval to loop the draw function (which loses context)
         // setInterval(this.draw.bind(this), 1);
-        this.lastTime = 0;
-        requestAnimationFrame(this.animate.bind(this, this.lastTime))
+        requestAnimationFrame(this.animate.bind(this))
 
         // Checks to see if game is playing to set up game functions
         if (this.mode === "gameon"){
@@ -72,9 +71,9 @@ class GameView {
 
     }
 
-    animate(time) {
-        this.draw(time)
-        requestAnimationFrame(this.animate.bind(this, time))
+    animate() {
+        this.draw()
+        requestAnimationFrame(this.animate.bind(this))
     }
 
     grabPrevVideoFrame() {
@@ -89,7 +88,7 @@ class GameView {
     }
 
     // Load face models predictions before drawing which happens in the detectFace function
-    draw(time) {
+    draw() {
         // This is so that we don't error out before out video loads up
         if (this.model !== undefined) {
             this.detectFace();
@@ -100,13 +99,11 @@ class GameView {
                 this.ctx.drawImage(this.grabPrevVideoFrame(), 0, 0, this.DIM_width, this.DIM_height);
                 this.drawFilters();
             } else if (this.mode = "gameon") {
-                const timeDelta = time - this.lastTime;
                 this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
                 this.ctx.drawImage(this.grabPrevVideoFrame(), 0, 0, this.DIM_width, this.DIM_height);
                 this.drawFilters();
                 this.game.draw(this.ctx, this.face);
-                this.game.update(timeDelta);
-                this.lastTime = time;
+                this.game.update();
                 // Testing bombs spawn randomly
                 // this.game.remove();
                 // this.game.addBombs();

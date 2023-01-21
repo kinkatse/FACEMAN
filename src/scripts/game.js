@@ -27,9 +27,9 @@ class Game {
         });
     }
 
-    update(delta) {
+    update() {
         this.bombs.forEach(bomb => {
-            bomb.update(delta);
+            bomb.update();
         });
         // Check collisions
     }
@@ -55,18 +55,6 @@ class Game {
     }
 
     spawnPosition(object) {
-        // This is to get the constants of the face's bounds
-        let faceBounds_leftX = null;
-        let faceBounds_rightX = null;
-        let faceBounds_topY = null;
-        let faceBounds_bottomY = null;
-        if (this.user) {
-            faceBounds_leftX = this.user.boundingBox.topLeft[0];
-            faceBounds_rightX = this.user.boundingBox.bottomRight[0];
-            faceBounds_topY = this.user.boundingBox.topLeft[1];
-            faceBounds_bottomY = this.user.boundingBox.bottomRight[1];
-        }
-
         // This is to make sure we get a random position, and
         // try again if the position is in the face's bounds
         if (object instanceof Bomb) {
