@@ -34,6 +34,7 @@ class Game {
             bomb.update();
         });
         // Check collisions
+        this.checkCollisions()
     }
 
     add(object) {
@@ -79,6 +80,33 @@ class Game {
             throw new Error("unknown type of object");
         }
     }
+
+    checkCollisions() {
+        for (let i = 0; i < this.bombs.length; i++) {
+            const obj = this.bombs[i];
+            obj.collision(this.player)
+        }
+
+        // const allObjects = this.allObjects();
+        // for (let i = 0; i < allObjects.length; i++) {
+        //   for (let j = 0; j < allObjects.length; j++) {
+        //     // This is checking all pairs twice, not optimized
+        //     // We should make it unique pairs only
+        //     // Much more optimized if you iterate over the asteroids first loop
+        //     // and the second loop is none asteroids, since thats the only object
+        //     // with a working collideWith(obj) function. The way this worked was
+        //     // running each class' inherited collideWith(obj) function which did
+        //     // nothing and was a waste of space and time for everyone :/
+        //     const obj1 = allObjects[i];
+        //     const obj2 = allObjects[j];
+      
+        //     if (obj1.isCollidedWith(obj2)) {
+        //       const collision = obj1.collideWith(obj2);
+        //       if (collision) return;
+        //     }
+        //   }
+        // }
+      };
 
     remove(object) {
         // if (object === undefined) {

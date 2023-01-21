@@ -5,6 +5,10 @@ class Player {
         this.money = 0;
     }
 
+    pos() {
+        
+    }
+
     updateFace(face) {
         this.face = face;
     }

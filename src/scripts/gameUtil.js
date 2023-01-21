@@ -6,9 +6,11 @@ const GameUtil = {
         const vector = [Math.sin(degree), Math.cos(degree)]
         return GameUtil.scale(vector, length);
     },
+    // Scale the vector with the length
     scale: (vector, length) => {
         return [vector[0] * length, vector[1] * length];
     },
+    // Wraps an object to the other side of canvas if it hits a boundary
     // Does x, y coordinate separately
     wrap: (coord, max) => {
         if (coord < 0) {
@@ -20,7 +22,16 @@ const GameUtil = {
         } else {
             return coord;
         }
-    }
+    },
+    // Returns distance between two positions
+    dist: (pos1, pos2) => {
+        const distX = pos1[0] - pos2[0]
+        const distY = pos1[1] - pos2[1]
+        return [distX, distY]
+        // return Math.sqrt(
+        //   Math.pow(pos1[0] - pos2[0], 2) + Math.pow(pos1[1] - pos2[1], 2)
+        // );
+    },
 };
 
 export default GameUtil;
