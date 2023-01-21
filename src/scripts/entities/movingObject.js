@@ -35,6 +35,9 @@ class MovingObject {
         if (centerDist < this.radius) {
           player.takeDamage(this.damage);
           this.remove()
+          return;
+          // return is necessary so we don't loop through and get another
+          // point which the same bomb is hitting to be considered and run
         };
       }
 
