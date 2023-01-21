@@ -23,6 +23,7 @@ class MovingObject {
       
       ctx.beginPath();
       ctx.lineWidth = 2;
+      // Lol don't forget that I flipped the canvas so coords should be flipped too
       ctx.moveTo(this.pos[0], this.pos[1] - 20);
       ctx.bezierCurveTo(
         this.pos[0], this.pos[1] - 30,
@@ -30,6 +31,7 @@ class MovingObject {
         this.pos[0] + 10, this.pos[1] - 25
       );
       ctx.stroke();
+      ctx.lineWidth = 1;
     };
 
     collisionDetection(player) {
