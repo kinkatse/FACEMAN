@@ -27,6 +27,7 @@ class Game {
         this.bombs.forEach(bomb => {
             bomb.draw(ctx);
         });
+        this.player.draw(ctx)
     }
 
     update() {
