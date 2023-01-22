@@ -8,7 +8,7 @@
     border: 7px solid rgb(28, 29, 30);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
     transform: rotateY(180deg);
-    -webkit-transform:rotateY(180deg);
+    -webkit-transform:rotateY(180deg); // For Chrome
 }
 
 #health-bar {
@@ -16,4 +16,6 @@
     width: 50px;
     border: 7px solid rgb(28, 29, 30);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    transform: rotateX(180deg);
+    -webkit-transform:rotateX(180deg); // For Chrome
 }

@@ -19,13 +19,12 @@ class Player {
         healthCtx.fillStyle = "red";
         healthCtx.fillRect(0, 0, 50, 450);
 
-        // Draw health bar
-        ctx.beginPath();
-        ctx.lineWidth = 2;
+        // Draw health bar, which updates each draw based on health
+        healthCtx.beginPath();
+        healthCtx.lineWidth = 2;
         healthCtx.fillStyle = "green";
-        ctx.rect(0, 0, 50, 300);
-        // ctx.lineWidth = 1;
-        ctx.stroke();
+        healthCtx.fillRect(0, 0, 50, 22.5 * (this.health / 5));
+        healthCtx.stroke();
     }
 
     takeDamage(damage) {
