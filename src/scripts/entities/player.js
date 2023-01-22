@@ -34,6 +34,7 @@ class Player {
         console.log("Score went down by 20!");
         console.log(this.score);
         if (this.health <= 0) {
+            this.health = 0;
             // Game over function
             alert("Game over!");
         }
@@ -43,13 +44,19 @@ class Player {
         if (this.health < 100) this.health += amount;
         console.log("Player got healed!");
         console.log(this.health);
-        if (this.health >= 100) console.log("Max Health")
+        if (this.health >= 100) {
+            this.health = 100;
+            console.log("Max Health")
+        }
     }
 
     addScore(amount) {
         this.score += amount;
         console.log("Score went up by 50!");
         console.log(this.score);
+        // Update score
+        const scoreEl = document.getElementById("score")
+        scoreEl.innerHTML = this.score
     }
 }
 

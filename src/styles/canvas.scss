@@ -19,3 +19,15 @@
     transform: rotateX(180deg);
     -webkit-transform:rotateX(180deg); // For Chrome
 }
+
+#score-container {
+    position: absolute;
+}
+
+#score {
+    position: relative;
+    top: 15px;
+    color: rgb(255, 224, 48);
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    font-size: 20px;
+}
