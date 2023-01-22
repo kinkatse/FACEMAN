@@ -44,6 +44,12 @@ img {
   padding: 0.5em 0 0.5em 0.5em;
 }
 
+.canvas-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 #canvas {
   border: 7px solid rgb(28, 29, 30);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
@@ -51,10 +57,11 @@ img {
   -webkit-transform: rotateY(180deg);
 }
 
-.canvas-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+#health-bar {
+  display: none;
+  width: 50px;
+  border: 7px solid rgb(28, 29, 30);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 }
 
 @keyframes colorrotate {

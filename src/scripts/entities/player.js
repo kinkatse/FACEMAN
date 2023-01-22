@@ -12,6 +12,7 @@ class Player {
     draw(ctx) {
         // Create new canvas for the health bar
         const healthEl = document.getElementById("health-bar");
+        healthEl.style.display = "block";
         healthEl.height = 450;
         healthEl.width = 50;
         const healthCtx = healthEl.getContext("2d");
@@ -19,11 +20,12 @@ class Player {
         healthCtx.fillRect(0, 0, 50, 450);
 
         // Draw health bar
-        // ctx.beginPath();
-        // ctx.lineWidth = 2;
-        // ctx.rect(0, 0, );
-        // // ctx.lineWidth = 1;
-        // ctx.stroke();
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        healthCtx.fillStyle = "green";
+        ctx.rect(0, 0, 50, 300);
+        // ctx.lineWidth = 1;
+        ctx.stroke();
     }
 
     takeDamage(damage) {
