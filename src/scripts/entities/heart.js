@@ -4,10 +4,11 @@ import GameUtil from "../gameUtil";
 class Heart extends MovingObject {
     constructor(options) {
         options = options || {};
-        options.color = Bomb.defaults.COLOR;
+        options.color = Heart.defaults.COLOR;
         options.pos = options.pos
-        options.radius = Bomb.defaults.RADIUS;
-        options.vel = options.vel || GameUtil.randomVec(Bomb.defaults.SPEED);
+        options.radius = Heart.defaults.RADIUS;
+        options.vel = options.vel || GameUtil.randomVec(Heart.defaults.SPEED);
+        options.type = "heart";
 
         super(options);
 

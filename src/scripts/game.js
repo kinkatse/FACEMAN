@@ -14,6 +14,8 @@ class Game {
         this.ghosts = [];
 
         this.addBombs();
+        this.addHearts();
+        this.addCoins();
     }
 
     static get defaults() {
@@ -21,7 +23,8 @@ class Game {
             DIM_X: 700,
             DIM_Y: 450,
             NUM_BOMBS: 2,
-            NUM_HEARTS: 1
+            NUM_HEARTS: 1,
+            NUM_COINS: 1
         };
     }
 
@@ -88,7 +91,7 @@ class Game {
     spawnPosition(object) {
         // This is to make sure we get a random position, and
         // try again if the position is in the face's bounds
-        if (object instanceof Bomb) {
+        // if (object instanceof Bomb) {
             let x = Game.defaults.DIM_X * Math.random();
             let y = Game.defaults.DIM_Y * Math.random();
             while ( this.player.face
@@ -101,17 +104,27 @@ class Game {
                     y = Game.defaults.DIM_Y * Math.random();
             }
             return [x, y]
-        } else if (object instanceof Heart) {
-        } else if (object instanceof Coin) {
-        } else if (object instanceof Ghost) {
-        } else {
-            throw new Error("unknown type of object");
-        }
+        // } else if (object instanceof Heart) {
+        // } else if (object instanceof Coin) {
+        // } else if (object instanceof Ghost) {
+        // } else {
+        //     throw new Error("unknown type of object");
+        // }
     }
 
     checkCollisions() {
         for (let i = 0; i < this.bombs.length; i++) {
             const obj = this.bombs[i];
+            // So far only collision for player
+            obj.collisionDetection(this.player)
+        }
+        for (let i = 0; i < this.hearts.length; i++) {
+            const obj = this.hearts[i];
+            // So far only collision for player
+            obj.collisionDetection(this.player)
+        }
+        for (let i = 0; i < this.coins.length; i++) {
+            const obj = this.coins[i];
             // So far only collision for player
             obj.collisionDetection(this.player)
         }

@@ -1,12 +1,14 @@
 import MovingObject from "./movingObject";
+import GameUtil from "../gameUtil";
 
 class Coin extends MovingObject {
     constructor(options) {
         options = options || {};
-        options.color = Bomb.defaults.COLOR;
+        options.color = Coin.defaults.COLOR;
         options.pos = options.pos
-        options.radius = Bomb.defaults.RADIUS;
-        options.vel = options.vel || GameUtil.randomVec(Bomb.defaults.SPEED);
+        options.radius = Coin.defaults.RADIUS;
+        options.vel = options.vel || GameUtil.randomVec(Coin.defaults.SPEED);
+        options.type = "coin";
 
         super(options);
 

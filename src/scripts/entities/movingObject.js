@@ -1,8 +1,5 @@
 import GameUtil from '../gameUtil.js';
 import FaceUtil from '../faceUtil.js';
-import Bomb from './bomb.js';
-import Heart from './heart.js';
-import Coin from './coin.js';
 
 class MovingObject {
     constructor (options) {
@@ -11,6 +8,7 @@ class MovingObject {
       this.radius = options.radius;
       this.distance = this.radius * 2;
       this.color = options.color;
+      this.type = options.type;
       this.game = options.game;
       this.isWrappable = true;
     }
@@ -36,19 +34,20 @@ class MovingObject {
         // Grab distance between face edge point and bomb
         const centerDist = GameUtil.dist(this.pos, pt);
         // Logic for when the bomb radius is within range of the face edge
-        if (this instanceof Bomb && centerDist < this.radius) {
+        // debugger
+        if (this.type === "bomb" && centerDist < this.radius) {
           player.takeDamage(this.damage);
           this.remove();
           return;
           // return is necessary so we don't loop through and get another
           // point which the same bomb is hitting to be considered and run
         };
-        if (this instanceof Heart && centerDist < this.radius) {
+        if (this.type === "heart" && centerDist < this.radius) {
           player.heal(this.amount);
           this.remove();
           return;
         };
-        if (this instanceof Coin && centerDist < this.radius) {
+        if (this.type === "coin" && centerDist < this.radius) {
           player.addScore(this.score);
           this.remove();
           return;
