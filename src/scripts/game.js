@@ -1,4 +1,6 @@
 import Bomb from "./entities/bomb";
+import Heart from "./entities/heart";
+import Coin from "./entities/coin";
 import Player from "./entities/player";
 import FaceUtil from "./faceUtil";
 import GameUtil from "./gameUtil";
@@ -18,7 +20,8 @@ class Game {
         return {
             DIM_X: 700,
             DIM_Y: 450,
-            NUM_BOMBS: 2
+            NUM_BOMBS: 2,
+            NUM_HEARTS: 1
         };
     }
 
@@ -27,12 +30,24 @@ class Game {
         this.bombs.forEach(bomb => {
             bomb.draw(ctx);
         });
+        this.hearts.forEach(heart => {
+            heart.draw(ctx);
+        });
+        this.coins.forEach(coin => {
+            coin.draw(ctx);
+        });
         this.player.draw(ctx)
     }
 
     update() {
         this.bombs.forEach(bomb => {
             bomb.update();
+        });
+        this.hearts.forEach(heart => {
+            heart.update();
+        });
+        this.coins.forEach(coin => {
+            coin.update();
         });
         // Check collisions after we have a player face loaded
         if (this.player.face) this.checkCollisions()
@@ -55,6 +70,18 @@ class Game {
     addBombs() {
         for (let i = 0; i < Game.defaults.NUM_BOMBS; i++) {
             this.add(new Bomb({ game: this }));
+        }
+    }
+
+    addHearts() {
+        for (let i = 0; i < Game.defaults.NUM_HEARTS; i++) {
+            this.add(new Heart({ game: this }));
+        }
+    }
+
+    addCoins() {
+        for (let i = 0; i < Game.defaults.NUM_COINS; i++) {
+            this.add(new Coin({ game: this }));
         }
     }
 
@@ -100,7 +127,11 @@ class Game {
             this.bombs.splice(this.bombs.indexOf(object), 1)
             if (this.bombs.length === 0) this.addBombs();
         } else if (object instanceof Heart) {
+            this.hearts.pop();
+            this.addHearts();
         } else if (object instanceof Coin) {
+            this.coins.pop();
+            this.addCoins();
         } else if (object instanceof Ghost) {
         } else {
             throw new Error("unknown type of object");
