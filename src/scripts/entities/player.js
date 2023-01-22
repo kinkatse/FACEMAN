@@ -10,6 +10,8 @@ class Player {
     }
 
     draw(ctx) {
+        const scoreEl = document.getElementById("score-container")
+        scoreEl.style.display = "block";
         // Create new canvas for the health bar
         const healthEl = document.getElementById("health-bar");
         healthEl.style.display = "block";
@@ -32,6 +34,9 @@ class Player {
         console.log("Player got hit!");
         console.log(this.health);
         console.log("Score went down by 20!");
+        if (this.score >= 0) this.score -= 20;
+        if (this.score <= 0) this.score = 0;
+        this.updateScore()
         console.log(this.score);
         if (this.health <= 0) {
             this.health = 0;
@@ -43,20 +48,24 @@ class Player {
     heal(amount) {
         if (this.health < 100) this.health += amount;
         console.log("Player got healed!");
-        console.log(this.health);
         if (this.health >= 100) {
             this.health = 100;
             console.log("Max Health")
         }
+        console.log(this.health);
     }
 
     addScore(amount) {
         this.score += amount;
         console.log("Score went up by 50!");
         console.log(this.score);
-        // Update score
+        this.updateScore()
+    }
+
+    updateScore() {
         const scoreEl = document.getElementById("score")
-        scoreEl.innerHTML = this.score
+        scoreEl.style.display = "block";
+        scoreEl.innerHTML = this.score;
     }
 }
 
