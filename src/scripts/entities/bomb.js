@@ -13,14 +13,14 @@ class Bomb extends MovingObject {
 
         super(options);
 
-        this.damage = 5;
+        this.damage = 10;
     }
 
     static get defaults() {
         return {
             COLOR: "#505050",
             RADIUS: 25,
-            SPEED: 4
+            SPEED: 5
         };
     }
 

@@ -9,19 +9,10 @@ class Player {
         this.face = face;
     }
 
-    draw(ctx) {
-        const scoreEl = document.getElementById("score-container")
-        scoreEl.style.display = "block";
-        // Create new canvas for the health bar
-        const healthEl = document.getElementById("health-bar");
-        healthEl.style.display = "block";
-        healthEl.height = 450;
-        healthEl.width = 50;
-        const healthCtx = healthEl.getContext("2d");
+    draw(ctx, healthCtx) {
+        // Draw health bar, which updates each draw based on health
         healthCtx.fillStyle = "red";
         healthCtx.fillRect(0, 0, 50, 450);
-
-        // Draw health bar, which updates each draw based on health
         healthCtx.beginPath();
         healthCtx.lineWidth = 2;
         healthCtx.fillStyle = "green";

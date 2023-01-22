@@ -16,13 +16,23 @@ class Game {
         this.addBombs();
         this.addHearts();
         this.addCoins();
+
+        this.scoreEl = document.getElementById("score-container")
+        this.scoreEl.style.display = "block";
+
+        // Create new canvas for the health bar
+        this.healthEl = document.getElementById("health-bar");
+        this.healthEl.style.display = "block";
+        this.healthEl.height = 450;
+        this.healthEl.width = 50;
+        this.healthCtx = this.healthEl.getContext("2d");
     }
 
     static get defaults() {
         return {
             DIM_X: 700,
             DIM_Y: 450,
-            NUM_BOMBS: 2,
+            NUM_BOMBS: 4,
             NUM_HEARTS: 1,
             NUM_COINS: 1
         };
@@ -39,7 +49,7 @@ class Game {
         this.coins.forEach(coin => {
             coin.draw(ctx);
         });
-        this.player.draw(ctx)
+        this.player.draw(ctx, this.healthCtx)
     }
 
     update() {
