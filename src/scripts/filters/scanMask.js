@@ -9,6 +9,7 @@ class ScanMask extends Filter {
 
     draw() {
         // Making blue mask around face
+        this.ctx.lineWidth = 1;
         this.ctx.strokeStyle = 'rgba(0, 150, 255, 0.5)';
         this.ctx.beginPath();
         let startpt = this.face.annotations.silhouette[0];
@@ -43,7 +44,8 @@ class ScanMask extends Filter {
         this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
         this.ctx.beginPath();
         for (let pt of mouth) {
-            this.ctx.lineTo(pt[0], pt[1]);
+            pt = FaceUtil.scaleCoord(pt);
+            this.ctx.lineTo(...pt)
         }
         this.ctx.closePath();
         this.ctx.fill();

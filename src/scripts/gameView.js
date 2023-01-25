@@ -1,4 +1,5 @@
 import ScanMask from "./filters/scanMask.js";
+import HurtBox from "./filters/hurtBox.js";
 import Game from "./game.js";
 
 class GameView {
@@ -17,6 +18,7 @@ class GameView {
 
         // filters
         this.faceMaskDots = false;
+        this.hitBox = false;
 
         // runing all event listeners
         this.runEventListeners();
@@ -39,9 +41,11 @@ class GameView {
 
         // Button for turning on the scan mask on or off
         const scanFilter = document.getElementById("scan-filter");
-        scanFilter.addEventListener("click", () => {
-            this.faceMaskDots = !this.faceMaskDots;
-        })
+        scanFilter.addEventListener("click", () => this.faceMaskDots = !this.faceMaskDots)
+
+        // Button for turning on the hurtBox mask on or off
+        const hurtBoxFilter = document.getElementById("hurtbox-filter");
+        hurtBoxFilter.addEventListener("click", () => this.hurtBox = !this.hurtBox)
     }
 
     setupCamera() {
@@ -145,6 +149,13 @@ class GameView {
 
         if (this.faceMaskDots && this.face !== undefined) {
             new ScanMask({
+                face: this.face,
+                ctx: this.ctx,
+            });
+        }
+
+        if (this.hurtBox && this.face !== undefined) {
+            new HurtBox({
                 face: this.face,
                 ctx: this.ctx,
             });
