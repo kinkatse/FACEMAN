@@ -1,5 +1,5 @@
 import Bomb from "./entities/bomb";
-import Heart from "./entities/heart";
+import Apple from "./entities/apple";
 import Coin from "./entities/coin";
 import Player from "./entities/player";
 import FaceUtil from "./faceUtil";
@@ -9,12 +9,12 @@ class Game {
     constructor(face) {
         this.player = new Player(face);
         this.bombs = [];
-        this.hearts = [];
+        this.apples = [];
         this.coins = [];
         this.ghosts = [];
 
         this.addBombs();
-        this.addHearts();
+        this.addApples();
         this.addCoins();
 
         this.scoreEl = document.getElementById("score-container")
@@ -33,7 +33,7 @@ class Game {
             DIM_X: 700,
             DIM_Y: 450,
             NUM_BOMBS: 4,
-            NUM_HEARTS: 1,
+            NUM_APPLES: 1,
             NUM_COINS: 1
         };
     }
@@ -43,8 +43,8 @@ class Game {
         this.bombs.forEach(bomb => {
             bomb.draw(ctx);
         });
-        this.hearts.forEach(heart => {
-            heart.draw(ctx);
+        this.apples.forEach(apple => {
+            apple.draw(ctx);
         });
         this.coins.forEach(coin => {
             coin.draw(ctx);
@@ -56,8 +56,8 @@ class Game {
         this.bombs.forEach(bomb => {
             bomb.update();
         });
-        this.hearts.forEach(heart => {
-            heart.update();
+        this.apples.forEach(apple => {
+            apple.update();
         });
         this.coins.forEach(coin => {
             coin.update();
@@ -69,8 +69,8 @@ class Game {
     add(object) {
         if (object instanceof Bomb) {
             this.bombs.push(object);
-        } else if (object instanceof Heart) {
-            this.hearts.push(object);
+        } else if (object instanceof Apple) {
+            this.apples.push(object);
         } else if (object instanceof Coin) {
             this.coins.push(object);
         } else if (object instanceof Ghost) {
@@ -86,9 +86,9 @@ class Game {
         }
     }
 
-    addHearts() {
-        for (let i = 0; i < Game.defaults.NUM_HEARTS; i++) {
-            this.add(new Heart({ game: this }));
+    addApples() {
+        for (let i = 0; i < Game.defaults.NUM_APPLES; i++) {
+            this.add(new Apple({ game: this }));
         }
     }
 
@@ -114,7 +114,7 @@ class Game {
                     y = Game.defaults.DIM_Y * Math.random();
             }
             return [x, y]
-        // } else if (object instanceof Heart) {
+        // } else if (object instanceof Apple) {
         // } else if (object instanceof Coin) {
         // } else if (object instanceof Ghost) {
         // } else {
@@ -128,8 +128,8 @@ class Game {
             // So far only collision for player
             obj.collisionDetection(this.player)
         }
-        for (let i = 0; i < this.hearts.length; i++) {
-            const obj = this.hearts[i];
+        for (let i = 0; i < this.apples.length; i++) {
+            const obj = this.apples[i];
             // So far only collision for player
             obj.collisionDetection(this.player)
         }
@@ -149,9 +149,9 @@ class Game {
         if (object instanceof Bomb) {
             this.bombs.splice(this.bombs.indexOf(object), 1)
             if (this.bombs.length === 0) this.addBombs();
-        } else if (object instanceof Heart) {
-            this.hearts.pop();
-            this.addHearts();
+        } else if (object instanceof Apple) {
+            this.apples.pop();
+            this.addApples();
         } else if (object instanceof Coin) {
             this.coins.pop();
             this.addCoins();

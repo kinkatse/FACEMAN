@@ -1,14 +1,14 @@
 import MovingObject from "./movingObject";
 import GameUtil from "../gameUtil";
 
-class Heart extends MovingObject {
+class Apple extends MovingObject {
     constructor(options) {
         options = options || {};
-        options.color = Heart.defaults.COLOR;
+        options.color = Apple.defaults.COLOR;
         options.pos = options.pos
-        options.radius = Heart.defaults.RADIUS;
-        options.vel = options.vel || GameUtil.randomVec(Heart.defaults.SPEED);
-        options.type = "heart";
+        options.radius = Apple.defaults.RADIUS;
+        options.vel = options.vel || GameUtil.randomVec(Apple.defaults.SPEED);
+        options.type = "apple";
 
         super(options);
 
@@ -28,4 +28,4 @@ class Heart extends MovingObject {
     }
 }
 
-export default Heart;
+export default Apple;

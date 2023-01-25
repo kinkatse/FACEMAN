@@ -42,11 +42,26 @@ class MovingObject {
           // return is necessary so we don't loop through and get another
           // point which the same bomb is hitting to be considered and run
         };
-        if (this.type === "heart" && centerDist < this.radius) {
+
+
+
+
+        // Now add logic for the apple to be in mouth
+        // 1. Make a true or false function for if mouth open
+        // 2. Add that condition here
+        // 3. Change the detection from the outside face to be the mouth points instead
+        FaceUtil.mouthOpen(player.face)
+
+        if (this.type === "apple" && centerDist < this.radius) {
           player.heal(this.amount);
           this.remove();
           return;
         };
+
+
+
+
+
         if (this.type === "coin" && centerDist < this.radius) {
           player.addScore(this.score);
           this.remove();

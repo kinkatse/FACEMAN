@@ -3,6 +3,8 @@ const FaceUtil = {
     faceBoundsRightX: (face) => face.boundingBox.bottomRight[0],
     faceBoundsTopY: (face) => face.boundingBox.topLeft[1],
     faceBoundsBottomY: (face) => face.boundingBox.bottomRight[1],
+    lipsUpper: (face) => FaceUtil.scaleCoord(face.annotations.lipsUpperOuter[5]),
+    lipsLower: (face) => FaceUtil.scaleCoord(face.annotations.lipsLowerOuter[4]),
     scaleCoord: (pt) => {
         let x = pt[0];
         let y = pt[1];
@@ -12,6 +14,15 @@ const FaceUtil = {
         // let x = map(pt[0], 0,video.width, 0,width);
         // let y = map(pt[1], 0,video.height, 0,height);
         // return createVector(x, y);
+    },
+    mouthOpen: (face) => {
+        const lipsUpper = FaceUtil.lipsUpper(face);
+        const lipsLower = FaceUtil.lipsLower(face);
+        // key into second element for y
+        if (lipsLower[1] - lipsUpper[1] > 30 ) {
+            return true;
+        }
+        return false;
     },
     getPixelMatrix: (imgData) => {
         // const mat = new Array(imgData.height);
