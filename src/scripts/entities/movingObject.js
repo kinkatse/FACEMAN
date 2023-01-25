@@ -28,28 +28,7 @@ class MovingObject {
     // a bomb and the bomb exists inside the face area. This only checks
     // if they hit the player face edge so it's something to work on later
     collisionDetection(player) {
-
-      const lipsA = player.face.annotations.lipsUpperInner;
-      const lipsB = player.face.annotations.lipsUpperOuter;
-      const lipsC = player.face.annotations.lipsLowerInner;
-      const lipsD = player.face.annotations.lipsLowerOuter;
-      const allLipPoints = lipsA.concat(lipsB, lipsC, lipsD)
-      for (let pt of allLipPoints) {
-        // Now add logic for the apple to be in mouth
-        // 1. Make a true or false function for if mouth open
-        // 2. Add that condition here
-        // 3. Change the detection from the outside face to be the mouth points instead
-
-        // Grab distance between face edge point and bomb
-        const mouthDist = GameUtil.dist(this.pos, pt);
-
-        if (this.type === "apple" && FaceUtil.mouthOpen(player.face) && mouthDist < this.radius) {
-          player.heal(this.amount);
-          this.remove();
-          return;
-        };
-      }
-
+      // Detect bomb and coin collision
       // Grab each point on the edge of the face
       for (let pt of player.face.annotations.silhouette) {
         pt = FaceUtil.scaleCoord(pt);
@@ -65,33 +44,33 @@ class MovingObject {
           // point which the same bomb is hitting to be considered and run
         };
 
-
-
-
-        // // Now add logic for the apple to be in mouth
-        // // 1. Make a true or false function for if mouth open
-        // // 2. Add that condition here
-        // // 3. Change the detection from the outside face to be the mouth points instead
-
-
-        // // Grab distance between face edge point and bomb
-        // const mouthDist = GameUtil.dist(this.pos, pt);
-
-        // if (this.type === "apple" && FaceUtil.mouthOpen(player.face) && centerDist < this.radius) {
-        //   player.heal(this.amount);
-        //   this.remove();
-        //   return;
-        // };
-
-
-
-
-
         if (this.type === "coin" && centerDist < this.radius) {
           player.addScore(this.score);
           this.remove();
           return;
         };
+      }
+
+      // Detect apple collision
+      // Have the mouth open detection here so we don't have to run
+      // through this iteration each if it's not actually open
+      if (FaceUtil.mouthOpen(player.face)) {
+        // Need all the lip points to iterate through for collision detection
+        const lipsA = player.face.annotations.lipsUpperInner;
+        const lipsB = player.face.annotations.lipsUpperOuter;
+        const lipsC = player.face.annotations.lipsLowerInner;
+        const lipsD = player.face.annotations.lipsLowerOuter;
+        const allLipPoints = lipsA.concat(lipsB, lipsC, lipsD)
+        for (let pt of allLipPoints) {
+          // Grab distance between face edge point and bomb
+          const mouthDist = GameUtil.dist(this.pos, pt);
+  
+          if (this.type === "apple" && mouthDist < this.radius) {
+            player.heal(this.amount);
+            this.remove();
+            return;
+          };
+        }
       }
     };
 
