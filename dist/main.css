@@ -79,6 +79,18 @@ img {
   font-size: 20px;
 }
 
+.loading {
+  position: absolute;
+  top: 280px;
+  font-size: 40px;
+  color: azure;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.below {
+  top: 330px;
+}
+
 @keyframes colorrotate {
   from {
     filter: hue-rotate(0deg);

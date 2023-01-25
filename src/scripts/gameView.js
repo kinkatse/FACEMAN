@@ -40,6 +40,11 @@ class GameView {
         }).then( stream => {
             // Which returns us a promise which we then take the stream and set that to the video srcObject
             this.video.srcObject = stream;
+            // Change loading elements to be hidden once video loads
+            const loadingEls = document.getElementsByClassName("loading");
+            for (let el of loadingEls) {
+                el.style.display = "none";
+            }
         });
     }
 
