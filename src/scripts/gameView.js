@@ -4,6 +4,7 @@ import Game from "./game.js";
 class GameView {
 
     constructor(ctx, video) {
+        // video, face detection, canvas and game set up
         this.video = video;
         this.videoFrames = [];
         this.ctx = ctx;
@@ -14,8 +15,13 @@ class GameView {
         this.DIM_height = 450;
         this.game = null;
 
+        // filters
+        this.faceMaskDots = false;
+
+        // runing all event listeners
         this.runEventListeners();
 
+        // running functions that start the application
         this.setupCamera();
         this.loadFaceModel();
         // Sets interval to loop the draw function (which loses context)
@@ -24,11 +30,17 @@ class GameView {
     }
 
     runEventListeners() {
-        const start = document.getElementById("start-button")
+        const start = document.getElementById("start-button");
         start.addEventListener("click", () => {
             // set mode to gameon and create game instance
-            this.mode = "gameon"
+            this.mode = "gameon";
             this.game = new Game(this.face);
+        })
+
+        // Button for turning on the scan mask on or off
+        const scanFilter = document.getElementById("scan-filter");
+        scanFilter.addEventListener("click", () => {
+            this.faceMaskDots = !this.faceMaskDots;
         })
     }
 
@@ -40,11 +52,6 @@ class GameView {
         }).then( stream => {
             // Which returns us a promise which we then take the stream and set that to the video srcObject
             this.video.srcObject = stream;
-            // Change loading elements to be hidden once video loads
-            const loadingEls = document.getElementsByClassName("loading");
-            for (let el of loadingEls) {
-                el.style.display = "none";
-            }
         });
     }
 
@@ -55,6 +62,11 @@ class GameView {
             this.model = await faceLandmarksDetection.load(
                 faceLandmarksDetection.SupportedPackages.mediapipeFacemesh
             );
+            // Change loading elements to be hidden once face api loads in
+            const loadingEls = document.getElementsByClassName("loading");
+            for (let el of loadingEls) {
+                el.style.display = "none";
+            }
         });
     }
 
@@ -131,8 +143,7 @@ class GameView {
     // When filters are clicked, they are revealed here
     drawFilters() {
 
-        const faceMaskDots = true
-        if (faceMaskDots && this.face !== undefined) {
+        if (this.faceMaskDots && this.face !== undefined) {
             new ScanMask({
                 face: this.face,
                 ctx: this.ctx,
