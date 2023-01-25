@@ -56,12 +56,7 @@ class MovingObject {
       // through this iteration each if it's not actually open
       if (FaceUtil.isMouthOpen(player.face)) {
         // Need all the lip points to iterate through for collision detection
-        const lipsA = player.face.annotations.lipsUpperInner;
-        const lipsB = player.face.annotations.lipsUpperOuter;
-        const lipsC = player.face.annotations.lipsLowerInner;
-        const lipsD = player.face.annotations.lipsLowerOuter;
-        const allLipPoints = lipsA.concat(lipsB, lipsC, lipsD)
-        for (let pt of allLipPoints) {
+        for (let pt of FaceUtil.allLipPoints(player.face)) {
           // Grab distance between face edge point and bomb
           const mouthDist = GameUtil.dist(this.pos, pt);
   

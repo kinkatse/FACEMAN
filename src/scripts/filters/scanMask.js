@@ -37,6 +37,16 @@ class ScanMask extends Filter {
             this.ctx.fill();
             this.ctx.stroke();
         }
+
+        // Drawing mouth
+        let mouth = FaceUtil.innerLipPoints(this.face)
+        this.ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+        this.ctx.beginPath();
+        for (let pt of mouth) {
+            this.ctx.lineTo(pt[0], pt[1]);
+        }
+        this.ctx.closePath();
+        this.ctx.fill();
     }
 
 }

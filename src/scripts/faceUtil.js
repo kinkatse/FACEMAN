@@ -15,6 +15,20 @@ const FaceUtil = {
         // let y = map(pt[1], 0,video.height, 0,height);
         // return createVector(x, y);
     },
+    innerLipPoints: (face) => {
+        const lipsA = face.annotations.lipsUpperInner;
+        const lipsB = face.annotations.lipsLowerInner;
+        const innerLipPoints = lipsA.concat(lipsB)
+        return innerLipPoints;
+    },
+    allLipPoints: (face) => {
+        const lipsA = face.annotations.lipsUpperInner;
+        const lipsB = face.annotations.lipsUpperOuter;
+        const lipsC = face.annotations.lipsLowerInner;
+        const lipsD = face.annotations.lipsLowerOuter;
+        const allLipPoints = lipsA.concat(lipsB, lipsC, lipsD)
+        return allLipPoints;
+    },
     isMouthOpen: (face) => {
         const lipsUpper = FaceUtil.lipsUpper(face);
         const lipsLower = FaceUtil.lipsLower(face);
