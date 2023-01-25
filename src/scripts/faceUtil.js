@@ -15,7 +15,7 @@ const FaceUtil = {
         // let y = map(pt[1], 0,video.height, 0,height);
         // return createVector(x, y);
     },
-    mouthOpen: (face) => {
+    isMouthOpen: (face) => {
         const lipsUpper = FaceUtil.lipsUpper(face);
         const lipsLower = FaceUtil.lipsLower(face);
         // key into second element for y

@@ -54,7 +54,7 @@ class MovingObject {
       // Detect apple collision
       // Have the mouth open detection here so we don't have to run
       // through this iteration each if it's not actually open
-      if (FaceUtil.mouthOpen(player.face)) {
+      if (FaceUtil.isMouthOpen(player.face)) {
         // Need all the lip points to iterate through for collision detection
         const lipsA = player.face.annotations.lipsUpperInner;
         const lipsB = player.face.annotations.lipsUpperOuter;
