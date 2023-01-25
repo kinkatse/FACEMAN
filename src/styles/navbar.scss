@@ -208,15 +208,6 @@ body {
   margin: 15px;
 }
 
-.game-buttons {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  position: relative;
-  width: 50%;
-  margin: 15px;
-}
-
 button {
   padding: 5px;
   margin: 5px;
@@ -239,4 +230,13 @@ button:hover {
 
 button:active {
   background: rgb(180, 244, 255, 0.65);
+}
+
+.game-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+
+#start-button {
 }
