@@ -20,8 +20,9 @@ class GameView {
         this.faceMaskDots = false;
         this.hitBox = false;
         this.instructionsPage = ["general"]
-        this.instructions = true;
-        setTimeout(() => this.drawInstructions(), 1000)
+        this.instructions = false;
+        this.loadInstructions();
+        // this.drawInstructions()
 
         // runing all event listeners
         this.runEventListeners();
@@ -136,6 +137,7 @@ class GameView {
                 this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
                 this.ctx.drawImage(this.grabPrevVideoFrame(), 0, 0, this.DIM_width, this.DIM_height);
                 this.drawFilters();
+                this.drawInstructions()
                 this.game.draw(this.ctx, this.face);
                 this.game.update();
                 // Testing bombs spawn randomly
@@ -145,6 +147,7 @@ class GameView {
             } else {
                 this.ctx.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
                 this.drawFilters();
+                this.drawInstructions()
             }
         }
         // Logic for error handling when face is too far or too close
@@ -237,45 +240,46 @@ class GameView {
         }
     }
 
+    loadInstructions() {
+        const instructionsEl = document.getElementById("instructions-canvas");
+        // instructionsEl.style.display = "inline";
+        instructionsEl.style.position = "absolute";
+        instructionsEl.height = 450;
+        instructionsEl.width = 700;
+        const instructionsCtx = instructionsEl.getContext("2d");
+
+        instructionsCtx.fillStyle = "rgba(60, 179, 113, 0.8)";
+        instructionsCtx.strokeStyle = "rgba(10, 129, 63, 0.5)";
+
+        instructionsCtx.beginPath()
+        instructionsCtx.roundRect(100, 50, 500, 350, [10])
+        instructionsCtx.fill()
+        instructionsCtx.stroke()
+
+        const backButton = document.querySelector(".back")
+        backButton.addEventListener("click", () => {
+            this.goBackPage()
+        })
+
+        const nextButton = document.querySelector(".next")
+        nextButton.addEventListener("click", () => {
+            this.goNextPage()
+        })
+
+        if (backButton.style.display === "none") {
+            nextButton.classList.add("next-only")
+        } else {
+            nextButton.classList.remove("next-only")
+        }
+    }
+
     drawInstructions() {
         if (this.instructions) {
-            // Instructions canvas
-            const instructionsEl = document.getElementById("instructions-canvas");
-            instructionsEl.style.display = "inline";
-            instructionsEl.style.position = "absolute";
-            instructionsEl.height = 450;
-            instructionsEl.width = 700;
-            const instructionsCtx = instructionsEl.getContext("2d");
-
-            instructionsCtx.fillStyle = "rgba(60, 179, 113, 0.8)";
-            instructionsCtx.strokeStyle = "rgba(10, 129, 63, 0.5)";
-
-            instructionsCtx.beginPath()
-            instructionsCtx.roundRect(100, 50, 500, 350, [10])
-            instructionsCtx.fill()
-            instructionsCtx.stroke()
-
-            const backButton = document.querySelector(".back")
-            backButton.addEventListener("click", () => {
-                this.goBackPage()
-            })
-
-            const nextButton = document.querySelector(".next")
-            nextButton.addEventListener("click", () => {
-                this.goNextPage()
-            })
-
-            // instructionsCtx.fillStyle = "black";
-            // instructionsCtx.font = "bold 18px serif";
-            // instructionsCtx.strokeText("Hello world", 50, 100);
-            // instructionsCtx.fillText("Hello! Welcome to FACE-MAN", 120, 90);
-            // instructionsCtx.fillText("This is a face detection game which uses your video", 120, 115);
-            // instructionsCtx.fillText("feed to display obstacles and your face as a hurt box", 120, 140);
-            // instructionsCtx.fillText("After you enable the camera, you can start the game", 120, 165);
-            // instructionsCtx.fillText("There are 4 entities to be aware of in this game", 120, 190);
+            const instructionsEl = document.getElementById("instructions-elements")
+            instructionsEl.style.display = "block"
         } else {
-            // display none
-            // make the canvas always there, just hidden and none hidden when this function runs
+            const instructionsEl = document.getElementById("instructions-elements")
+            instructionsEl.style.display = "none"
         }
     }
 
@@ -343,8 +347,6 @@ class GameView {
                 ctx: this.ctx
             });
         }
-
-        this.drawInstructions()
 
         // My attempt to distort the face
         // const sadFace = true

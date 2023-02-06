@@ -172,7 +172,7 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 310px;
+  height: 320px;
   width: 480px;
   top: 210px;
 }
@@ -190,6 +190,7 @@ img {
 .direction {
   position: relative;
   padding: 10px;
+  margin: 10px;
   background-color: rgba(118, 134, 213, 0.5);
   border-radius: 5px;
   user-select: none;
@@ -205,11 +206,15 @@ img {
   display: flex;
   flex-direction: row;
   position: relative;
+  justify-content: space-between;
 }
 
 .next {
   width: 41px;
-  left: 347px;
+}
+
+.next-only {
+  left: 400px;
 }
 
 .back {
