@@ -163,8 +163,6 @@ class GameView {
         }
     }
 
-    // b a c g
-
     goBackPage() {
         let length = this.instructionsPage.length
         const backButton = document.querySelector('.back')

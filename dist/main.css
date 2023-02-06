@@ -149,10 +149,11 @@ img {
 
 #score {
   position: relative;
+  text-align: center;
   top: 15px;
   color: rgb(255, 224, 48);
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-  font-size: 20px;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  font-size: 30px;
 }
 
 .loading {
@@ -286,6 +287,15 @@ body {
   z-index: 5;
 }
 
+.right-side-nav {
+  display: flex;
+  flex-direction: row;
+}
+
+.right-side-nav > .nav-a {
+  margin: 5px;
+}
+
 .logo {
   display: flex;
   justify-content: flex-end;
@@ -311,7 +321,7 @@ body {
   align-items: center;
   font-family: Arial, Helvetica, sans-serif;
   margin-left: 1.5%;
-  margin-right: 61.5%;
+  margin-right: 63.8%;
   font-size: 25px;
   color: rgb(196, 30, 30);
   -webkit-text-stroke-width: 0.75px;
@@ -385,7 +395,7 @@ body {
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 160px;
+  width: 240px;
   background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
   margin: 15px;

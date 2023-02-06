@@ -30,44 +30,41 @@
             <span class="letter7">A</span>
             <span class="letter8">N</span>
         </h1>
-        <div class="nav-a">
-            <div class="tooltip">About Me!
-                <span class="tooltiptext">I am Kin Ka Tse and I programmed this in a week! Technologies include TensorFlow and Canvas.</span>
+        <div class="right-side-nav">
+            <div class="nav-a">
+                <!-- <div class="tooltip">About Me!
+                    <span class="tooltiptext">I am Kin Ka Tse and I programmed this in a week! Technologies include TensorFlow and Canvas.</span>
+                </div> -->
+                <div class="tooltip">How To Use!
+                    <span class="tooltiptext">Enable your camera (If you have zoom or some other application,
+                        you will need to turn the camera off there for this to work). The face detection may
+                        take a few seconds to load up so please give it a moment. Once you see your video feed,
+                        you can hit the instructions for more information!
+                    </span>
+                    <!-- <span class="tooltiptext">Enable your camera (If you have zoom or some other application,
+                        you will need to turn the camera off there for this to work). The face detection may
+                        take a few seconds to load up so please give it a moment. Once you see your video feed,
+                        you can interactively test some filters and animations with the buttons. Some filters
+                        will have animations when you open your mouth or close your eyes. If you want to see
+                        closed eyes animations, try squinting! Try winking too! If you would like to switch,
+                        either click the same one to toggle it off or clear. Actually, some can be combined
+                        depending on if they fit so test some of them together and see what happens! If you're
+                        done playing with the filters, you can play the game by pressing start. The bombs will
+                        do damage and take away score. The red circle is an apple you can eat to heal health.
+                        The yellow circle is coins to increase your score. Play until you get a high score!
+                    </span> -->
+                </div>
             </div>
-            <div class="tooltip">How To Use!
-                <span class="tooltiptext">Enable your camera (If you have zoom or some other application,
-                    you will need to turn the camera off there for this to work). The face detection may
-                    take a few seconds to load up so please give it a moment. Once you see your video feed,
-                    you can play the game by pressing start. The bombs will do damage and take away score.
-                    The red circle is an apple you can eat to heal health, however you can only eat it by
-                    physically opening your mouth. The yellow circle is coins to increase your score. Play
-                    until you get a high score! The way this works is by grabbing the facial points and
-                    using that as the hurtbox to your character. So now you have to physically move your
-                    face around to avoid and reach certain obstacles.
-                </span>
-                <!-- <span class="tooltiptext">Enable your camera (If you have zoom or some other application,
-                    you will need to turn the camera off there for this to work). The face detection may
-                    take a few seconds to load up so please give it a moment. Once you see your video feed,
-                    you can interactively test some filters and animations with the buttons. Some filters
-                    will have animations when you open your mouth or close your eyes. If you want to see
-                    closed eyes animations, try squinting! Try winking too! If you would like to switch,
-                    either click the same one to toggle it off or clear. Actually, some can be combined
-                    depending on if they fit so test some of them together and see what happens! If you're
-                    done playing with the filters, you can play the game by pressing start. The bombs will
-                    do damage and take away score. The red circle is an apple you can eat to heal health.
-                    The yellow circle is coins to increase your score. Play until you get a high score!
-                </span> -->
-            </div>
+            <a class="nav-a" href="https://github.com/kinkatse" target="_blank" rel="noopener noreferrer">
+                <span class="nav-links"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2048px-Octicons-mark-github.svg.png"/></span>
+            </a>
+            <!-- <a class="nav-a" href="https://angel.co/u/kin-ka-tse" target="_blank" rel="noopener noreferrer">
+                <span class="nav-links"><img src="https://media.discordapp.net/attachments/597985513701376013/879923537681449031/Angellist_logo.png"/></span>
+            </a> -->
+            <a class="nav-a" href="https://www.linkedin.com/in/kin-ka-tse/" target="_blank" rel="noopener noreferrer">
+                <span class="nav-links"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/LinkedIn_icon_circle.svg/1200px-LinkedIn_icon_circle.svg.png"/></span>
+            </a>
         </div>
-        <a class="nav-a" href="https://github.com/kinkatse" target="_blank" rel="noopener noreferrer">
-            <span class="nav-links"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2048px-Octicons-mark-github.svg.png"/></span>
-        </a>
-        <a class="nav-a" href="https://angel.co/u/kin-ka-tse" target="_blank" rel="noopener noreferrer">
-            <span class="nav-links"><img src="https://media.discordapp.net/attachments/597985513701376013/879923537681449031/Angellist_logo.png"/></span>
-        </a>
-        <a class="nav-a" href="https://www.linkedin.com/in/kin-ka-tse/" target="_blank" rel="noopener noreferrer">
-            <span class="nav-links"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/LinkedIn_icon_circle.svg/1200px-LinkedIn_icon_circle.svg.png"/></span>
-        </a>
     </div>
 
     <!-- <div class="filter-buttons">
@@ -124,9 +121,9 @@
                     Note: Taking damage will decrease your score!</h2>
                 <h2 class="instructions-text ghost-text" style="display: none">
                     Below is an GHOST entity. These are sometimes unavoidable
-                    obstacles since they are big and slow. The only way to
-                    avoid the ghost is to squint your eyes so the ghost
-                    thinks you're asleep and passes over you</h2>
+                    obstacles since they are big and slow, and do a lot of damage.
+                    The only way to avoid the ghost is to squint your eyes so
+                    the ghost thinks you're asleep and passes over you</h2>
             </div>
             <div id="nextback-buttons">
                 <span class="instructions-text direction back" style="display: none">Back</span>
