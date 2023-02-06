@@ -163,20 +163,26 @@ class GameView {
     // b a c
 
     goBackPage() {
-        const length = this.instructionsPage.length
+        let length = this.instructionsPage.length
         if (length === 1) {
             // Do nothing
         } else {
+            // Remove last page we were on by giving it display none
             const oldText = this.instructionsPage.pop()
             const oldTextEls = document.getElementsByClassName(`${oldText}-text`);
+            // converting HTMLCollection into an Array
             const oldTextArr = Array.prototype.slice.call(oldTextEls)
             oldTextArr.forEach(el => {
                 el.style.display = "none";
             })
+            // update length, otherwise its using old length before pop
+            length = this.instructionsPage.length
 
+            // Include previous page by adding display block
             const newText = this.instructionsPage[length - 1]
             const newTextEls = document.getElementsByClassName(`${newText}-text`);
-            newTextEls.forEach(el => {
+            const newTextArr = Array.prototype.slice.call(newTextEls)
+            newTextArr.forEach(el => {
                 el.style.display = "block";
             })
         }
@@ -194,6 +200,7 @@ class GameView {
                 el.style.display = "none";
             })
             
+            // Adding back the page items
             let nextPageText = ""
             if (this.instructionsPage[length - 1] === "bomb") {
                 nextPageText = "apple"
@@ -204,8 +211,9 @@ class GameView {
             }
             this.instructionsPage.push(nextPageText)
 
-            const newTextEls = document.getElementsByClassName(`${newPageText}-text`);
-            newTextEls.forEach(el => {
+            const newTextEls = document.getElementsByClassName(`${nextPageText}-text`);
+            const newTextArr = Array.prototype.slice.call(newTextEls)
+            newTextArr.forEach(el => {
                 el.style.display = "block";
             })
         }
