@@ -170,11 +170,11 @@ class GameView {
             instructionsCtx.fillStyle = "black";
             instructionsCtx.font = "bold 18px serif";
             // instructionsCtx.strokeText("Hello world", 50, 100);
-            instructionsCtx.fillText("Hello! Welcome to FACE-MAN", 120, 90);
-            instructionsCtx.fillText("This is a face detection game which uses your video", 120, 115);
-            instructionsCtx.fillText("feed to display obstacles and your face as a hurt box", 120, 140);
-            instructionsCtx.fillText("After you enable the camera, you can start the game", 120, 165);
-            instructionsCtx.fillText("There are 4 entities to be aware of in this game", 120, 190);
+            // instructionsCtx.fillText("Hello! Welcome to FACE-MAN", 120, 90);
+            // instructionsCtx.fillText("This is a face detection game which uses your video", 120, 115);
+            // instructionsCtx.fillText("feed to display obstacles and your face as a hurt box", 120, 140);
+            // instructionsCtx.fillText("After you enable the camera, you can start the game", 120, 165);
+            // instructionsCtx.fillText("There are 4 entities to be aware of in this game", 120, 190);
         } else {
             // display none
             // make the canvas always there, just hidden and none hidden when this function runs

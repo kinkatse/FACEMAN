@@ -124,3 +124,17 @@
 .below {
     top: 330px;
 }
+
+#instructions-elements {
+    position: absolute;
+}
+
+.instructions-text {
+    position: relative;
+    top: 60px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    font-size: 18px;
+    color: azure;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
