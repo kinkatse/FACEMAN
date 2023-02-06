@@ -240,6 +240,7 @@ class GameView {
         }
     }
 
+    // Loading up the instructions first
     loadInstructions() {
         const instructionsEl = document.getElementById("instructions-canvas");
         instructionsEl.style.position = "absolute";
@@ -264,22 +265,15 @@ class GameView {
         nextButton.addEventListener("click", () => {
             this.goNextPage()
         })
-
-        // const backButton = document.querySelector(".back")
-        // const nextButton = document.querySelector(".next")
-        // if (backButton.style.display === "none") {
-        //     nextButton.classList.add("next-only")
-        // } else {
-        //     nextButton.classList.remove("next-only")
-        // }
     }
 
+    // Show instructions or not based on the variable
     drawInstructions() {
         const instructionsEl = document.getElementById("instructions-elements")
         const instructionsCanvasEl = document.getElementById("instructions-canvas");
 
         if (this.instructions) {
-            instructionsEl.style.display = "block"
+            instructionsEl.style.display = "flex"
             instructionsCanvasEl.style.display = "block";
         } else {
             instructionsEl.style.display = "none"
