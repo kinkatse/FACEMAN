@@ -242,7 +242,6 @@ class GameView {
 
     loadInstructions() {
         const instructionsEl = document.getElementById("instructions-canvas");
-        // instructionsEl.style.display = "inline";
         instructionsEl.style.position = "absolute";
         instructionsEl.height = 450;
         instructionsEl.width = 700;
@@ -276,10 +275,14 @@ class GameView {
     drawInstructions() {
         if (this.instructions) {
             const instructionsEl = document.getElementById("instructions-elements")
+            const instructionsCanvasEl = document.getElementById("instructions-canvas");
             instructionsEl.style.display = "block"
+            instructionsCanvasEl.style.display = "block";
         } else {
             const instructionsEl = document.getElementById("instructions-elements")
+            const instructionsCanvasEl = document.getElementById("instructions-canvas");
             instructionsEl.style.display = "none"
+            instructionsCanvasEl.style.display = "none";
         }
     }
 
