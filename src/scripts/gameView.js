@@ -160,7 +160,7 @@ class GameView {
         }
     }
 
-    // b a c
+    // b a c g
 
     goBackPage() {
         let length = this.instructionsPage.length

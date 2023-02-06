@@ -41,12 +41,12 @@ const GameUtil = {
     screenShakeEffect: (queue) => {
         const canvasContainer = document.querySelector('.canvas-container')
         canvasContainer.classList.add(`screen-shake${queue[0]}`);
-        console.log(`screen-shake${queue[0]}`)
+        // console.log(`screen-shake${queue[0]}`)
         setTimeout(() => {
             canvasContainer.classList.remove(`screen-shake${queue[0]}`);
             queue.push(queue.shift());
-            console.log(queue)
-        }, 1000)
+            // console.log(queue)
+        }, 100)
     }
 };
 

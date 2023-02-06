@@ -43,7 +43,7 @@
     }
 }
 
-@keyframes screenshake1 {
+@keyframes screenshake4 {
     from, to {
       transform: translate(0px, 0px) rotate(0deg);
     }
@@ -131,10 +131,31 @@
 
 .instructions-text {
     position: relative;
-    top: 60px;
+    top: 65px;
     padding-top: 2px;
     padding-bottom: 2px;
-    font-size: 18px;
+    font-size: 19px;
+    font-weight: lighter;
     color: azure;
     text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    user-select: none;
+}
+
+.direction {
+    position: relative;
+    top: 175px;
+    padding: 10px;
+    background-color: rgba(118, 134, 213, 0.5);
+    border-radius: 5px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.direction:hover {
+    opacity: 65%;
+    background-color: rgba(165, 176, 229, 0.8);
+}
+
+.next {
+    left: 348px;
 }
