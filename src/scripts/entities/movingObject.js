@@ -35,11 +35,11 @@ class MovingObject {
         // Grab distance between face edge point and bomb
         const centerDist = GameUtil.dist(this.pos, pt);
         // Logic for when the bomb radius is within range of the face edge
-        // debugger
         if (this.type === "bomb" && centerDist < this.radius) {
           player.takeDamage(this.damage);
           this.remove();
           GameUtil.screenShakeEffect(this.game.screenShakeQueue)
+
           return;
           // return is necessary so we don't loop through and get another
           // point which the same bomb is hitting to be considered and run
