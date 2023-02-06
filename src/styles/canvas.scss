@@ -1,9 +1,36 @@
-@keyframes screenshake {
+@keyframes screenshake1 {
     from, to {
       transform: translate(0px, 0px) rotate(0deg);
     }
     50% {
       transform: translate(8px, 8px) rotate(0.6deg);
+    }
+}
+
+@keyframes screenshake2 {
+    from, to {
+      transform: translate(0px, 0px) rotate(0deg);
+    }
+    50% {
+      transform: translate(-8px, -8px) rotate(-0.6deg);
+    }
+}
+
+@keyframes screenshake3 {
+    from, to {
+      transform: translate(0px, 0px) rotate(0deg);
+    }
+    50% {
+      transform: translate(8px, -8px) rotate(0.6deg);
+    }
+}
+
+@keyframes screenshake4 {
+    from, to {
+      transform: translate(0px, 0px) rotate(0deg);
+    }
+    50% {
+      transform: translate(-8px, 8px) rotate(-0.6deg);
     }
 }
 
@@ -14,9 +41,24 @@
     margin-top: 20px;
 }
 
-.screen-shake {
-    animation-duration: 0.2s;
-    animation-name: screenshake;
+.screen-shake1 {
+    animation-duration: 0.1s;
+    animation-name: screenshake1;
+}
+
+.screen-shake2 {
+    animation-duration: 0.1s;
+    animation-name: screenshake2;
+}
+
+.screen-shake3 {
+    animation-duration: 0.1s;
+    animation-name: screenshake3;
+}
+
+.screen-shake4 {
+    animation-duration: 0.1s;
+    animation-name: screenshake4;
 }
 
 #canvas {

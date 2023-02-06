@@ -36,11 +36,16 @@ const GameUtil = {
     // Function which adds a class to the canvas at the moment a bomb hits
     // the player. The class will then apply CSS which makes the screen 'shake'
     // and then removes the class for when this function is ran next time
-    screenShakeEffect: () => {
+    // We also use a queue to determine which screenshake effect to show
+    // There are 4 different ones and we then push it to the back of the queue
+    screenShakeEffect: (queue) => {
         const canvasContainer = document.querySelector('.canvas-container')
-        canvasContainer.classList.add('screen-shake');
+        canvasContainer.classList.add(`screen-shake${queue[0]}`);
+        console.log(`screen-shake${queue[0]}`)
         setTimeout(() => {
-            canvasContainer.classList.remove('screen-shake');
+            canvasContainer.classList.remove(`screen-shake${queue[0]}`);
+            queue.push(queue.shift());
+            console.log(queue)
         }, 1000)
     }
 };

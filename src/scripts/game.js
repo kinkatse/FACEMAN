@@ -26,6 +26,8 @@ class Game {
         this.healthEl.height = 450;
         this.healthEl.width = 50;
         this.healthCtx = this.healthEl.getContext("2d");
+        
+        this.screenShakeQueue = [1, 2, 3, 4];
     }
 
     static get defaults() {
