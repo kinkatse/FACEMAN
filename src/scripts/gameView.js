@@ -19,6 +19,7 @@ class GameView {
         // filters
         this.faceMaskDots = false;
         this.hitBox = false;
+        this.instructionsPage = ["bomb"]
         this.instructions = true;
         setTimeout(() => this.drawInstructions(), 1000)
 
@@ -51,6 +52,16 @@ class GameView {
 
         const instructions = document.getElementById("instructions");
         instructions.addEventListener("click", () => this.instructions = !this.instructions)
+
+        // const backButton = document.querySelector(".back")
+        // backButton.addEventListener("click", () => {
+        //     this.goBackPage()
+        // })
+
+        // const nextButton = document.querySelector(".next")
+        // nextButton.addEventListener("click", () => {
+        //     this.goNextPage()
+        // })
     }
 
     setupCamera() {
@@ -149,6 +160,57 @@ class GameView {
         }
     }
 
+    // b a c
+
+    goBackPage() {
+        const length = this.instructionsPage.length
+        if (length === 1) {
+            // Do nothing
+        } else {
+            const oldText = this.instructionsPage.pop()
+            const oldTextEls = document.getElementsByClassName(`${oldText}-text`);
+            const oldTextArr = Array.prototype.slice.call(oldTextEls)
+            oldTextArr.forEach(el => {
+                el.style.display = "none";
+            })
+
+            const newText = this.instructionsPage[length - 1]
+            const newTextEls = document.getElementsByClassName(`${newText}-text`);
+            newTextEls.forEach(el => {
+                el.style.display = "block";
+            })
+        }
+    }
+
+    goNextPage() {
+        const length = this.instructionsPage.length
+        if (length === 4) {
+            // Do nothing
+        } else {
+            const oldText = this.instructionsPage[length - 1]
+            const oldTextEls = document.getElementsByClassName(`${oldText}-text`);
+            const oldTextArr = Array.prototype.slice.call(oldTextEls)
+            oldTextArr.forEach(el => {
+                el.style.display = "none";
+            })
+            
+            let nextPageText = ""
+            if (this.instructionsPage[length - 1] === "bomb") {
+                nextPageText = "apple"
+            } else if (this.instructionsPage[length - 1] === "apple") {
+                nextPageText = "coin"
+            } else if (this.instructionsPage[length - 1] === "coin") {
+                nextPageText = "ghost"
+            }
+            this.instructionsPage.push(nextPageText)
+
+            const newTextEls = document.getElementsByClassName(`${newPageText}-text`);
+            newTextEls.forEach(el => {
+                el.style.display = "block";
+            })
+        }
+    }
+
     drawInstructions() {
         if (this.instructions) {
             // Instructions canvas
@@ -167,8 +229,18 @@ class GameView {
             instructionsCtx.fill()
             instructionsCtx.stroke()
 
-            instructionsCtx.fillStyle = "black";
-            instructionsCtx.font = "bold 18px serif";
+            const backButton = document.querySelector(".back")
+            backButton.addEventListener("click", () => {
+                this.goBackPage()
+            })
+
+            const nextButton = document.querySelector(".next")
+            nextButton.addEventListener("click", () => {
+                this.goNextPage()
+            })
+
+            // instructionsCtx.fillStyle = "black";
+            // instructionsCtx.font = "bold 18px serif";
             // instructionsCtx.strokeText("Hello world", 50, 100);
             // instructionsCtx.fillText("Hello! Welcome to FACE-MAN", 120, 90);
             // instructionsCtx.fillText("This is a face detection game which uses your video", 120, 115);
