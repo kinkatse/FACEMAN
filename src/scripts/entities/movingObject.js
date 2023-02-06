@@ -36,7 +36,7 @@ class MovingObject {
         // Grab distance between face edge point and bomb
         const centerDist = GameUtil.dist(this.pos, pt);
         // Logic for when the bomb radius is within range of the face edge
-        if (this.type === "bomb" && centerDist < this.radius) {
+        if (this.type === "obstacle" && centerDist < this.radius) {
           // Player health decrease
           player.takeDamage(this.damage);
           // Remove this bomb instance
@@ -83,6 +83,8 @@ class MovingObject {
       if (this.game.isOutOfBounds(this.pos)) {
         if (this.isWrappable) {
           this.pos = this.game.wrap(this.pos);
+        } else if (this.game.isOffScreen(this.pos)) {
+          this.remove();
         } else {
           this.remove();
         }

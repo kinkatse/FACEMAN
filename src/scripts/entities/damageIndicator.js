@@ -1,5 +1,5 @@
 // Does similar things to the MovingObject class but is not a MovingObject
-// and does not need all it's functions
+// and does not need all it's functions, and its just for visual purposes
 
 class DamageIndicator {
     constructor(pos, game) {

@@ -9,7 +9,7 @@ class Bomb extends MovingObject {
         options.pos = options.pos;
         options.radius = Bomb.defaults.RADIUS;
         options.vel = options.vel || GameUtil.randomVec(Bomb.defaults.SPEED);
-        options.type = "bomb";
+        options.type = "obstacle";
 
         super(options);
 
