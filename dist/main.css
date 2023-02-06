@@ -169,11 +169,15 @@ img {
 
 #instructions-elements {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 310px;
+  width: 480px;
+  top: 210px;
 }
 
 .instructions-text {
-  position: relative;
-  top: 65px;
   padding-top: 2px;
   padding-bottom: 2px;
   font-size: 19px;
@@ -185,7 +189,6 @@ img {
 
 .direction {
   position: relative;
-  top: 175px;
   padding: 10px;
   background-color: rgba(118, 134, 213, 0.5);
   border-radius: 5px;
@@ -198,8 +201,19 @@ img {
   background-color: rgba(165, 176, 229, 0.8);
 }
 
+#nextback-buttons {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
 .next {
-  left: 348px;
+  width: 41px;
+  left: 347px;
+}
+
+.back {
+  width: 42px;
 }
 
 @keyframes colorrotate {

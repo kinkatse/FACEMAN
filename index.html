@@ -100,25 +100,31 @@
         
         <canvas id="instructions-canvas" style="display: none"></canvas>
         <div id="instructions-elements">
-            <h1 class="instructions-text">Hello! Welcome to FACE-MAN</h1>
-            <h2 class="instructions-text">This is a face detection game which uses your video</h2>
-            <h2 class="instructions-text">feed to display obstacles and your face as a hurt box</h2>
-            <h2 class="instructions-text">After you enable the camera, you can start the game</h2>
-            <h2 class="instructions-text">There are 4 entities to be aware of in this game</h2>
-            <h2 class="instructions-text bomb-text">Below is a BOMB entity. Try to avoid getting hit!</h2>
-            <h2 class="instructions-text bomb-text">Use your face to manuever around the bombs!</h2>
-            <h2 class="instructions-text bomb-text">If the health bar reaches 0, that is game over!</h2>
-            <h2 class="instructions-text apple-text" style="display: none">Below is an APPLE entity. This will heal you</h2>
-            <h2 class="instructions-text apple-text" style="display: none">To eat an apple, you need to open your mouth!</h2>
-            <h2 class="instructions-text apple-text" style="display: none">Then move your mouth to the apple, you will heal!</h2>
-            <h2 class="instructions-text coin-text" style="display: none">Below is a COIN entity. This will add to your score</h2>
-            <h2 class="instructions-text coin-text" style="display: none">Simply touch the coin with your face to get points!</h2>
-            <h2 class="instructions-text coin-text" style="display: none">Note: Taking damage will decrease your score!</h2>
-            <h2 class="instructions-text ghost-text" style="display: none">Below is an GHOST entity. Scary and big!</h2>
-            <h2 class="instructions-text ghost-text" style="display: none">The only way to avoid the ghost is to squint</h2>
-            <h2 class="instructions-text ghost-text" style="display: none">your eyes so the ghost thinks you're asleep!</h2>
-            <span class="instructions-text direction back">Back</span>
-            <span class="instructions-text direction next">Next</span>
+            <div>
+                <h1 class="instructions-text">Hello! Welcome to FACE-MAN</h1>
+                <h2 class="instructions-text general-text">This is a face detection game which uses your video</h2>
+                <h2 class="instructions-text general-text">feed to display obstacles and your face as a hurt box</h2>
+                <h1 class="instructions-text general-text">Make sure you enable camera. Give it a bit to load</h1>
+                <h2 class="instructions-text general-text">After the camera loads up, you can start the game</h2>
+                <h2 class="instructions-text general-text">You can also apply a filter to show while playing!</h2>
+                <h2 class="instructions-text">There are 4 entities to be aware of in this game</h2>
+                <h2 class="instructions-text bomb-text" style="display: none">Below is a BOMB entity. Try to avoid getting hit!</h2>
+                <h2 class="instructions-text bomb-text" style="display: none">Use your face to manuever around the bombs!</h2>
+                <h2 class="instructions-text bomb-text" style="display: none">If the health bar reaches 0, that is game over!</h2>
+                <h2 class="instructions-text apple-text" style="display: none">Below is an APPLE entity. This will heal you</h2>
+                <h2 class="instructions-text apple-text" style="display: none">To eat an apple, you need to open your mouth!</h2>
+                <h2 class="instructions-text apple-text" style="display: none">Then move your mouth to the apple, you will heal!</h2>
+                <h2 class="instructions-text coin-text" style="display: none">Below is a COIN entity. This will add to your score</h2>
+                <h2 class="instructions-text coin-text" style="display: none">Simply touch the coin with your face to get points!</h2>
+                <h2 class="instructions-text coin-text" style="display: none">Note: Taking damage will decrease your score!</h2>
+                <h2 class="instructions-text ghost-text" style="display: none">Below is an GHOST entity. Scary and big!</h2>
+                <h2 class="instructions-text ghost-text" style="display: none">The only way to avoid the ghost is to squint</h2>
+                <h2 class="instructions-text ghost-text" style="display: none">your eyes so the ghost thinks you're asleep!</h2>
+            </div>
+            <div id="nextback-buttons">
+                <span class="instructions-text direction back" style="display: none">Back</span>
+                <span class="instructions-text direction next">Next</span>
+            </div>
         </div>
     </div>
     <video id="video" autoplay style="display: none" ></video>

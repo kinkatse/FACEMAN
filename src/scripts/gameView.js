@@ -19,7 +19,7 @@ class GameView {
         // filters
         this.faceMaskDots = false;
         this.hitBox = false;
-        this.instructionsPage = ["bomb"]
+        this.instructionsPage = ["general"]
         this.instructions = true;
         setTimeout(() => this.drawInstructions(), 1000)
 
@@ -164,9 +164,13 @@ class GameView {
 
     goBackPage() {
         let length = this.instructionsPage.length
+        const backButton = document.querySelector('.back')
+        const nextButton = document.querySelector('.next')
         if (length === 1) {
-            // Do nothing
+            // do nothing
         } else {
+            backButton.style.display = "block";
+            nextButton.style.display = "block";
             // Remove last page we were on by giving it display none
             const oldText = this.instructionsPage.pop()
             const oldTextEls = document.getElementsByClassName(`${oldText}-text`);
@@ -185,14 +189,22 @@ class GameView {
             newTextArr.forEach(el => {
                 el.style.display = "block";
             })
+
+            if (this.instructionsPage.length === 1) {
+                backButton.style.display = "none";
+            }
         }
     }
 
     goNextPage() {
         const length = this.instructionsPage.length
-        if (length === 4) {
-            // Do nothing
+        const backButton = document.querySelector('.back')
+        const nextButton = document.querySelector('.next')
+        if (length === 5) {
+            // do nothing
         } else {
+            backButton.style.display = "block";
+            nextButton.style.display = "block";
             const oldText = this.instructionsPage[length - 1]
             const oldTextEls = document.getElementsByClassName(`${oldText}-text`);
             const oldTextArr = Array.prototype.slice.call(oldTextEls)
@@ -202,7 +214,9 @@ class GameView {
             
             // Adding back the page items
             let nextPageText = ""
-            if (this.instructionsPage[length - 1] === "bomb") {
+            if (this.instructionsPage[length - 1] === "general") {
+                nextPageText = "bomb"
+            } else if (this.instructionsPage[length - 1] === "bomb") {
                 nextPageText = "apple"
             } else if (this.instructionsPage[length - 1] === "apple") {
                 nextPageText = "coin"
@@ -216,6 +230,10 @@ class GameView {
             newTextArr.forEach(el => {
                 el.style.display = "block";
             })
+
+            if (this.instructionsPage.length === 5) {
+                nextButton.style.display = "none";
+            }
         }
     }
 
@@ -229,11 +247,11 @@ class GameView {
             instructionsEl.width = 700;
             const instructionsCtx = instructionsEl.getContext("2d");
 
-            instructionsCtx.fillStyle = "rgb(60, 179, 113, 0.8)";
-            instructionsCtx.strokeStyle = "rgb(10, 129, 63, 0.5)";
+            instructionsCtx.fillStyle = "rgba(60, 179, 113, 0.8)";
+            instructionsCtx.strokeStyle = "rgba(10, 129, 63, 0.5)";
 
             instructionsCtx.beginPath()
-            instructionsCtx.rect(100, 50, 500, 350)
+            instructionsCtx.roundRect(100, 50, 500, 350, [10])
             instructionsCtx.fill()
             instructionsCtx.stroke()
 

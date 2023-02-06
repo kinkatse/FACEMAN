@@ -127,11 +127,17 @@
 
 #instructions-elements {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 310px;
+    width: 480px;
+    top: 210px;
 }
 
 .instructions-text {
-    position: relative;
-    top: 65px;
+    // position: relative;
+    // top: 80px;
     padding-top: 2px;
     padding-bottom: 2px;
     font-size: 19px;
@@ -143,7 +149,7 @@
 
 .direction {
     position: relative;
-    top: 175px;
+    // top: 151px;
     padding: 10px;
     background-color: rgba(118, 134, 213, 0.5);
     border-radius: 5px;
@@ -156,6 +162,18 @@
     background-color: rgba(165, 176, 229, 0.8);
 }
 
+#nextback-buttons {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    // top: 151px;
+}
+
 .next {
-    left: 348px;
+    width: 41px;
+    left: 347px;
+}
+
+.back {
+    width: 42px;
 }
