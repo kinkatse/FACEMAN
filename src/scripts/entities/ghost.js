@@ -20,7 +20,7 @@ class Ghost extends MovingObject {
         return {
             COLOR: "rgba(80, 80, 80, 0.3)",
             RADIUS: 70,
-            SPEED: 3
+            SPEED: 2
         };
     }
 

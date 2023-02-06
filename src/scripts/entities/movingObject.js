@@ -52,6 +52,9 @@ class MovingObject {
         };
 
         if (this.type === "ghost" && centerDist < this.radius) {
+          // This allows for the user to pass through the ghost if their
+          // eyes are closed. If they are not closed, then the damage and
+          // effects play out similar to the bomb
           if (!FaceUtil.isEyesClosed(player.face)) {
             player.takeDamage(this.damage);
             this.remove();
