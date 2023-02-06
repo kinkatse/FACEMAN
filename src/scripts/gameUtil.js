@@ -33,6 +33,16 @@ const GameUtil = {
         const dist = Math.sqrt(squaredX + squaredY)
         return dist;
     },
+    // Function which adds a class to the canvas at the moment a bomb hits
+    // the player. The class will then apply CSS which makes the screen 'shake'
+    // and then removes the class for when this function is ran next time
+    screenShakeEffect: () => {
+        const canvasContainer = document.querySelector('.canvas-container')
+        canvasContainer.classList.add('screen-shake');
+        setTimeout(() => {
+            canvasContainer.classList.remove('screen-shake');
+        }, 1000)
+    }
 };
 
 export default GameUtil;

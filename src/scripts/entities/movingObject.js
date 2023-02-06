@@ -39,6 +39,7 @@ class MovingObject {
         if (this.type === "bomb" && centerDist < this.radius) {
           player.takeDamage(this.damage);
           this.remove();
+          GameUtil.screenShakeEffect()
           return;
           // return is necessary so we don't loop through and get another
           // point which the same bomb is hitting to be considered and run
