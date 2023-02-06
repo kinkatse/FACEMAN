@@ -8,7 +8,7 @@ class Ghost extends MovingObject {
         options.pos = options.pos;
         options.radius = Ghost.defaults.RADIUS;
         options.vel = options.vel || GameUtil.randomVec(Ghost.defaults.SPEED);
-        options.type = "obstacle";
+        options.type = "ghost";
 
         super(options);
 

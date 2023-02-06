@@ -36,7 +36,7 @@ class MovingObject {
         // Grab distance between face edge point and bomb
         const centerDist = GameUtil.dist(this.pos, pt);
         // Logic for when the bomb radius is within range of the face edge
-        if (this.type === "obstacle" && centerDist < this.radius) {
+        if (this.type === "bomb" && centerDist < this.radius) {
           // Player health decrease
           player.takeDamage(this.damage);
           // Remove this bomb instance
@@ -49,6 +49,19 @@ class MovingObject {
           return;
           // return is necessary so we don't loop through and get another
           // point which the same bomb is hitting to be considered and run
+        };
+
+        if (this.type === "ghost" && centerDist < this.radius) {
+          if (FaceUtil.isMouthOpen(player.face)) {
+            this.remove()
+          } else {
+            player.takeDamage(this.damage);
+            this.remove();
+            GameUtil.screenShakeEffect(this.game.screenShakeQueue)
+            const newAreaHit = new DamageIndicator(pt, this.game)
+            this.game.areaHit.push(newAreaHit)
+            return;
+          }
         };
 
         if (this.type === "coin" && centerDist < this.radius) {

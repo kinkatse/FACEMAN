@@ -232,8 +232,8 @@ class Game {
     };
 
     isOffScreen(pos) {
-        return (pos[0] < -300) || (pos[1] < -300) ||
-        (pos[0] > Game.defaults.DIM_X + 300) || (pos[1] > Game.defaults.DIM_Y + 300);
+        return (pos[0] < -500) || (pos[1] < -500) ||
+        (pos[0] > Game.defaults.DIM_X + 500) || (pos[1] > Game.defaults.DIM_Y + 500);
     };
 
     wrap(pos) {
