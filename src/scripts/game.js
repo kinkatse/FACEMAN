@@ -12,6 +12,8 @@ class Game {
         this.apples = [];
         this.coins = [];
         this.ghosts = [];
+        this.areaHit = [];
+        this.screenShakeQueue = [1, 2, 3, 4];
 
         this.addBombs();
         this.addApples();
@@ -26,8 +28,6 @@ class Game {
         this.healthEl.height = 450;
         this.healthEl.width = 50;
         this.healthCtx = this.healthEl.getContext("2d");
-        
-        this.screenShakeQueue = [1, 2, 3, 4];
     }
 
     static get defaults() {
@@ -51,6 +51,9 @@ class Game {
         this.coins.forEach(coin => {
             coin.draw(ctx);
         });
+        this.areaHit.forEach(spot => {
+            spot.draw(ctx)
+        })
         this.player.draw(ctx, this.healthCtx)
     }
 

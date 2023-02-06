@@ -1,5 +1,6 @@
 import GameUtil from '../gameUtil.js';
 import FaceUtil from '../faceUtil.js';
+import DamageIndicator from './damageIndicator.js';
 
 class MovingObject {
     constructor (options) {
@@ -36,10 +37,15 @@ class MovingObject {
         const centerDist = GameUtil.dist(this.pos, pt);
         // Logic for when the bomb radius is within range of the face edge
         if (this.type === "bomb" && centerDist < this.radius) {
+          // Player health decrease
           player.takeDamage(this.damage);
+          // Remove this bomb instance
           this.remove();
+          // Apply shake effect
           GameUtil.screenShakeEffect(this.game.screenShakeQueue)
-
+          // Add a new area hit spot for where bomb hit
+          const newAreaHit = new DamageIndicator(pt, this.game)
+          this.game.areaHit.push(newAreaHit)
           return;
           // return is necessary so we don't loop through and get another
           // point which the same bomb is hitting to be considered and run
