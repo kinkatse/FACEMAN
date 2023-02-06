@@ -265,24 +265,33 @@ class GameView {
             this.goNextPage()
         })
 
+        // const backButton = document.querySelector(".back")
+        // const nextButton = document.querySelector(".next")
+        // if (backButton.style.display === "none") {
+        //     nextButton.classList.add("next-only")
+        // } else {
+        //     nextButton.classList.remove("next-only")
+        // }
+    }
+
+    drawInstructions() {
+        const instructionsEl = document.getElementById("instructions-elements")
+        const instructionsCanvasEl = document.getElementById("instructions-canvas");
+
+        if (this.instructions) {
+            instructionsEl.style.display = "block"
+            instructionsCanvasEl.style.display = "block";
+        } else {
+            instructionsEl.style.display = "none"
+            instructionsCanvasEl.style.display = "none";
+        }
+
+        const backButton = document.querySelector(".back")
+        const nextButton = document.querySelector(".next")
         if (backButton.style.display === "none") {
             nextButton.classList.add("next-only")
         } else {
             nextButton.classList.remove("next-only")
-        }
-    }
-
-    drawInstructions() {
-        if (this.instructions) {
-            const instructionsEl = document.getElementById("instructions-elements")
-            const instructionsCanvasEl = document.getElementById("instructions-canvas");
-            instructionsEl.style.display = "block"
-            instructionsCanvasEl.style.display = "block";
-        } else {
-            const instructionsEl = document.getElementById("instructions-elements")
-            const instructionsCanvasEl = document.getElementById("instructions-canvas");
-            instructionsEl.style.display = "none"
-            instructionsCanvasEl.style.display = "none";
         }
     }
 
