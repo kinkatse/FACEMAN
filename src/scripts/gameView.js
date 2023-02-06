@@ -19,6 +19,8 @@ class GameView {
         // filters
         this.faceMaskDots = false;
         this.hitBox = false;
+        this.instructions = true;
+        setTimeout(() => this.drawInstructions(), 1000)
 
         // runing all event listeners
         this.runEventListeners();
@@ -46,6 +48,9 @@ class GameView {
         // Button for turning on the hurtBox mask on or off
         const hurtBoxFilter = document.getElementById("hurtbox-filter");
         hurtBoxFilter.addEventListener("click", () => this.hurtBox = !this.hurtBox)
+
+        const instructions = document.getElementById("instructions");
+        instructions.addEventListener("click", () => this.instructions = !this.instructions)
     }
 
     setupCamera() {
@@ -144,6 +149,38 @@ class GameView {
         }
     }
 
+    drawInstructions() {
+        if (this.instructions) {
+            // Instructions canvas
+            const instructionsEl = document.getElementById("instructions-canvas");
+            instructionsEl.style.display = "inline";
+            instructionsEl.style.position = "absolute";
+            instructionsEl.height = 450;
+            instructionsEl.width = 700;
+            const instructionsCtx = instructionsEl.getContext("2d");
+
+            instructionsCtx.fillStyle = "rgb(60, 179, 113, 0.8)";
+            instructionsCtx.strokeStyle = "rgb(10, 129, 63, 0.5)";
+
+            instructionsCtx.beginPath()
+            instructionsCtx.rect(100, 50, 500, 350)
+            instructionsCtx.fill()
+            instructionsCtx.stroke()
+
+            instructionsCtx.fillStyle = "black";
+            instructionsCtx.font = "bold 18px serif";
+            // instructionsCtx.strokeText("Hello world", 50, 100);
+            instructionsCtx.fillText("Hello! Welcome to FACE-MAN", 120, 90);
+            instructionsCtx.fillText("This is a face detection game which uses your video", 120, 115);
+            instructionsCtx.fillText("feed to display obstacles and your face as a hurt box", 120, 140);
+            instructionsCtx.fillText("After you enable the camera, you can start the game", 120, 165);
+            instructionsCtx.fillText("There are 4 entities to be aware of in this game", 120, 190);
+        } else {
+            // display none
+            // make the canvas always there, just hidden and none hidden when this function runs
+        }
+    }
+
     // When filters are clicked, they are revealed here
     drawFilters() {
 
@@ -208,6 +245,8 @@ class GameView {
                 ctx: this.ctx
             });
         }
+
+        this.drawInstructions()
 
         // My attempt to distort the face
         // const sadFace = true

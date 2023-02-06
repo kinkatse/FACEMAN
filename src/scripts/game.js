@@ -102,6 +102,10 @@ class Game {
         }
     }
 
+    addBomb() {
+        this.add(new Bomb({ game: this }));
+    }
+
     addGhosts() {
         for (let i = 0; i < Game.defaults.NUM_GHOSTS; i++) {
             this.add(new Ghost({ game: this }));
@@ -208,7 +212,7 @@ class Game {
         // }
         if (object instanceof Bomb) {
             this.bombs.splice(this.bombs.indexOf(object), 1)
-            if (this.bombs.length === 0) this.addBombs();
+            if (this.bombs.length === 3) this.addBomb();
         } else if (object instanceof Ghost) {
             this.ghosts.splice(this.ghosts.indexOf(object), 1)
             if (this.ghosts.length === 0) {
