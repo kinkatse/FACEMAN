@@ -19,8 +19,8 @@ class Ghost extends MovingObject {
     static get defaults() {
         return {
             COLOR: "rgba(80, 80, 80, 0.3)",
-            RADIUS: 150,
-            SPEED: 2
+            RADIUS: 70,
+            SPEED: 3
         };
     }
 

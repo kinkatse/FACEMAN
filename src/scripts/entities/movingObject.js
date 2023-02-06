@@ -52,9 +52,7 @@ class MovingObject {
         };
 
         if (this.type === "ghost" && centerDist < this.radius) {
-          if (FaceUtil.isMouthOpen(player.face)) {
-            this.remove()
-          } else {
+          if (!FaceUtil.isEyesClosed(player.face)) {
             player.takeDamage(this.damage);
             this.remove();
             GameUtil.screenShakeEffect(this.game.screenShakeQueue)
