@@ -31,7 +31,7 @@ class GameView {
         this.loadFaceModel();
         // Sets interval to loop the draw function (which loses context)
         // setInterval(this.draw.bind(this), 1);
-        requestAnimationFrame(this.animate.bind(this))
+        this.requestId = requestAnimationFrame(this.animate.bind(this))
     }
 
     runEventListeners() {
@@ -40,6 +40,7 @@ class GameView {
             // set mode to gameon and create game instance
             this.mode = "gameon";
             this.game = new Game(this.face);
+            start.innerHTML = "Restart"
         })
 
         // Button for turning on the scan mask on or off
@@ -144,6 +145,7 @@ class GameView {
 
                 const healthEl = document.getElementById("health-bar");
                 healthEl.style.display = "none";
+                // cancelAnimationFrame(this.requestId)
                 console.log("Gameover, restart functionality")
             } else {
                 this.ctx.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
