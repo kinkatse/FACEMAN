@@ -44,6 +44,16 @@ img {
   padding: 0.5em 0 0.5em 0.5em;
 }
 
+@keyframes gameover-in {
+  from {
+    opacity: 0%;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 100%;
+    transform: scale(1);
+  }
+}
 @keyframes screenshake1 {
   from, to {
     transform: translate(0px, 0px) rotate(0deg);
@@ -233,19 +243,20 @@ img {
 #gameover-elements {
   position: absolute;
   display: flex;
-  top: 340px;
-  left: 365px;
+  top: 265px;
 }
 
 .gameover-text {
-  padding-top: 2px;
-  padding-bottom: 2px;
-  line-height: 1.2;
-  font-size: 40px;
+  font-size: 100px;
   font-weight: bold;
-  color: azure;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  color: rgb(241, 61, 1);
+  text-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
   user-select: none;
+}
+
+.gameover-active {
+  animation-duration: 1.5s;
+  animation-name: gameover-in;
 }
 
 @keyframes colorrotate {
@@ -312,6 +323,11 @@ body {
   z-index: 5;
 }
 
+.left-side-nav {
+  display: flex;
+  flex-direction: row;
+}
+
 .right-side-nav {
   display: flex;
   flex-direction: row;
@@ -345,8 +361,6 @@ body {
   display: flex;
   align-items: center;
   font-family: Arial, Helvetica, sans-serif;
-  margin-left: 1.5%;
-  margin-right: 63.8%;
   font-size: 25px;
   color: rgb(196, 30, 30);
   -webkit-text-stroke-width: 0.75px;

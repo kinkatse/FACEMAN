@@ -57,7 +57,8 @@ class MovingObject {
           // eyes are closed. If they are not closed, then the damage and
           // effects play out similar to the bomb
           if (!FaceUtil.isEyesClosed(player.face)) {
-            player.takeDamage(this.damage);
+            const gameState = player.takeDamage(this.damage);
+            if (gameState) this.game.gameover = true;
             this.remove();
             GameUtil.screenShakeEffect(this.game.screenShakeQueue)
             const newAreaHit = new DamageIndicator(pt, this.game)
