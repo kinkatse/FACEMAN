@@ -41,6 +41,18 @@ class GameView {
             this.mode = "gameon";
             this.game = new Game(this.face);
             start.innerHTML = "Restart"
+
+            // Make sure that instructions are gone once game starts
+            const instructions = document.getElementById("instructions");
+            instructions.style.display = "none"
+            this.instructions = false;
+
+            // Make sure to remove gameover once we restart
+            const gameoverEl = document.getElementById("gameover-elements")
+
+            gameoverEl.style.display = "none"
+            const gameoverText = document.querySelector(".gameover-text")
+            gameoverText.classList.remove("gameover-active")
         })
 
         // Button for turning on the scan mask on or off
@@ -146,7 +158,6 @@ class GameView {
                 const healthEl = document.getElementById("health-bar");
                 healthEl.style.display = "none";
                 // cancelAnimationFrame(this.requestId)
-                console.log("Gameover, restart functionality")
             } else {
                 this.ctx.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
                 this.drawFilters();
