@@ -259,6 +259,10 @@ img {
   animation-name: gameover-in;
 }
 
+#apple-icon {
+  display: none;
+}
+
 @keyframes colorrotate {
   from {
     filter: hue-rotate(0deg);
