@@ -118,6 +118,7 @@ body {
   -webkit-text-stroke-width: 0.75px;
   -webkit-text-stroke-color: #165555;
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  user-select: none;
 }
 
 .title:hover {
