@@ -14,7 +14,6 @@ const FaceUtil = {
         let y = pt[1];
         let z = pt[2];
         return [x, y];
-        // debugger
         // let x = map(pt[0], 0,video.width, 0,width);
         // let y = map(pt[1], 0,video.height, 0,height);
         // return createVector(x, y);
@@ -42,12 +41,6 @@ const FaceUtil = {
         }
         return false;
     },
-    // allEyePoints: (face) => ({
-    //     rightEyeU: FaceUtil.scaleCoord(face.annotations.rightEyeUpper0[3]),
-    //     rightEyeL: FaceUtil.scaleCoord(face.annotations.rightEyeLower0[4]),
-    //     leftEyeU: FaceUtil.scaleCoord(face.annotations.leftEyeUpper0[3]),
-    //     leftEyeL: FaceUtil.scaleCoord(face.annotations.leftEyeLower0[4])
-    // }),
     isEyesClosed: (face) => {
         const rightEyeU = FaceUtil.rightEyeU(face);
         const rightEyeL = FaceUtil.rightEyeL(face);

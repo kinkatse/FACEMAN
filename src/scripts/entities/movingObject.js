@@ -39,6 +39,7 @@ class MovingObject {
         if (this.type === "bomb" && centerDist < this.radius) {
           // Player health decrease
           const gameState = player.takeDamage(this.damage);
+          // set gameover so that when gameView checks it, it will run endGame function
           if (gameState) this.game.gameover = true;
           // Remove this bomb instance
           this.remove();

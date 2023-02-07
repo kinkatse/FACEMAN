@@ -21,8 +21,6 @@ class GameView {
         this.hitBox = false;
         this.instructionsPage = ["general"]
         this.instructions = false;
-
-        // Load game instructions
         this.loadInstructions();
 
         // runing all event listeners
@@ -137,10 +135,6 @@ class GameView {
                 this.drawInstructions()
                 this.game.draw(this.ctx, this.face);
                 this.game.update();
-                // Testing bombs spawn randomly
-                // this.game.remove();
-                // this.game.addBombs();
-                // console.log(this.game.bombs);
             } else if (this.mode === "gameover") {
                 const gameoverEl = document.getElementById("gameover-elements")
 
@@ -172,11 +166,10 @@ class GameView {
 
     goBackPage() {
         let length = this.instructionsPage.length
-        const backButton = document.querySelector('.back')
-        const nextButton = document.querySelector('.next')
-        if (length === 1) {
-            // do nothing
-        } else {
+        if (length !== 1) {
+            const backButton = document.querySelector('.back')
+            const nextButton = document.querySelector('.next')
+
             backButton.style.display = "block";
             nextButton.style.display = "block";
             // Remove last page we were on by giving it display none
@@ -206,11 +199,9 @@ class GameView {
 
     goNextPage() {
         const length = this.instructionsPage.length
-        const backButton = document.querySelector('.back')
-        const nextButton = document.querySelector('.next')
-        if (length === 5) {
-            // do nothing
-        } else {
+        if (length !== 5) {
+            const backButton = document.querySelector('.back')
+            const nextButton = document.querySelector('.next')
             backButton.style.display = "block";
             nextButton.style.display = "block";
             const oldText = this.instructionsPage[length - 1]

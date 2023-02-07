@@ -1,6 +1,5 @@
 import MovingObject from "./movingObject";
 import GameUtil from "../gameUtil";
-// import Game from "../game";
 
 class Bomb extends MovingObject {
     constructor(options) {

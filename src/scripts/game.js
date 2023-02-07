@@ -126,29 +126,6 @@ class Game {
     }
 
     spawnPosition(object) {
-        // This is to make sure we get a random position, and
-        // try again if the position is in the face's bounds
-        // if (object instanceof Bomb) {
-            // let x = Game.defaults.DIM_X * Math.random();
-            // let y = Game.defaults.DIM_Y * Math.random();
-            // while ( this.player.face
-            //     && x < FaceUtil.faceBoundsRightX(this.player.face)
-            //     && x > FaceUtil.faceBoundsLeftX(this.player.face)
-            //     && y > FaceUtil.faceBoundsTopY(this.player.face)
-            //     && y < FaceUtil.faceBoundsBottomY(this.player.face)
-            //     ) {
-            //         x = Game.defaults.DIM_X * Math.random();
-            //         y = Game.defaults.DIM_Y * Math.random();
-            // }
-            // return [x, y]
-        // } else if (object instanceof Apple) {
-        // } else if (object instanceof Coin) {
-        // } else if (object instanceof Ghost) {
-        // } else {
-        //     throw new Error("unknown type of object");
-        // }
-
-
         if (object instanceof Apple) {
             // This doesn't work currently
             const max = 0.95;
@@ -185,32 +162,23 @@ class Game {
     checkCollisions() {
         for (let i = 0; i < this.bombs.length; i++) {
             const obj = this.bombs[i];
-            // So far only collision for player
             obj.collisionDetection(this.player)
         }
         for (let i = 0; i < this.ghosts.length; i++) {
             const obj = this.ghosts[i];
-            // So far only collision for player
             obj.collisionDetection(this.player)
         }
         for (let i = 0; i < this.apples.length; i++) {
             const obj = this.apples[i];
-            // So far only collision for player
             obj.collisionDetection(this.player)
         }
         for (let i = 0; i < this.coins.length; i++) {
             const obj = this.coins[i];
-            // So far only collision for player
             obj.collisionDetection(this.player)
         }
       };
 
     remove(object) {
-        // if (object === undefined) {
-        //     this.bombs.shift()
-        //     this.bombs.shift()
-        //     this.bombs.shift()
-        // }
         if (object instanceof Bomb) {
             this.bombs.splice(this.bombs.indexOf(object), 1)
             if (this.bombs.length === 3) this.addBomb();
