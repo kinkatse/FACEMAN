@@ -38,7 +38,8 @@ class MovingObject {
         // Logic for when the bomb radius is within range of the face edge
         if (this.type === "bomb" && centerDist < this.radius) {
           // Player health decrease
-          player.takeDamage(this.damage);
+          const gameState = player.takeDamage(this.damage);
+          if (gameState) this.game.gameover = true;
           // Remove this bomb instance
           this.remove();
           // Apply shake effect

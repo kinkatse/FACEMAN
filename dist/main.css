@@ -223,6 +223,31 @@ img {
   width: 42px;
 }
 
+#gameover-canvas {
+  display: block;
+  position: absolute;
+  top: 157.6px;
+  left: 145px;
+}
+
+#gameover-elements {
+  position: absolute;
+  display: flex;
+  top: 340px;
+  left: 365px;
+}
+
+.gameover-text {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  line-height: 1.2;
+  font-size: 40px;
+  font-weight: bold;
+  color: azure;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  user-select: none;
+}
+
 @keyframes colorrotate {
   from {
     filter: hue-rotate(0deg);

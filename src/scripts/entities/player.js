@@ -22,18 +22,20 @@ class Player {
 
     takeDamage(damage) {
         if (this.health > 0) this.health -= damage;
-        console.log("Player got hit!");
-        console.log(this.health);
-        console.log("Score went down by 20!");
+        // console.log("Player got hit!");
+        // console.log(this.health);
+        // console.log("Score went down by 20!");
         if (this.score >= 0) this.score -= 20;
         if (this.score <= 0) this.score = 0;
         this.updateScore()
-        console.log(this.score);
+        // console.log(this.score);
         if (this.health <= 0) {
             this.health = 0;
             // Game over function
-            alert("Game over!");
+            // alert("Game over!");
+            return "gameover"
         }
+        return false
     }
 
     heal(amount) {

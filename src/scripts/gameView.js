@@ -21,8 +21,10 @@ class GameView {
         this.hitBox = false;
         this.instructionsPage = ["general"]
         this.instructions = false;
+
+        // Load game instructions and game over
         this.loadInstructions();
-        // this.drawInstructions()
+        this.loadGameOver();
 
         // runing all event listeners
         this.runEventListeners();
@@ -53,16 +55,6 @@ class GameView {
 
         const instructions = document.getElementById("instructions");
         instructions.addEventListener("click", () => this.instructions = !this.instructions)
-
-        // const backButton = document.querySelector(".back")
-        // backButton.addEventListener("click", () => {
-        //     this.goBackPage()
-        // })
-
-        // const nextButton = document.querySelector(".next")
-        // nextButton.addEventListener("click", () => {
-        //     this.goNextPage()
-        // })
     }
 
     setupCamera() {
@@ -135,6 +127,12 @@ class GameView {
             this.detectFace();
             if (this.mode === "gameon") {
                 this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
+                if (this.game.gameover) {
+                    this.game.endGame()
+                    this.mode = "gameover"
+                    console.log("Gameover")
+                    return;
+                }
                 this.ctx.drawImage(this.grabPrevVideoFrame(), 0, 0, this.DIM_width, this.DIM_height);
                 this.drawFilters();
                 this.drawInstructions()
@@ -144,6 +142,13 @@ class GameView {
                 // this.game.remove();
                 // this.game.addBombs();
                 // console.log(this.game.bombs);
+            } else if (this.mode === "gameover") {
+                const gameoverEl = document.getElementById("gameover-elements")
+                const gameoverCanvasEl = document.getElementById("gameover-canvas");
+
+                gameoverEl.style.display = "block"
+                gameoverCanvasEl.style.display = "block";
+                console.log("Gameover, restart functionality")
             } else {
                 this.ctx.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
                 this.drawFilters();
@@ -285,6 +290,20 @@ class GameView {
         } else {
             nextButton.classList.remove("next-only")
         }
+    }
+
+    loadGameOver() {
+        const gameoverEl = document.getElementById("gameover-canvas");
+        gameoverEl.style.position = "absolute";
+        gameoverEl.height = 450;
+        gameoverEl.width = 700;
+        const gameoverCtx = gameoverEl.getContext("2d");
+
+        gameoverCtx.fillStyle = "rgb(0, 0, 0)";
+
+        gameoverCtx.beginPath()
+        gameoverCtx.rect(0, 0, 700, 450)
+        gameoverCtx.fill()
     }
 
     // When filters are clicked, they are revealed here

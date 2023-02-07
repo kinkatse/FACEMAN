@@ -15,6 +15,7 @@ class Game {
         this.ghosts = [];
         this.areaHit = [];
         this.screenShakeQueue = [1, 2, 3, 4];
+        this.gameover = false;
 
         this.addBombs();
         this.addGhosts();
@@ -246,6 +247,14 @@ class Game {
           GameUtil.wrap(pos[1], Game.defaults.DIM_Y)
         ];
     };
+
+    endGame() {
+        this.bombs = [];
+        this.apples = [];
+        this.coins = [];
+        this.ghosts = [];
+        this.areaHit = [];
+    }
 }
 
 export default Game;
