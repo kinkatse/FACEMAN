@@ -259,22 +259,6 @@ img {
   animation-name: gameover-in;
 }
 
-#bomb-icon {
-  display: none;
-}
-
-#apple-icon {
-  display: none;
-}
-
-#coin-icon {
-  display: none;
-}
-
-#ghost-icon {
-  display: none;
-}
-
 @keyframes colorrotate {
   from {
     filter: hue-rotate(0deg);
