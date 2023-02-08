@@ -23,6 +23,9 @@ class GameView {
         this.imageArr = GameUtil.coinFramesArr()
         this.intervalId = null;
         this.loadInstructions();
+        this.timerId = null;
+        this.timerElement = document.getElementById("timer")
+        this.timer = 0;
 
         this.runEventListeners();
         this.setupCamera();
@@ -39,6 +42,7 @@ class GameView {
         const start = document.getElementById("start-button");
         start.addEventListener("click", () => {
             this.mode = "gameon";
+            this.setTimer();
             this.game = new Game(this.face);
             start.innerHTML = "Restart"
 
@@ -195,6 +199,26 @@ class GameView {
         }
     }
 
+    setTimer() {
+        this.timerId = setInterval(() => {
+            this.timer += 1;
+            const time = this.timerElement.innerHTML.split(":")
+            let minutes = time[0]
+            let seconds = time[1]
+            seconds = this.timer % 60
+            minutes = Math.floor(this.timer / 60)
+            if (seconds < 10 && minutes < 10) {
+                this.timerElement.innerHTML = `0${minutes}:0${seconds}`
+            } else if (seconds < 10) {
+                this.timerElement.innerHTML = `${minutes}:0${seconds}`
+            } else if (minutes < 10) {
+                this.timerElement.innerHTML = `0${minutes}:${seconds}`
+            } else {
+                this.timerElement.innerHTML = `${minutes}:${seconds}`
+            }
+        }, 1000)
+    }
+
     goBackPage(ctx) {
         let length = this.instructionsPage.length
         if (length !== 1) {
@@ -287,13 +311,13 @@ class GameView {
 
         const backButton = document.querySelector(".back")
         backButton.addEventListener("click", () => {
-            clearInterval(this.intervalId)
+            // clearInterval(this.intervalId)
             this.goBackPage(instructionsCtx)
         })
 
         const nextButton = document.querySelector(".next")
         nextButton.addEventListener("click", () => {
-            clearInterval(this.intervalId)
+            // clearInterval(this.intervalId)
             this.goNextPage(instructionsCtx)
         })
     }

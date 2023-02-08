@@ -243,3 +243,18 @@
   display: flex;
   justify-content: center;
 }
+
+#timer-container {
+  // display: none;
+  position: absolute;
+}
+
+#timer {
+  position: relative;
+  text-align: center;
+  top: 425px;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  font-size: 25px;
+  user-select: none;
+}
