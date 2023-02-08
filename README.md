@@ -4,6 +4,8 @@
 
 <a href="https://kinkatse.github.io/FACEMAN/" target="_blank" rel="noopener noreferrer">FACE-MAN</a> is a face detection game which uses your video feed as the game environment itself! Your face is your player and you need to physically move to dodge the obstacles or reach certain items. It also checks for closed eye movement and open mouth movement for certain actions in the game. This game would use technologies like MediaDevices, TensorFlow, Javascript, HTML, CSS. The video stream is a loop of video frames captured through the live feed of your camera. The facial movement detection will use algorithms utilizing TensorFlow to acertain points of interest on the face and react to any large movements of the mouth or eyes.
 
+![Gameplay](https://media.giphy.com/media/SrYK6S4IQgDs1zk4AQ/giphy.gif)
+
 ## Technologies, Libraries, & APIs Used:
  
 - MediaDevices
@@ -16,26 +18,30 @@
 ## Key Features:
 
 After granting access to your camera for this app to run, you can click on the scan mask filter to illustrate how the TensorFlow API responds with all facial features.
-![Scan Mask](https://media.giphy.com/media/1xjNi7GjiyGB3nL6ea/giphy.gif)
 
-<img src="https://i.imgur.com/Sb6xtY1.gif" width="40" height="40" />
+![Scan Mask](https://media.giphy.com/media/1xjNi7GjiyGB3nL6ea/giphy.gif)
 
 When you start the game, there are 4 entities to be aware of!
 1. Bomb
 - You need to avoid the bombs! They inflict damage and if you reach 0 health, that is game over!
-![Bomb](https://i.gyazo.com/d753fba2e335bb1eda09dbc35b40e55d.mp4)
+
+![Bomb](https://media.giphy.com/media/sERi4POg5ubvPUZsay/giphy.gif)
+
 
 2. Apple
 - If you are low on health, no worries! Apples can heal you. However, you need to open your mouth in order to eat the apple!
-![Apple](https://i.gyazo.com/a231b0d0133b1c9548716aa445f744ae.mp4)
+
+![Apple](https://media.giphy.com/media/J1ncjVPHKGDhYl7o9j/giphy.gif)
 
 3. Coin
 - Coins are for score. See how long you can last and compare your score with others!
-![Coin](https://i.gyazo.com/19ce00a9ef6de8317fa3f1f068d207b8.mp4)
+
+![Coin](https://media.giphy.com/media/BsYEDxwec2THtabAHa/giphy.gif)
 
 4. Ghost
 - Ghosts are slow but big obstacles so sometimes they can be hard to avoid. A good way to avoid them is to close (or squint) your eyes so the ghost thinks you're asleep! Then you can pass through the ghost!
-![Ghost](https://i.gyazo.com/e0e30ce8cb8aad9c49b5f8712e4bd9c6.mp4)
+
+![Ghost](https://media.giphy.com/media/K4bZGjfvV71HoiAYVu/giphy.gif)
 
 ## Code Snippets:
 
