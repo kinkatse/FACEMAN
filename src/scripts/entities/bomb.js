@@ -27,8 +27,8 @@ class Bomb extends MovingObject {
 
     draw(ctx) {
         // Numbers are to adjust the image correctly
-        // MovingObject.prototype.draw.call(this, ctx);
         ctx.drawImage(this.image, this.pos[0] - 45, this.pos[1] - 50, 92, 92)
+        // MovingObject.prototype.draw.call(this, ctx);
 
         // const x = this.pos[0] - 45
         // const y = this.pos[1] - 50

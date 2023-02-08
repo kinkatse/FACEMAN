@@ -12,6 +12,7 @@ class Ghost extends MovingObject {
 
         super(options);
 
+        this.image = document.getElementById("ghost-icon")
         this.isWrappable = false;
         this.damage = 30;
     }
@@ -25,7 +26,9 @@ class Ghost extends MovingObject {
     }
 
     draw(ctx) {
-        MovingObject.prototype.draw.call(this, ctx);
+        // Numbers are to adjust the image correctly
+        ctx.drawImage(this.image, this.pos[0] - 102, this.pos[1] - 98, 200, 200)
+        // MovingObject.prototype.draw.call(this, ctx);
     }
 }
 
