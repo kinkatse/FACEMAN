@@ -12,14 +12,7 @@ class Coin extends MovingObject {
 
         super(options);
 
-        const frame1 = document.getElementById("coin-icon-1")
-        const frame2 = document.getElementById("coin-icon-2")
-        const frame3 = document.getElementById("coin-icon-3")
-        const frame4 = document.getElementById("coin-icon-4")
-        const frame5 = document.getElementById("coin-icon-5")
-        const frame6 = document.getElementById("coin-icon-6")
-        const frame7 = document.getElementById("coin-icon-7")
-        this.imageArr = [frame1, frame2, frame3, frame4, frame5, frame6, frame7]
+        this.imageArr = GameUtil.coinFramesArr()
         this.score = 50;
     }
 

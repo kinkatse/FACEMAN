@@ -1,6 +1,7 @@
 import ScanMask from "./filters/scanMask.js";
 import HurtBox from "./filters/hurtBox.js";
 import Game from "./game.js";
+import GameUtil from "./gameUtil.js";
 
 class GameView {
 
@@ -21,6 +22,8 @@ class GameView {
         this.hitBox = false;
         this.instructionsPage = ["general"]
         this.instructions = false;
+        this.imageArr = GameUtil.coinFramesArr()
+        this.intervalId = null;
         this.loadInstructions();
 
         // runing all event listeners
@@ -211,12 +214,12 @@ class GameView {
             // Instruction images
             this.loadInstructionCtx(ctx)
             let imageIcon = null
-            if (newText !== "coin" && newText !== "general") {
+            if (newText !== "coin") {
                 imageIcon = document.getElementById(`${newText}-icon`)
-                ctx.drawImage(imageIcon, 290, 240, 120, 120)
-            } else {
-
+            } else if (newText === "coin") {
+                imageIcon = document.getElementById(`coin-icon-1`)
             }
+            if (imageIcon) ctx.drawImage(imageIcon, 290, 240, 120, 120)
 
             if (this.instructionsPage.length === 1) {
                 backButton.style.display = "none";
@@ -262,10 +265,10 @@ class GameView {
             let imageIcon = null
             if (nextPageText !== "coin") {
                 imageIcon = document.getElementById(`${nextPageText}-icon`)
-                ctx.drawImage(imageIcon, 290, 240, 120, 120)
             } else {
-
+                imageIcon = document.getElementById(`coin-icon-1`)
             }
+            if (imageIcon) ctx.drawImage(imageIcon, 290, 240, 120, 120)
 
             if (this.instructionsPage.length === 5) {
                 nextButton.style.display = "none";
@@ -292,23 +295,17 @@ class GameView {
         instructionsEl.width = 700;
         const instructionsCtx = instructionsEl.getContext("2d");
 
-        // instructionsCtx.fillStyle = "rgba(60, 179, 113, 0.8)";
-        // instructionsCtx.strokeStyle = "rgba(10, 129, 63, 0.5)";
-
-        // instructionsCtx.beginPath()
-        // instructionsCtx.roundRect(100, 50, 500, 350, [10])
-        // instructionsCtx.fill()
-        // instructionsCtx.stroke()
-
         this.loadInstructionCtx(instructionsCtx)
 
         const backButton = document.querySelector(".back")
         backButton.addEventListener("click", () => {
+            clearInterval(this.intervalId)
             this.goBackPage(instructionsCtx)
         })
 
         const nextButton = document.querySelector(".next")
         nextButton.addEventListener("click", () => {
+            clearInterval(this.intervalId)
             this.goNextPage(instructionsCtx)
         })
     }
