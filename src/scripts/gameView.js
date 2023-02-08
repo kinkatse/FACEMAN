@@ -28,6 +28,11 @@ class GameView {
         this.setupCamera();
         this.loadFaceModel();
         this.requestId = requestAnimationFrame(this.animate.bind(this))
+
+        this.warningNoFace = document.querySelector(".no-face")
+        this.warningMany = document.querySelector(".too-many")
+        this.warningFar = document.querySelector(".too-far")
+        this.warningClose = document.querySelector(".too-close")
     }
 
     runEventListeners() {
@@ -95,25 +100,20 @@ class GameView {
             input: this.video
         });
 
-        const warningNoFace = document.querySelector(".no-face")
-        const warningMany = document.querySelector(".too-many")
-        const warningFar = document.querySelector(".too-far")
-        const warningClose = document.querySelector(".too-close")
-
         // Below are errors to restrict user
         if (facePredictions.length === 0) {
-            warningFar.style.display = "none"
-            warningClose.style.display = "none"
-            warningNoFace.style.display = "block"
+            this.warningFar.style.display = "none"
+            this.warningClose.style.display = "none"
+            this.warningNoFace.style.display = "block"
             this.face = undefined;
         } else if (facePredictions.length > 1) {
-            warningFar.style.display = "none"
-            warningClose.style.display = "none"
-            warningMany.style.display = "block"
+            this.warningFar.style.display = "none"
+            this.warningClose.style.display = "none"
+            this.warningMany.style.display = "block"
             this.face = undefined;
         } else {
-            warningNoFace.style.display = "none"
-            warningMany.style.display = "none"
+            this.warningNoFace.style.display = "none"
+            this.warningMany.style.display = "none"
             // Set the face instance variable to the first face prediction
             this.face = facePredictions[0];
         }
@@ -155,14 +155,10 @@ class GameView {
                 this.game.draw(this.ctx, this.face);
                 this.game.update();
             } else if (this.mode === "gameover") {
-                const warningNoFace = document.querySelector(".no-face")
-                const warningMany = document.querySelector(".too-many")
-                const warningFar = document.querySelector(".too-far")
-                const warningClose = document.querySelector(".too-close")
-                warningNoFace.style.display = "none"
-                warningMany.style.display = "none"
-                warningFar.style.display = "none"
-                warningClose.style.display = "none"
+                this.warningNoFace.style.display = "none"
+                this.warningMany.style.display = "none"
+                this.warningFar.style.display = "none"
+                this.warningClose.style.display = "none"
 
                 const gameoverEl = document.getElementById("gameover-elements")
 
@@ -181,24 +177,20 @@ class GameView {
         }
         // Logic for error handling when face is too far or too close
         if (this.face !== undefined && this.mode !== "gameover") {
-            const warningNoFace = document.querySelector(".no-face")
-            const warningMany = document.querySelector(".too-many")
-            const warningFar = document.querySelector(".too-far")
-            const warningClose = document.querySelector(".too-close")
             if (this.face.boundingBox.bottomRight[0] - this.face.boundingBox.topLeft[0] - 40 < 100
                 || this.face.boundingBox.bottomRight[1] - this.face.boundingBox.topLeft[1] + 110 < 175) {
-                    if (warningNoFace.style.display !== "block" && warningMany.style.display !== "block") {
-                        warningFar.style.display = "block"
+                    if (this.warningNoFace.style.display !== "block" && this.warningMany.style.display !== "block") {
+                        this.warningFar.style.display = "block"
                     }
             }
              else if (this.face.boundingBox.bottomRight[0] - this.face.boundingBox.topLeft[0] - 40 > 300
                 || this.face.boundingBox.bottomRight[1] - this.face.boundingBox.topLeft[1] + 110 > 375) {
-                    if (warningNoFace.style.display !== "block" && warningMany.style.display !== "block") {
-                        warningClose.style.display = "block"
+                    if (this.warningNoFace.style.display !== "block" && this.warningMany.style.display !== "block") {
+                        this.warningClose.style.display = "block"
                     }
             } else {
-                warningFar.style.display = "none"
-                warningClose.style.display = "none"
+                this.warningFar.style.display = "none"
+                this.warningClose.style.display = "none"
             }
         }
     }
