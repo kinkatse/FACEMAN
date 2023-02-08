@@ -16,8 +16,9 @@
 ## Key Features:
 
 After granting access to your camera for this app to run, you can click on the scan mask filter to illustrate how the TensorFlow API responds with all facial features.
-![Scan Mask](https://i.gyazo.com/d753fba2e335bb1eda09dbc35b40e55d.gif)
-<img src="https://i.gyazo.com/178afa5275badd4f23bb812c508b9706.gif"/>
+![Scan Mask](https://i.imgur.com/Sb6xtY1.gif)
+
+<img src="https://i.imgur.com/Sb6xtY1.gif" width="40" height="40" />
 
 When you start the game, there are 4 entities to be aware of!
 1. Bomb
