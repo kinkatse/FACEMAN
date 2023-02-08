@@ -21,7 +21,7 @@ class Bomb extends MovingObject {
         return {
             COLOR: "white",
             RADIUS: 25,
-            SPEED: 5
+            SPEED: 8
         };
     }
 

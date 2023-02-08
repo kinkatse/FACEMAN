@@ -37,10 +37,10 @@ class Game {
         return {
             DIM_X: 700,
             DIM_Y: 450,
-            NUM_BOMBS: 4,
+            NUM_BOMBS: 3,
             NUM_GHOSTS: 1,
             NUM_APPLES: 1,
-            NUM_COINS: 1
+            NUM_COINS: 2
         };
     }
 
@@ -181,7 +181,7 @@ class Game {
     remove(object) {
         if (object instanceof Bomb) {
             this.bombs.splice(this.bombs.indexOf(object), 1)
-            if (this.bombs.length === 3) this.addBomb();
+            if (this.bombs.length === 2) this.addBomb();
         } else if (object instanceof Ghost) {
             this.ghosts.splice(this.ghosts.indexOf(object), 1)
             if (this.ghosts.length === 0) {
@@ -192,7 +192,9 @@ class Game {
             this.addApples();
         } else if (object instanceof Coin) {
             this.coins.pop();
-            this.addCoins();
+            if (this.coins.length === 0) {
+                this.addCoins();
+            }
         } else if (object instanceof Ghost) {
         } else {
             throw new Error("unknown type of object");
