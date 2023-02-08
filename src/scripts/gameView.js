@@ -42,6 +42,10 @@ class GameView {
             this.game = new Game(this.face);
             start.innerHTML = "Restart"
 
+            // Reset score
+            const score = document.getElementById("score");
+            score.innerHTML = 0;
+
             // Make sure that instructions are gone once game starts
             const instructions = document.getElementById("instructions");
             instructions.style.display = "none"
