@@ -181,7 +181,7 @@ class GameView {
         }
     }
 
-    goBackPage() {
+    goBackPage(ctx) {
         let length = this.instructionsPage.length
         if (length !== 1) {
             const backButton = document.querySelector('.back')
@@ -208,13 +208,23 @@ class GameView {
                 el.style.display = "block";
             })
 
+            // Instruction images
+            this.loadInstructionCtx(ctx)
+            let imageIcon = null
+            if (newText !== "coin" && newText !== "general") {
+                imageIcon = document.getElementById(`${newText}-icon`)
+                ctx.drawImage(imageIcon, 290, 240, 120, 120)
+            } else {
+
+            }
+
             if (this.instructionsPage.length === 1) {
                 backButton.style.display = "none";
             }
         }
     }
 
-    goNextPage() {
+    goNextPage(ctx) {
         const length = this.instructionsPage.length
         if (length !== 5) {
             const backButton = document.querySelector('.back')
@@ -247,10 +257,31 @@ class GameView {
                 el.style.display = "block";
             })
 
+            // Instruction images
+            this.loadInstructionCtx(ctx)
+            let imageIcon = null
+            if (nextPageText !== "coin") {
+                imageIcon = document.getElementById(`${nextPageText}-icon`)
+                ctx.drawImage(imageIcon, 290, 240, 120, 120)
+            } else {
+
+            }
+
             if (this.instructionsPage.length === 5) {
                 nextButton.style.display = "none";
             }
         }
+    }
+
+    loadInstructionCtx(ctx) {
+        ctx.clearRect(0, 0, 700, 450);
+        ctx.fillStyle = "rgba(60, 179, 113, 0.8)";
+        ctx.strokeStyle = "rgba(10, 129, 63, 0.5)";
+
+        ctx.beginPath()
+        ctx.roundRect(100, 50, 500, 350, [10])
+        ctx.fill()
+        ctx.stroke()
     }
 
     // Loading up the instructions first
@@ -261,22 +292,24 @@ class GameView {
         instructionsEl.width = 700;
         const instructionsCtx = instructionsEl.getContext("2d");
 
-        instructionsCtx.fillStyle = "rgba(60, 179, 113, 0.8)";
-        instructionsCtx.strokeStyle = "rgba(10, 129, 63, 0.5)";
+        // instructionsCtx.fillStyle = "rgba(60, 179, 113, 0.8)";
+        // instructionsCtx.strokeStyle = "rgba(10, 129, 63, 0.5)";
 
-        instructionsCtx.beginPath()
-        instructionsCtx.roundRect(100, 50, 500, 350, [10])
-        instructionsCtx.fill()
-        instructionsCtx.stroke()
+        // instructionsCtx.beginPath()
+        // instructionsCtx.roundRect(100, 50, 500, 350, [10])
+        // instructionsCtx.fill()
+        // instructionsCtx.stroke()
+
+        this.loadInstructionCtx(instructionsCtx)
 
         const backButton = document.querySelector(".back")
         backButton.addEventListener("click", () => {
-            this.goBackPage()
+            this.goBackPage(instructionsCtx)
         })
 
         const nextButton = document.querySelector(".next")
         nextButton.addEventListener("click", () => {
-            this.goNextPage()
+            this.goNextPage(instructionsCtx)
         })
     }
 
