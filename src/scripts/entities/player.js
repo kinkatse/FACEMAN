@@ -34,18 +34,13 @@ class Player {
 
     heal(amount) {
         if (this.health < 100) this.health += amount;
-        console.log("Player got healed!");
         if (this.health >= 100) {
             this.health = 100;
-            console.log("Max Health")
         }
-        console.log(this.health);
     }
 
     addScore(amount) {
         this.score += amount;
-        console.log("Score went up by 50!");
-        console.log(this.score);
         this.updateScore()
     }
 

@@ -225,3 +225,19 @@
   animation-duration: 1.5s;
   animation-name: gameover-in;
 }
+
+.warning {
+  position: relative;
+  // top: 585px;
+  font-size: 20px;
+  font-weight: bold;
+  width: 600px;
+  color: rgb(241, 61, 1);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  user-select: none;
+}
+
+.warnings {
+  display: flex;
+  justify-content: center;
+}

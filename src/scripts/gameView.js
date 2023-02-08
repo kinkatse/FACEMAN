@@ -95,17 +95,31 @@ class GameView {
             input: this.video
         });
 
+        const warningNoFace = document.querySelector(".no-face")
+        const warningMany = document.querySelector(".too-many")
+        const warningFar = document.querySelector(".too-far")
+        const warningClose = document.querySelector(".too-close")
+
         // Below are errors to restrict user
         if (facePredictions.length === 0) {
+            warningFar.style.display = "none"
+            warningClose.style.display = "none"
+            warningNoFace.style.display = "block"
             this.face = undefined;
             console.log("Error: No face detected")
         } else if (facePredictions.length > 1) {
+            warningFar.style.display = "none"
+            warningClose.style.display = "none"
+            warningMany.style.display = "block"
             this.face = undefined;
             console.log("Error: This app is designed for 1 person at a time")
         } else {
+            warningNoFace.style.display = "none"
+            warningMany.style.display = "none"
             // Set the face instance variable to the first face prediction
             this.face = facePredictions[0];
         }
+
 
     }
 
@@ -135,7 +149,6 @@ class GameView {
                 if (this.game.gameover) {
                     this.game.endGame()
                     this.mode = "gameover"
-                    console.log("Gameover")
                     return;
                 }
                 this.ctx.drawImage(this.grabPrevVideoFrame(), 0, 0, this.DIM_width, this.DIM_height);
@@ -161,13 +174,26 @@ class GameView {
         }
         // Logic for error handling when face is too far or too close
         if (this.face !== undefined) {
+            const warningNoFace = document.querySelector(".no-face")
+            const warningMany = document.querySelector(".too-many")
+            const warningFar = document.querySelector(".too-far")
+            const warningClose = document.querySelector(".too-close")
             if (this.face.boundingBox.bottomRight[0] - this.face.boundingBox.topLeft[0] - 40 < 100
                 || this.face.boundingBox.bottomRight[1] - this.face.boundingBox.topLeft[1] + 110 < 175) {
-                    console.log("Error: Bring your face closer and keep it straight")
+                    if (warningNoFace.style.display !== "block" && warningMany.style.display !== "block") {
+                        warningFar.style.display = "block"
+                    }
+                    // console.log("Error: Bring your face closer and keep it straight")
             }
              else if (this.face.boundingBox.bottomRight[0] - this.face.boundingBox.topLeft[0] - 40 > 300
                 || this.face.boundingBox.bottomRight[1] - this.face.boundingBox.topLeft[1] + 110 > 375) {
-                    console.log("Error: Back up a bit and keep your head straight")
+                    if (warningNoFace.style.display !== "block" && warningMany.style.display !== "block") {
+                        warningClose.style.display = "block"
+                    }
+                    // console.log("Error: Back up a bit and keep your head straight")
+            } else {
+                warningFar.style.display = "none"
+                warningClose.style.display = "none"
             }
         }
     }

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FACE-MAN</title>
+    <link rel="shortcut icon" type="image/png" href="favicon.ico"/>
 
     <link rel="stylesheet" href="./dist/main.css" />
 
@@ -115,11 +116,22 @@
             </div>
         </div>
 
+        
         <div id="gameover-elements" style="display: none">
             <h1 class="gameover-text">GAMEOVER</h1>
         </div>
-
+        
     </div>
+
+    <div class="warnings">
+        <h2 class="warning too-close" style="display: none">Hey, you're too close which makes your hurtbox larger!
+            Try moving back a bit for an easier experience</h2>
+        <h2 class="warning too-far" style="display: none">Hey, you're too far which makes your hurtbox smaller!
+            The face detection has a harder time knowing if you closed your eyes or opened your mouth</h2>
+        <h2 class="warning too-many" style="display: none">Hey, this application was meant to only handle one person at a time</h2>
+        <h2 class="warning no-face" style="display: none">Hey, there seems to be no face detected</h2>
+    </div>
+    
     <img id="bomb-icon" style="display: none" src="./src/images/bomb-icon.png">
     <img id="bomb-icon-1" style="display: none" src="./src/images/bomb-icon-1.png">
     <img id="bomb-icon-2" style="display: none" src="./src/images/bomb-icon-2.png">
