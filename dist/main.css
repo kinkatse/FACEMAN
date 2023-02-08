@@ -164,6 +164,7 @@ img {
   color: rgb(255, 224, 48);
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   font-size: 30px;
+  user-select: none;
 }
 
 .loading {
@@ -172,6 +173,7 @@ img {
   font-size: 40px;
   color: azure;
   text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  user-select: none;
 }
 
 .below {
@@ -447,6 +449,7 @@ body {
   display: inline-block;
   margin: 10px;
   color: rgb(9, 147, 189);
+  user-select: none;
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
@@ -524,4 +527,5 @@ button:active {
   display: flex;
   justify-content: center;
   margin: 15px;
+  user-select: none;
 }
