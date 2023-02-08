@@ -22,23 +22,23 @@ After granting access to your camera for this app to run, you can click on the s
 ![Scan Mask](https://media.giphy.com/media/1xjNi7GjiyGB3nL6ea/giphy.gif)
 
 When you start the game, there are 4 entities to be aware of!
-1. Bomb
+### 1. Bomb
 - You need to avoid the bombs! They inflict damage and if you reach 0 health, that is game over!
 
 ![Bomb](https://media.giphy.com/media/sERi4POg5ubvPUZsay/giphy.gif)
 
 
-2. Apple
+### 2. Apple
 - If you are low on health, no worries! Apples can heal you. However, you need to open your mouth in order to eat the apple!
 
 ![Apple](https://media.giphy.com/media/J1ncjVPHKGDhYl7o9j/giphy.gif)
 
-3. Coin
+### 3. Coin
 - Coins are for score. See how long you can last and compare your score with others!
 
 ![Coin](https://media.giphy.com/media/BsYEDxwec2THtabAHa/giphy.gif)
 
-4. Ghost
+### 4. Ghost
 - Ghosts are slow but big obstacles so sometimes they can be hard to avoid. A good way to avoid them is to close (or squint) your eyes so the ghost thinks you're asleep! Then you can pass through the ghost!
 
 ![Ghost](https://media.giphy.com/media/K4bZGjfvV71HoiAYVu/giphy.gif)
