@@ -6,7 +6,6 @@ import GameUtil from "./gameUtil.js";
 class GameView {
 
     constructor(ctx, video) {
-        // video, face detection, canvas and game set up
         this.video = video;
         this.videoFrames = [];
         this.ctx = ctx;
@@ -17,7 +16,6 @@ class GameView {
         this.DIM_height = 450;
         this.game = null;
 
-        // filters
         this.faceMaskDots = false;
         this.hitBox = false;
         this.instructionsPage = ["general"]
@@ -26,35 +24,26 @@ class GameView {
         this.intervalId = null;
         this.loadInstructions();
 
-        // runing all event listeners
         this.runEventListeners();
-
-        // running functions that start the application
         this.setupCamera();
         this.loadFaceModel();
-        // Sets interval to loop the draw function (which loses context)
-        // setInterval(this.draw.bind(this), 1);
         this.requestId = requestAnimationFrame(this.animate.bind(this))
     }
 
     runEventListeners() {
         const start = document.getElementById("start-button");
         start.addEventListener("click", () => {
-            // set mode to gameon and create game instance
             this.mode = "gameon";
             this.game = new Game(this.face);
             start.innerHTML = "Restart"
 
-            // Reset score
             const score = document.getElementById("score");
             score.innerHTML = 0;
 
-            // Make sure that instructions are gone once game starts
             const instructions = document.getElementById("instructions");
             instructions.style.display = "none"
             this.instructions = false;
 
-            // Make sure to remove gameover once we restart
             const gameoverEl = document.getElementById("gameover-elements")
 
             gameoverEl.style.display = "none"
@@ -62,11 +51,9 @@ class GameView {
             gameoverText.classList.remove("gameover-active")
         })
 
-        // Button for turning on the scan mask on or off
         const scanFilter = document.getElementById("scan-filter");
         scanFilter.addEventListener("click", () => this.faceMaskDots = !this.faceMaskDots)
 
-        // Button for turning on the hurtBox mask on or off
         const hurtBoxFilter = document.getElementById("hurtbox-filter");
         hurtBoxFilter.addEventListener("click", () => this.hurtBox = !this.hurtBox)
 
@@ -185,8 +172,21 @@ class GameView {
         }
     }
 
+    goBackPage(ctx) {
+        let length = this.instructionsPage.length
+        if (length !== 1) {
+            this.changePage(ctx, "left")
+        }
+    }
+
+    goNextPage(ctx) {
+        const length = this.instructionsPage.length
+        if (length !== 5) {
+            this.changePage(ctx, "right")
+        }
+    }
+
     changePage(ctx, pageDirection) {
-        // debugger
         let length = this.instructionsPage.length
         const backButton = document.querySelector('.back')
         const nextButton = document.querySelector('.next')
@@ -196,7 +196,6 @@ class GameView {
         // Remove last page we were on by giving it display none
         const oldText = pageDirection === 'left' ? this.instructionsPage.pop() : this.instructionsPage[length - 1]
         const oldTextEls = document.getElementsByClassName(`${oldText}-text`);
-        // converting HTMLCollection into an Array
         const oldTextArr = Array.prototype.slice.call(oldTextEls)
         oldTextArr.forEach(el => {
             el.style.display = "none";
@@ -237,109 +236,10 @@ class GameView {
         }
         if (imageIcon) ctx.drawImage(imageIcon, 290, 240, 120, 120)
 
-        // debugger
         if (pageDirection === 'left' && length === 1) {
             backButton.style.display = "none";
         } else if (pageDirection === 'right' && length === 4) {
             nextButton.style.display = "none";
-        }
-    }
-
-    goBackPage(ctx) {
-        let length = this.instructionsPage.length
-        if (length !== 1) {
-            this.changePage(ctx, "left")
-
-
-            // const backButton = document.querySelector('.back')
-            // const nextButton = document.querySelector('.next')
-
-            // backButton.style.display = "block";
-            // nextButton.style.display = "block";
-            // // Remove last page we were on by giving it display none
-            // const oldText = this.instructionsPage.pop()
-            // const oldTextEls = document.getElementsByClassName(`${oldText}-text`);
-            // // converting HTMLCollection into an Array
-            // const oldTextArr = Array.prototype.slice.call(oldTextEls)
-            // oldTextArr.forEach(el => {
-            //     el.style.display = "none";
-            // })
-            // // update length, otherwise its using old length before pop
-            // length = this.instructionsPage.length
-
-            // // Include previous page by adding display block
-            // const newText = this.instructionsPage[length - 1]
-            // const newTextEls = document.getElementsByClassName(`${newText}-text`);
-            // const newTextArr = Array.prototype.slice.call(newTextEls)
-            // newTextArr.forEach(el => {
-            //     el.style.display = "block";
-            // })
-
-            // // Instruction images
-            // this.loadInstructionCtx(ctx)
-            // let imageIcon = null
-            // if (newText !== "coin") {
-            //     imageIcon = document.getElementById(`${newText}-icon`)
-            // } else if (newText === "coin") {
-            //     imageIcon = document.getElementById(`coin-icon-1`)
-            // }
-            // if (imageIcon) ctx.drawImage(imageIcon, 290, 240, 120, 120)
-
-            // if (this.instructionsPage.length === 1) {
-            //     backButton.style.display = "none";
-            // }
-        }
-    }
-
-    goNextPage(ctx) {
-        const length = this.instructionsPage.length
-        if (length !== 5) {
-            this.changePage(ctx, "right")
-
-
-            // const backButton = document.querySelector('.back')
-            // const nextButton = document.querySelector('.next')
-            // backButton.style.display = "block";
-            // nextButton.style.display = "block";
-            // const oldText = this.instructionsPage[length - 1]
-            // const oldTextEls = document.getElementsByClassName(`${oldText}-text`);
-            // const oldTextArr = Array.prototype.slice.call(oldTextEls)
-            // oldTextArr.forEach(el => {
-            //     el.style.display = "none";
-            // })
-            
-            // // Adding back the page items
-            // let nextPageText = ""
-            // if (this.instructionsPage[length - 1] === "general") {
-            //     nextPageText = "bomb"
-            // } else if (this.instructionsPage[length - 1] === "bomb") {
-            //     nextPageText = "apple"
-            // } else if (this.instructionsPage[length - 1] === "apple") {
-            //     nextPageText = "coin"
-            // } else if (this.instructionsPage[length - 1] === "coin") {
-            //     nextPageText = "ghost"
-            // }
-            // this.instructionsPage.push(nextPageText)
-
-            // const newTextEls = document.getElementsByClassName(`${nextPageText}-text`);
-            // const newTextArr = Array.prototype.slice.call(newTextEls)
-            // newTextArr.forEach(el => {
-            //     el.style.display = "block";
-            // })
-
-            // // Instruction images
-            // this.loadInstructionCtx(ctx)
-            // let imageIcon = null
-            // if (nextPageText !== "coin") {
-            //     imageIcon = document.getElementById(`${nextPageText}-icon`)
-            // } else {
-            //     imageIcon = document.getElementById(`coin-icon-1`)
-            // }
-            // if (imageIcon) ctx.drawImage(imageIcon, 290, 240, 120, 120)
-
-            // if (this.instructionsPage.length === 5) {
-            //     nextButton.style.display = "none";
-            // }
         }
     }
 
@@ -416,76 +316,6 @@ class GameView {
             });
         }
 
-        const pacmanFilter = false
-        if (pacmanFilter && this.face !== undefined) {
-            new PacMan({
-                face: this.face,
-                ctx: this.ctx
-            });
-        }
-
-        const kirbyFilter = false
-        if (kirbyFilter && this.face !== undefined) {
-            new Kirby({
-                face: this.face,
-                ctx: this.ctx
-            });
-        }
-
-        const pikachuFilter = false
-        if (pikachuFilter && this.face !== undefined) {
-            new Pikachu({
-                face: this.face,
-                ctx: this.ctx
-            });
-        }
-
-        const prettyFilter = false
-        if (prettyFilter && this.face !== undefined) {
-            new Pretty({
-                face: this.face,
-                ctx: this.ctx
-            });
-        }
-
-        const mustacheFilter = false
-        if (mustacheFilter && this.face !== undefined) {
-            new Mustache({
-                face: this.face,
-                ctx: this.ctx
-            });
-        }
-
-        const glassesFilter = false
-        if (glassesFilter && this.face !== undefined) {
-            new Glasses({
-                face: this.face,
-                ctx: this.ctx
-            });
-        }
-
-        // My attempt to distort the face
-        // const sadFace = true
-        // if (sadFace && this.face !== undefined) {
-        //     for (let i = 0; i < this.face.annotations.lipsLowerOuter.length; i++) {
-        //         // I manipulated the face object from the API but it doesn't correlate to the video or canvas
-        //         // Instead of just subtracting two points, I probably need to do some math to figure out
-        //         // how to distort a section of the face
-        //         this.face.annotations.lipsLowerOuter[i][0] -= 50;
-        //         this.face.annotations.lipsLowerOuter[i][1] -= 50;
-        //         // I could do one of two things:
-        //         // Manipulate the video before I draw the ctx
-        //         // or manipulate the ctx after I drew it
-
-        //         // Method 2 attempt
-        //         this.ctx.drawImage(this.video, 0, 0, this.DIM_width, this.DIM_height);
-        //         const imgData = this.ctx.getImageData(0,0,this.DIM_width, this.DIM_height)
-        //         console.log(imgData)
-        //         const mat = this.getPixelMatrix(imgData);
-        //         console.log(mat)
-        //         // Cool, now I can manipulate the ctx data points and draw it again
-        //     }
-        // }
     }
 
 }
