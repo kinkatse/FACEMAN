@@ -16,7 +16,7 @@
 ## Key Features:
 
 After granting access to your camera for this app to run, you can click on the scan mask filter to illustrate how the TensorFlow API responds with all facial features.
-![Scan Mask](https://i.imgur.com/Sb6xtY1.gif)
+![Scan Mask](https://media.giphy.com/media/1xjNi7GjiyGB3nL6ea/giphy.gif)
 
 <img src="https://i.imgur.com/Sb6xtY1.gif" width="40" height="40" />
 
