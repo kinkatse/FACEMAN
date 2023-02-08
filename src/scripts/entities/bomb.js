@@ -12,7 +12,15 @@ class Bomb extends MovingObject {
 
         super(options);
         
-        this.image = document.getElementById("bomb-icon")
+        // This rotation is to randomize which frame in the cycle the bomb starts on
+        this.startRotation = Math.floor(Math.random() * 15);
+        this.imageArr = GameUtil.bombFramesArr()
+        while (this.startRotation > 0) {
+            const frame = this.imageArr.shift()
+            this.imageArr.push(frame)
+            this.startRotation -= 1
+        }
+
         this.damage = 10;
         this.angle = 0;
     }
@@ -27,31 +35,12 @@ class Bomb extends MovingObject {
 
     draw(ctx) {
         // Numbers are to adjust the image correctly
-        ctx.drawImage(this.image, this.pos[0] - 45, this.pos[1] - 50, 92, 92)
+        ctx.drawImage(this.imageArr[0], this.pos[0] - 45, this.pos[1] - 50, 92, 92)
+
+        const frame = this.imageArr.shift()
+        this.imageArr.push(frame)
+
         // MovingObject.prototype.draw.call(this, ctx);
-
-        // const x = this.pos[0] - 45
-        // const y = this.pos[1] - 50
-        // ctx.save();
-        // ctx.translate(x,y);
-        // ctx.rotate(this.angle += Math.PI);
-        // ctx.translate(-x,-y); 
-        // ctx.drawImage(this.image, x, y, 92, 92)
-        // // ctx.rotate(Math.PI);
-        // ctx.restore();
-
-        // Drawing the wire of the bomb
-        // ctx.strokeStyle = 'black';
-        // ctx.beginPath();
-        // ctx.lineWidth = 2;
-        // // Lol don't forget that I flipped the canvas so coords should be flipped too
-        // ctx.moveTo(this.pos[0], this.pos[1] - 20);
-        // ctx.bezierCurveTo(
-        //     this.pos[0], this.pos[1] - 30,
-        //     this.pos[0] + 10, this.pos[1] - 30,
-        //     this.pos[0] + 10, this.pos[1] - 25
-        // );
-        // ctx.stroke();
     }
 }
 

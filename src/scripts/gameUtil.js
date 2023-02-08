@@ -55,6 +55,30 @@ const GameUtil = {
         const frame6 = document.getElementById("coin-icon-6")
         const frame7 = document.getElementById("coin-icon-7")
         return [frame1, frame2, frame3, frame4, frame5, frame6, frame7]
+    },
+    bombFramesArr: () => {
+        const frame1 = document.getElementById("bomb-icon-1")
+        const frame2 = document.getElementById("bomb-icon-2")
+        const frame3 = document.getElementById("bomb-icon-3")
+        const frame4 = document.getElementById("bomb-icon-4")
+        const frame5 = document.getElementById("bomb-icon-5")
+        const frame6 = document.getElementById("bomb-icon-6")
+        const frame7 = document.getElementById("bomb-icon-7")
+        const frame8 = document.getElementById("bomb-icon-8")
+        const frame9 = document.getElementById("bomb-icon-9")
+        const frame10 = document.getElementById("bomb-icon-10")
+        const frame11 = document.getElementById("bomb-icon-11")
+        const frame12 = document.getElementById("bomb-icon-12")
+        const frame13 = document.getElementById("bomb-icon-13")
+        const frame14 = document.getElementById("bomb-icon-14")
+        const frame15 = document.getElementById("bomb-icon-15")
+        const frame16 = document.getElementById("bomb-icon-16")
+        return [
+            frame1, frame2, frame3, frame4,
+            frame5, frame6, frame7, frame8,
+            frame9, frame10, frame11, frame12,
+            frame13, frame14, frame15, frame16
+        ]
     }
 };
 

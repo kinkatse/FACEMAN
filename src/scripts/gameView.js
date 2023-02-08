@@ -229,10 +229,8 @@ class GameView {
         // Instruction images
         this.loadInstructionCtx(ctx)
         let imageIcon = null
-        if (nextPageText !== "coin") {
+        if (nextPageText !== "" && nextPageText !== "general") {
             imageIcon = document.getElementById(`${nextPageText}-icon`)
-        } else if (nextPageText === "coin") {
-            imageIcon = document.getElementById(`coin-icon-1`)
         }
         if (imageIcon) ctx.drawImage(imageIcon, 290, 240, 120, 120)
 

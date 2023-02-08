@@ -28,10 +28,8 @@ class Coin extends MovingObject {
         // Numbers are to adjust the image correctly
         ctx.drawImage(this.imageArr[0], this.pos[0] - 26, this.pos[1] - 25, 50, 50)
         
-        // make the frame go to back of queue
         const frame = this.imageArr.shift()
         this.imageArr.push(frame)
-
 
         // MovingObject.prototype.draw.call(this, ctx);
     }
