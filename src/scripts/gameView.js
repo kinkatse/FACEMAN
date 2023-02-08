@@ -106,13 +106,11 @@ class GameView {
             warningClose.style.display = "none"
             warningNoFace.style.display = "block"
             this.face = undefined;
-            console.log("Error: No face detected")
         } else if (facePredictions.length > 1) {
             warningFar.style.display = "none"
             warningClose.style.display = "none"
             warningMany.style.display = "block"
             this.face = undefined;
-            console.log("Error: This app is designed for 1 person at a time")
         } else {
             warningNoFace.style.display = "none"
             warningMany.style.display = "none"
@@ -157,6 +155,15 @@ class GameView {
                 this.game.draw(this.ctx, this.face);
                 this.game.update();
             } else if (this.mode === "gameover") {
+                const warningNoFace = document.querySelector(".no-face")
+                const warningMany = document.querySelector(".too-many")
+                const warningFar = document.querySelector(".too-far")
+                const warningClose = document.querySelector(".too-close")
+                warningNoFace.style.display = "none"
+                warningMany.style.display = "none"
+                warningFar.style.display = "none"
+                warningClose.style.display = "none"
+
                 const gameoverEl = document.getElementById("gameover-elements")
 
                 gameoverEl.style.display = "block"
@@ -173,7 +180,7 @@ class GameView {
             }
         }
         // Logic for error handling when face is too far or too close
-        if (this.face !== undefined) {
+        if (this.face !== undefined && this.mode !== "gameover") {
             const warningNoFace = document.querySelector(".no-face")
             const warningMany = document.querySelector(".too-many")
             const warningFar = document.querySelector(".too-far")
@@ -183,14 +190,12 @@ class GameView {
                     if (warningNoFace.style.display !== "block" && warningMany.style.display !== "block") {
                         warningFar.style.display = "block"
                     }
-                    // console.log("Error: Bring your face closer and keep it straight")
             }
              else if (this.face.boundingBox.bottomRight[0] - this.face.boundingBox.topLeft[0] - 40 > 300
                 || this.face.boundingBox.bottomRight[1] - this.face.boundingBox.topLeft[1] + 110 > 375) {
                     if (warningNoFace.style.display !== "block" && warningMany.style.display !== "block") {
                         warningClose.style.display = "block"
                     }
-                    // console.log("Error: Back up a bit and keep your head straight")
             } else {
                 warningFar.style.display = "none"
                 warningClose.style.display = "none"
