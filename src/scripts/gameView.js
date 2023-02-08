@@ -82,6 +82,7 @@ class GameView {
         }).then( stream => {
             // Which returns us a promise which we then take the stream and set that to the video srcObject
             this.video.srcObject = stream;
+            this.instructions = true;
         });
     }
 
@@ -184,65 +185,28 @@ class GameView {
         }
     }
 
-    goBackPage(ctx) {
+    changePage(ctx, pageDirection) {
+        // debugger
         let length = this.instructionsPage.length
-        if (length !== 1) {
-            const backButton = document.querySelector('.back')
-            const nextButton = document.querySelector('.next')
+        const backButton = document.querySelector('.back')
+        const nextButton = document.querySelector('.next')
 
-            backButton.style.display = "block";
-            nextButton.style.display = "block";
-            // Remove last page we were on by giving it display none
-            const oldText = this.instructionsPage.pop()
-            const oldTextEls = document.getElementsByClassName(`${oldText}-text`);
-            // converting HTMLCollection into an Array
-            const oldTextArr = Array.prototype.slice.call(oldTextEls)
-            oldTextArr.forEach(el => {
-                el.style.display = "none";
-            })
-            // update length, otherwise its using old length before pop
-            length = this.instructionsPage.length
+        backButton.style.display = "block";
+        nextButton.style.display = "block";
+        // Remove last page we were on by giving it display none
+        const oldText = pageDirection === 'left' ? this.instructionsPage.pop() : this.instructionsPage[length - 1]
+        const oldTextEls = document.getElementsByClassName(`${oldText}-text`);
+        // converting HTMLCollection into an Array
+        const oldTextArr = Array.prototype.slice.call(oldTextEls)
+        oldTextArr.forEach(el => {
+            el.style.display = "none";
+        })
+        // update length, otherwise its using old length before pop
+        length = this.instructionsPage.length
 
-            // Include previous page by adding display block
-            const newText = this.instructionsPage[length - 1]
-            const newTextEls = document.getElementsByClassName(`${newText}-text`);
-            const newTextArr = Array.prototype.slice.call(newTextEls)
-            newTextArr.forEach(el => {
-                el.style.display = "block";
-            })
-
-            // Instruction images
-            this.loadInstructionCtx(ctx)
-            let imageIcon = null
-            if (newText !== "coin") {
-                imageIcon = document.getElementById(`${newText}-icon`)
-            } else if (newText === "coin") {
-                imageIcon = document.getElementById(`coin-icon-1`)
-            }
-            if (imageIcon) ctx.drawImage(imageIcon, 290, 240, 120, 120)
-
-            if (this.instructionsPage.length === 1) {
-                backButton.style.display = "none";
-            }
-        }
-    }
-
-    goNextPage(ctx) {
-        const length = this.instructionsPage.length
-        if (length !== 5) {
-            const backButton = document.querySelector('.back')
-            const nextButton = document.querySelector('.next')
-            backButton.style.display = "block";
-            nextButton.style.display = "block";
-            const oldText = this.instructionsPage[length - 1]
-            const oldTextEls = document.getElementsByClassName(`${oldText}-text`);
-            const oldTextArr = Array.prototype.slice.call(oldTextEls)
-            oldTextArr.forEach(el => {
-                el.style.display = "none";
-            })
-            
+        let nextPageText = ""
+        if (pageDirection === "right") {
             // Adding back the page items
-            let nextPageText = ""
             if (this.instructionsPage[length - 1] === "general") {
                 nextPageText = "bomb"
             } else if (this.instructionsPage[length - 1] === "bomb") {
@@ -253,26 +217,129 @@ class GameView {
                 nextPageText = "ghost"
             }
             this.instructionsPage.push(nextPageText)
+        } else {
+            nextPageText = this.instructionsPage[length - 1]
+        }
 
-            const newTextEls = document.getElementsByClassName(`${nextPageText}-text`);
-            const newTextArr = Array.prototype.slice.call(newTextEls)
-            newTextArr.forEach(el => {
-                el.style.display = "block";
-            })
+        const newTextEls = document.getElementsByClassName(`${nextPageText}-text`);
+        const newTextArr = Array.prototype.slice.call(newTextEls)
+        newTextArr.forEach(el => {
+            el.style.display = "block";
+        })
 
-            // Instruction images
-            this.loadInstructionCtx(ctx)
-            let imageIcon = null
-            if (nextPageText !== "coin") {
-                imageIcon = document.getElementById(`${nextPageText}-icon`)
-            } else {
-                imageIcon = document.getElementById(`coin-icon-1`)
-            }
-            if (imageIcon) ctx.drawImage(imageIcon, 290, 240, 120, 120)
+        // Instruction images
+        this.loadInstructionCtx(ctx)
+        let imageIcon = null
+        if (nextPageText !== "coin") {
+            imageIcon = document.getElementById(`${nextPageText}-icon`)
+        } else if (nextPageText === "coin") {
+            imageIcon = document.getElementById(`coin-icon-1`)
+        }
+        if (imageIcon) ctx.drawImage(imageIcon, 290, 240, 120, 120)
 
-            if (this.instructionsPage.length === 5) {
-                nextButton.style.display = "none";
-            }
+        // debugger
+        if (pageDirection === 'left' && length === 1) {
+            backButton.style.display = "none";
+        } else if (pageDirection === 'right' && length === 4) {
+            nextButton.style.display = "none";
+        }
+    }
+
+    goBackPage(ctx) {
+        let length = this.instructionsPage.length
+        if (length !== 1) {
+            this.changePage(ctx, "left")
+
+
+            // const backButton = document.querySelector('.back')
+            // const nextButton = document.querySelector('.next')
+
+            // backButton.style.display = "block";
+            // nextButton.style.display = "block";
+            // // Remove last page we were on by giving it display none
+            // const oldText = this.instructionsPage.pop()
+            // const oldTextEls = document.getElementsByClassName(`${oldText}-text`);
+            // // converting HTMLCollection into an Array
+            // const oldTextArr = Array.prototype.slice.call(oldTextEls)
+            // oldTextArr.forEach(el => {
+            //     el.style.display = "none";
+            // })
+            // // update length, otherwise its using old length before pop
+            // length = this.instructionsPage.length
+
+            // // Include previous page by adding display block
+            // const newText = this.instructionsPage[length - 1]
+            // const newTextEls = document.getElementsByClassName(`${newText}-text`);
+            // const newTextArr = Array.prototype.slice.call(newTextEls)
+            // newTextArr.forEach(el => {
+            //     el.style.display = "block";
+            // })
+
+            // // Instruction images
+            // this.loadInstructionCtx(ctx)
+            // let imageIcon = null
+            // if (newText !== "coin") {
+            //     imageIcon = document.getElementById(`${newText}-icon`)
+            // } else if (newText === "coin") {
+            //     imageIcon = document.getElementById(`coin-icon-1`)
+            // }
+            // if (imageIcon) ctx.drawImage(imageIcon, 290, 240, 120, 120)
+
+            // if (this.instructionsPage.length === 1) {
+            //     backButton.style.display = "none";
+            // }
+        }
+    }
+
+    goNextPage(ctx) {
+        const length = this.instructionsPage.length
+        if (length !== 5) {
+            this.changePage(ctx, "right")
+
+
+            // const backButton = document.querySelector('.back')
+            // const nextButton = document.querySelector('.next')
+            // backButton.style.display = "block";
+            // nextButton.style.display = "block";
+            // const oldText = this.instructionsPage[length - 1]
+            // const oldTextEls = document.getElementsByClassName(`${oldText}-text`);
+            // const oldTextArr = Array.prototype.slice.call(oldTextEls)
+            // oldTextArr.forEach(el => {
+            //     el.style.display = "none";
+            // })
+            
+            // // Adding back the page items
+            // let nextPageText = ""
+            // if (this.instructionsPage[length - 1] === "general") {
+            //     nextPageText = "bomb"
+            // } else if (this.instructionsPage[length - 1] === "bomb") {
+            //     nextPageText = "apple"
+            // } else if (this.instructionsPage[length - 1] === "apple") {
+            //     nextPageText = "coin"
+            // } else if (this.instructionsPage[length - 1] === "coin") {
+            //     nextPageText = "ghost"
+            // }
+            // this.instructionsPage.push(nextPageText)
+
+            // const newTextEls = document.getElementsByClassName(`${nextPageText}-text`);
+            // const newTextArr = Array.prototype.slice.call(newTextEls)
+            // newTextArr.forEach(el => {
+            //     el.style.display = "block";
+            // })
+
+            // // Instruction images
+            // this.loadInstructionCtx(ctx)
+            // let imageIcon = null
+            // if (nextPageText !== "coin") {
+            //     imageIcon = document.getElementById(`${nextPageText}-icon`)
+            // } else {
+            //     imageIcon = document.getElementById(`coin-icon-1`)
+            // }
+            // if (imageIcon) ctx.drawImage(imageIcon, 290, 240, 120, 120)
+
+            // if (this.instructionsPage.length === 5) {
+            //     nextButton.style.display = "none";
+            // }
         }
     }
 
