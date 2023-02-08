@@ -18,11 +18,13 @@ class GameView {
 
         this.faceMaskDots = false;
         this.hitBox = false;
+
         this.instructionsPage = ["general"]
         this.instructions = false;
         this.imageArr = GameUtil.coinFramesArr()
         this.intervalId = null;
         this.loadInstructions();
+
         this.timerId = null;
         this.timerElement = document.getElementById("timer")
         this.timer = 0;
@@ -42,6 +44,9 @@ class GameView {
         const start = document.getElementById("start-button");
         start.addEventListener("click", () => {
             this.mode = "gameon";
+            this.timer = 0;
+            this.timerElement.innerHTML = `00:00`
+            clearInterval(this.timerId)
             this.setTimer();
             this.game = new Game(this.face);
             start.innerHTML = "Restart"
@@ -164,6 +169,8 @@ class GameView {
                 this.warningFar.style.display = "none"
                 this.warningClose.style.display = "none"
 
+                clearInterval(this.timerId)
+
                 const gameoverEl = document.getElementById("gameover-elements")
 
                 gameoverEl.style.display = "block"
@@ -200,6 +207,7 @@ class GameView {
     }
 
     setTimer() {
+        this.timerElement.style.display = "block"
         this.timerId = setInterval(() => {
             this.timer += 1;
             const time = this.timerElement.innerHTML.split(":")
