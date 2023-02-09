@@ -153,6 +153,8 @@ class GameView {
             this.detectFace();
             if (this.mode === "gameon") {
                 this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
+                // update game's timer
+                this.game.time = this.timer;
                 if (this.game.gameover) {
                     this.game.endGame()
                     this.mode = "gameover"

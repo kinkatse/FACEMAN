@@ -17,9 +17,19 @@ class Game {
         this.areaHit = [];
         this.screenShakeQueue = [1, 2, 3, 4];
         this.gameover = false;
+        this.difficulty = "beginner"
 
+        this.maxBomb = Game.defaults.NUM_BOMBS;
+        this.maxGhost = Game.defaults.NUM_GHOSTS;
+        this.maxApple = Game.defaults.NUM_APPLES;
+        this.maxCoin = Game.defaults.NUM_COINS;
+        this.bombSpeed = 4;
+        this.coinSpeed = 1;
+        this.ghostSize = 0;
+        this.spawningGhost = false;
         this.addBombs();
-        this.addGhosts();
+        // Spawn first ghost after 25 seconds in timer
+        setTimeout(() => this.addGhosts(), 25000)
         this.addApples();
         this.addCoins();
 
@@ -38,10 +48,10 @@ class Game {
         return {
             DIM_X: 700,
             DIM_Y: 450,
-            NUM_BOMBS: 3,
+            NUM_BOMBS: 2,
             NUM_GHOSTS: 1,
             NUM_APPLES: 1,
-            NUM_COINS: 2
+            NUM_COINS: 1
         };
     }
 
@@ -66,6 +76,8 @@ class Game {
     }
 
     update() {
+        this.increaseDifficulty()
+
         this.bombs.forEach(bomb => {
             bomb.update();
         });
@@ -82,11 +94,56 @@ class Game {
         if (this.player.face) this.checkCollisions()
     }
 
+    increaseDifficulty() {
+        if (this.time > 20) {
+            this.difficulty = "normal"
+            this.bombSpeed = 6;
+            this.coinSpeed = 2;
+            // increase speed of bombs and coins
+            this.bombs.forEach((bomb) => {
+                if (bomb.speed < 6) bomb.vel = GameUtil.scale(bomb.vel, 1.5)
+                bomb.speed = 6
+            })
+            this.coins.forEach((coin) => {
+                if (coin.speed < 2) coin.vel = GameUtil.scale(coin.vel, 2)
+                coin.speed = 2
+            })
+            // if (this.ghosts.length === 0 && this.spawningGhost === true) this.addGhosts();
+            console.log("Normal Level")
+        } else if (this.time > 10) {
+            this.difficulty = "easy"
+            this.maxBomb = 3;
+            this.maxCoin = 2;
+            this.addBombs();
+            this.addCoins();
+            console.log("Easy Level")
+        // } else if (this.time > 120) {
+        //     this.difficulty = "hard"
+        //     this.maxBomb = 4;
+        //     this.maxCoin = 2;
+        //     this.bombSpeed = 8;
+        //     this.coinSpeed = 3;
+        //     this.addBombs();
+        //     this.addCoins();
+        //     console.log("Hard Level")
+        // } else if (this.time > 180) {
+        //     this.difficulty = "master"
+        //     this.maxCoin = 3;
+        //     this.bombSpeed = 10;
+        //     this.coinSpeed = 5;
+        //     this.ghostSize = 100;
+        //     this.addGhosts();
+        //     this.addCoins();
+        //     console.log("Master Level")
+        }
+    }
+
     add(object) {
         if (object instanceof Bomb) {
             this.bombs.push(object);
         } else if (object instanceof Ghost) {
-            setTimeout(() => this.ghosts.push(object), 5000)
+            // setTimeout(() => this.ghosts.push(object), 5000)
+            this.ghosts.push(object)
         } else if (object instanceof Apple) {
             this.apples.push(object);
         } else if (object instanceof Coin) {
@@ -99,7 +156,7 @@ class Game {
     };
 
     addBombs() {
-        for (let i = 0; i < Game.defaults.NUM_BOMBS; i++) {
+        for (let i = this.bombs.length; i < this.maxBomb; i++) {
             this.add(new Bomb({ game: this, time: this.time }));
         }
     }
@@ -109,21 +166,26 @@ class Game {
     }
 
     addGhosts() {
-        for (let i = 0; i < Game.defaults.NUM_GHOSTS; i++) {
+        // for (let i = this.ghosts.length; i < this.maxGhost; i++) {
             this.add(new Ghost({ game: this, time: this.time }));
-        }
+            this.spawningGhost = false;
+        // }
     }
 
     addApples() {
-        for (let i = 0; i < Game.defaults.NUM_APPLES; i++) {
+        for (let i = this.apples.length; i < this.maxApple; i++) {
             this.add(new Apple({ game: this, time: this.time }));
         }
     }
 
     addCoins() {
-        for (let i = 0; i < Game.defaults.NUM_COINS; i++) {
+        for (let i = this.coins.length; i < this.maxCoin; i++) {
             this.add(new Coin({ game: this, time: this.time }));
         }
+    }
+
+    addCoin() {
+        this.add(new Coin({ game: this, time: this.time }));
     }
 
     spawnPosition(object) {
@@ -182,20 +244,20 @@ class Game {
     remove(object) {
         if (object instanceof Bomb) {
             this.bombs.splice(this.bombs.indexOf(object), 1)
-            if (this.bombs.length === 2) this.addBomb();
+            if (this.bombs.length <= this.maxBomb) this.addBomb();
         } else if (object instanceof Ghost) {
             this.ghosts.splice(this.ghosts.indexOf(object), 1)
             if (this.ghosts.length === 0) {
+                this.spawningGhost = true;
                 setTimeout(() => this.addGhosts(), 1000)
             }
         } else if (object instanceof Apple) {
             this.apples.pop();
             this.addApples();
         } else if (object instanceof Coin) {
-            this.coins.pop();
-            if (this.coins.length === 0) {
-                this.addCoins();
-            }
+            // this.coins.pop();
+            this.coins.splice(this.coins.indexOf(object), 1)
+            if (this.coins.length <= this.maxCoin) this.addCoin();
         } else if (object instanceof Ghost) {
         } else {
             throw new Error("unknown type of object");

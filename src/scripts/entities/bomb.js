@@ -23,13 +23,14 @@ class Bomb extends MovingObject {
 
         this.damage = 10;
         this.angle = 0;
+        this.speed = Bomb.defaults.SPEED
     }
 
     static get defaults() {
         return {
             COLOR: "white",
             RADIUS: 25,
-            SPEED: 8
+            SPEED: 4
         };
     }
 

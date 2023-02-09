@@ -14,6 +14,7 @@ class Coin extends MovingObject {
 
         this.imageArr = GameUtil.coinFramesArr()
         this.score = 50;
+        this.speed = Coin.defaults.SPEED
     }
 
     static get defaults() {
