@@ -24,6 +24,7 @@ class GameView {
         this.imageArr = GameUtil.coinFramesArr()
         this.intervalId = null;
         this.loadInstructions();
+        this.musicIntervalId = null;
 
         this.timerId = null;
         this.timerElement = document.getElementById("timer")
@@ -48,7 +49,7 @@ class GameView {
             this.timerElement.innerHTML = `00:00`
             clearInterval(this.timerId)
             this.setTimer();
-            GameUtil.playSoundEffect()
+            this.musicIntervalId = GameUtil.playBackgroundMusic()
             this.game = new Game(this.face, this.timer);
             start.innerHTML = "Restart"
 
@@ -178,6 +179,7 @@ class GameView {
                 this.warningClose.style.display = "none"
 
                 clearInterval(this.timerId)
+                GameUtil.stopBackgroundMusic(this.musicIntervalId)
 
                 const gameoverEl = document.getElementById("gameover-elements")
 

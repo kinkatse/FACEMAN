@@ -1,3 +1,5 @@
+const bombArr = [1,2,3,4]
+
 const GameUtil = {
     // Important to remember, this is not the position. This is the
     // direction that this object will move towards and the speed
@@ -80,14 +82,25 @@ const GameUtil = {
             frame13, frame14, frame15, frame16
         ]
     },
-    playSoundEffect: () => {
-        const soundElement = document.getElementById('soundEffect')
-        soundElement.play()
+    playBackgroundMusic: () => {
+        const backgroundMusic = document.getElementById('background-music')
+        backgroundMusic.play()
         let setTimerCount = 30200
-        setInterval(() => {
+        const intervalId = setInterval(() => {
             setTimerCount += 200
-            soundElement.play()
+            backgroundMusic.play()
         }, setTimerCount)
+        return intervalId
+    },
+    stopBackgroundMusic: (intervalId) => {
+        const backgroundMusic = document.getElementById('background-music')
+        clearInterval(intervalId)
+        backgroundMusic.stop()
+    },
+    playBombSound: () => {
+        let bombSound = document.getElementById(`bomb-audio-${bombArr[0]}`)
+        bombSound.play()
+        bombArr.push(bombArr.shift())
     }
 };
 

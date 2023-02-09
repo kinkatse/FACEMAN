@@ -44,6 +44,8 @@ class MovingObject {
           this.remove();
           // Apply shake effect
           GameUtil.screenShakeEffect(this.game.screenShakeQueue)
+          // Apply bomb sound effect
+          GameUtil.playBombSound()
           // Add a new area hit spot for where bomb hit
           const newAreaHit = new DamageIndicator(pt, this.game)
           this.game.areaHit.push(newAreaHit)
