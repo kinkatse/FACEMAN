@@ -153,7 +153,6 @@ img {
 }
 
 #score-container {
-  display: none;
   position: absolute;
 }
 
@@ -285,6 +284,21 @@ img {
   text-align: center;
   top: 425px;
   color: rgb(255, 255, 255);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  font-size: 25px;
+  user-select: none;
+}
+
+#level-container {
+  position: absolute;
+}
+
+#level {
+  position: relative;
+  text-align: center;
+  top: 15px;
+  left: 270px;
+  color: rgb(29, 251, 255);
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   font-size: 25px;
   user-select: none;

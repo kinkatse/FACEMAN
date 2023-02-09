@@ -54,6 +54,11 @@ class GameView {
             const score = document.getElementById("score");
             score.innerHTML = 0;
 
+            const level = document.getElementById("level");
+            level.style.display = "block"
+            level.innerHTML = "Level: Beginner";
+            level.style.color = "rgb(29, 251, 255)"
+
             const instructions = document.getElementById("instructions");
             instructions.style.display = "none"
             this.instructions = false;

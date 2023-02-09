@@ -38,6 +38,8 @@ class Game {
         this.healthEl.height = 450;
         this.healthEl.width = 50;
         this.healthCtx = this.healthEl.getContext("2d");
+
+        this.levelElement = document.getElementById('level')
     }
 
     static get defaults() {
@@ -105,6 +107,8 @@ class Game {
                 coin.speed = 6
             })
             this.ghosts.forEach((ghost) => ghost.radius = 105)
+            this.levelElement.innerHTML = "Level: MASTER"
+            this.levelElement.style.color = "rgb(255, 29, 29)"
          } else if (this.time > 60) {
             this.difficulty = "hard"
             this.maxBomb = 4;
@@ -115,6 +119,8 @@ class Game {
                 if (coin.speed < 3) coin.vel = GameUtil.scale(coin.vel, 1.5)
                 coin.speed = 3
             })
+            this.levelElement.innerHTML = "Level: Hard"
+            this.levelElement.style.color = "rgb(255, 142, 29)"
         } else if (this.time > 30) {
             this.difficulty = "normal"
             // increase speed of bombs and coins
@@ -126,12 +132,16 @@ class Game {
                 if (coin.speed < 2) coin.vel = GameUtil.scale(coin.vel, 2)
                 coin.speed = 2
             })
+            this.levelElement.innerHTML = "Level: Normal"
+            this.levelElement.style.color = "rgb(255, 251, 29)"
         } else if (this.time > 10) {
             this.difficulty = "easy"
             this.maxBomb = 3;
             this.maxCoin = 2;
             this.addBombs();
             this.addCoins();
+            this.levelElement.innerHTML = "Level: Easy"
+            this.levelElement.style.color = "rgb(29, 255, 67)"
         }
     }
 
