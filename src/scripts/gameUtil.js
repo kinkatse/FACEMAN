@@ -81,7 +81,13 @@ const GameUtil = {
         ]
     },
     playSoundEffect: () => {
-        
+        const soundElement = document.getElementById('soundEffect')
+        soundElement.play()
+        let setTimerCount = 30200
+        setInterval(() => {
+            setTimerCount += 200
+            soundElement.play()
+        }, setTimerCount)
     }
 };
 

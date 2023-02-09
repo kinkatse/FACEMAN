@@ -48,6 +48,7 @@ class GameView {
             this.timerElement.innerHTML = `00:00`
             clearInterval(this.timerId)
             this.setTimer();
+            GameUtil.playSoundEffect()
             this.game = new Game(this.face, this.timer);
             start.innerHTML = "Restart"
 
