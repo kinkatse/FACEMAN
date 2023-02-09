@@ -24,8 +24,8 @@ class Game {
         this.maxApple = Game.defaults.NUM_APPLES;
         this.maxCoin = Game.defaults.NUM_COINS;
         this.addBombs();
-        // Spawn first ghost after 25 seconds in timer
-        setTimeout(() => this.addGhosts(), 6000)
+        // Spawn first ghost after 30 seconds in timer
+        setTimeout(() => this.addGhosts(), 30000)
         this.addApples();
         this.addCoins();
 
@@ -91,7 +91,7 @@ class Game {
     }
 
     increaseDifficulty() {
-        if (this.time > 10) {
+        if (this.time > 120) {
             this.difficulty = "master"
             this.maxCoin = 3;
             this.addCoins();
@@ -105,8 +105,7 @@ class Game {
                 coin.speed = 6
             })
             this.ghosts.forEach((ghost) => ghost.radius = 105)
-            console.log("Master Level")
-         } else if (this.time > 6) {
+         } else if (this.time > 60) {
             this.difficulty = "hard"
             this.maxBomb = 4;
             this.maxCoin = 2;
@@ -116,8 +115,7 @@ class Game {
                 if (coin.speed < 3) coin.vel = GameUtil.scale(coin.vel, 1.5)
                 coin.speed = 3
             })
-            console.log("Hard Level")
-        } else if (this.time > 3) {
+        } else if (this.time > 30) {
             this.difficulty = "normal"
             // increase speed of bombs and coins
             this.bombs.forEach((bomb) => {
@@ -128,14 +126,12 @@ class Game {
                 if (coin.speed < 2) coin.vel = GameUtil.scale(coin.vel, 2)
                 coin.speed = 2
             })
-            console.log("Normal Level")
-        } else if (this.time > 2) {
+        } else if (this.time > 10) {
             this.difficulty = "easy"
             this.maxBomb = 3;
             this.maxCoin = 2;
             this.addBombs();
             this.addCoins();
-            console.log("Easy Level")
         }
     }
 
@@ -143,7 +139,6 @@ class Game {
         if (object instanceof Bomb) {
             this.bombs.push(object);
         } else if (object instanceof Ghost) {
-            // setTimeout(() => this.ghosts.push(object), 5000)
             this.ghosts.push(object)
         } else if (object instanceof Apple) {
             this.apples.push(object);
