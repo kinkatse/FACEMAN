@@ -1,4 +1,5 @@
 const bombArr = [1,2,3,4]
+const coinArr = [1,2,3]
 
 const GameUtil = {
     // Important to remember, this is not the position. This is the
@@ -83,24 +84,37 @@ const GameUtil = {
         ]
     },
     playBackgroundMusic: () => {
-        const backgroundMusic = document.getElementById('background-music')
-        backgroundMusic.play()
-        let setTimerCount = 30200
-        const intervalId = setInterval(() => {
-            setTimerCount += 200
-            backgroundMusic.play()
-        }, setTimerCount)
-        return intervalId
+        // const backgroundMusic = document.getElementById('background-music')
+        // backgroundMusic.play()
+        // let setTimerCount = 30200
+        // const intervalId = setInterval(() => {
+        //     setTimerCount += 200
+        //     backgroundMusic.play()
+        // }, setTimerCount)
+        // return intervalId
     },
     stopBackgroundMusic: (intervalId) => {
-        const backgroundMusic = document.getElementById('background-music')
-        backgroundMusic.pause()
-        clearInterval(intervalId)
+        // const backgroundMusic = document.getElementById('background-music')
+        // backgroundMusic.pause()
+        // clearInterval(intervalId)
     },
     playBombSound: () => {
         let bombSound = document.getElementById(`bomb-audio-${bombArr[0]}`)
         bombSound.play()
         bombArr.push(bombArr.shift())
+    },
+    playGhostSound: () => {
+        let ghostSound = document.getElementById(`ghost-damage-audio`)
+        ghostSound.play()
+    },
+    playCoinSound: () => {
+        let coinSound = document.getElementById(`coin-audio-${coinArr[0]}`)
+        coinSound.play()
+        coinArr.push(coinArr.shift())
+    },
+    playAppleSound: () => {
+        let appleSound = document.getElementById(`eat-apple-audio`)
+        appleSound.play()
     }
 };
 

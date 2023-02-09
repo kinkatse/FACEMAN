@@ -63,6 +63,7 @@ class MovingObject {
             if (gameState) this.game.gameover = true;
             this.remove();
             GameUtil.screenShakeEffect(this.game.screenShakeQueue)
+            GameUtil.playGhostSound()
             const newAreaHit = new DamageIndicator(pt, this.game)
             this.game.areaHit.push(newAreaHit)
             return;
@@ -72,6 +73,7 @@ class MovingObject {
         if (this.type === "coin" && centerDist < this.radius) {
           player.addScore(this.score);
           this.remove();
+          GameUtil.playCoinSound()
           return;
         };
       }
@@ -88,6 +90,7 @@ class MovingObject {
           if (this.type === "apple" && mouthDist < this.radius) {
             player.heal(this.amount);
             this.remove();
+            GameUtil.playAppleSound()
             return;
           };
         }
