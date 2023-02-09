@@ -48,7 +48,7 @@ class GameView {
             this.timerElement.innerHTML = `00:00`
             clearInterval(this.timerId)
             this.setTimer();
-            this.game = new Game(this.face);
+            this.game = new Game(this.face, this.timer);
             start.innerHTML = "Restart"
 
             const score = document.getElementById("score");

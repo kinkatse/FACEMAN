@@ -7,8 +7,9 @@ import FaceUtil from "./faceUtil";
 import GameUtil from "./gameUtil";
 
 class Game {
-    constructor(face) {
+    constructor(face, time) {
         this.player = new Player(face);
+        this.time = time;
         this.bombs = [];
         this.apples = [];
         this.coins = [];
@@ -99,29 +100,29 @@ class Game {
 
     addBombs() {
         for (let i = 0; i < Game.defaults.NUM_BOMBS; i++) {
-            this.add(new Bomb({ game: this }));
+            this.add(new Bomb({ game: this, time: this.time }));
         }
     }
 
     addBomb() {
-        this.add(new Bomb({ game: this }));
+        this.add(new Bomb({ game: this, time: this.time }));
     }
 
     addGhosts() {
         for (let i = 0; i < Game.defaults.NUM_GHOSTS; i++) {
-            this.add(new Ghost({ game: this }));
+            this.add(new Ghost({ game: this, time: this.time }));
         }
     }
 
     addApples() {
         for (let i = 0; i < Game.defaults.NUM_APPLES; i++) {
-            this.add(new Apple({ game: this }));
+            this.add(new Apple({ game: this, time: this.time }));
         }
     }
 
     addCoins() {
         for (let i = 0; i < Game.defaults.NUM_COINS; i++) {
-            this.add(new Coin({ game: this }));
+            this.add(new Coin({ game: this, time: this.time }));
         }
     }
 
