@@ -163,6 +163,7 @@ class GameView {
                 // update game's timer
                 this.game.time = this.timer;
                 if (this.game.gameover) {
+                    GameUtil.playGameoverSound()
                     this.game.endGame()
                     this.mode = "gameover"
                     return;

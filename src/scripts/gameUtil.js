@@ -129,7 +129,7 @@ const GameUtil = {
         playerDamageSound.play()
     },
     playPlayerHealSound: () => {
-        let playerHealSound = document.getElementById(`player-damage-audio`)
+        let playerHealSound = document.getElementById(`player-heal-audio`)
         playerHealSound.play()
     }
 };
