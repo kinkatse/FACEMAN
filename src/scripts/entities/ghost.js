@@ -26,9 +26,14 @@ class Ghost extends MovingObject {
     }
 
     draw(ctx) {
-        // Numbers are to adjust the image correctly
-        ctx.drawImage(this.image, this.pos[0] - 102, this.pos[1] - 98, 200, 200)
+        if (this.radius === 70) {
+            ctx.drawImage(this.image, this.pos[0] - 102, this.pos[1] - 98, 200, 200)
+        } else {
+            // For master level, we have bigger ghost
+            ctx.drawImage(this.image, this.pos[0] - 150, this.pos[1] - 145, 300, 300)
+        }
         // MovingObject.prototype.draw.call(this, ctx);
+
     }
 }
 
