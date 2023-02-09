@@ -79,6 +79,9 @@ const GameUtil = {
             frame9, frame10, frame11, frame12,
             frame13, frame14, frame15, frame16
         ]
+    },
+    playSoundEffect: () => {
+        
     }
 };
 
