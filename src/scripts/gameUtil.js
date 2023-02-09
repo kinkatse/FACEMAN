@@ -115,6 +115,22 @@ const GameUtil = {
     playAppleSound: () => {
         let appleSound = document.getElementById(`eat-apple-audio`)
         appleSound.play()
+    },
+    playGameoverSound: () => {
+        let gameoverSound = document.getElementById(`gameover-audio`)
+        gameoverSound.play()
+    },
+    playNextLevelSound: () => {
+        let nextLevelSound = document.getElementById(`next-level-audio`)
+        nextLevelSound.play()
+    },
+    playPlayerDamageSound: () => {
+        let playerDamageSound = document.getElementById(`player-damage-audio`)
+        playerDamageSound.play()
+    },
+    playPlayerHealSound: () => {
+        let playerHealSound = document.getElementById(`player-damage-audio`)
+        playerHealSound.play()
     }
 };
 
