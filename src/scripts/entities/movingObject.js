@@ -46,6 +46,7 @@ class MovingObject {
           GameUtil.screenShakeEffect(this.game.screenShakeQueue)
           // Apply bomb sound effect
           GameUtil.playBombSound()
+          GameUtil.playPlayerDamageSound()
           // Add a new area hit spot for where bomb hit
           const newAreaHit = new DamageIndicator(pt, this.game)
           this.game.areaHit.push(newAreaHit)
@@ -64,6 +65,7 @@ class MovingObject {
             this.remove();
             GameUtil.screenShakeEffect(this.game.screenShakeQueue)
             GameUtil.playGhostSound()
+            GameUtil.playPlayerDamageSound()
             const newAreaHit = new DamageIndicator(pt, this.game)
             this.game.areaHit.push(newAreaHit)
             return;
@@ -91,6 +93,7 @@ class MovingObject {
             player.heal(this.amount);
             this.remove();
             GameUtil.playAppleSound()
+            GameUtil.playPlayerHealSound()
             return;
           };
         }

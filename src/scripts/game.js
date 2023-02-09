@@ -94,6 +94,7 @@ class Game {
 
     increaseDifficulty() {
         if (this.time > 120) {
+            if (this.levelElement.innerHTML !== "Level: MASTER") GameUtil.playNextLevelSound()
             this.difficulty = "master"
             this.maxCoin = 3;
             this.addCoins();
@@ -110,6 +111,7 @@ class Game {
             this.levelElement.innerHTML = "Level: MASTER"
             this.levelElement.style.color = "rgb(255, 29, 29)"
          } else if (this.time > 60) {
+            if (this.levelElement.innerHTML !== "Level: Hard") GameUtil.playNextLevelSound()
             this.difficulty = "hard"
             this.maxBomb = 4;
             this.maxCoin = 2;
@@ -122,6 +124,7 @@ class Game {
             this.levelElement.innerHTML = "Level: Hard"
             this.levelElement.style.color = "rgb(255, 142, 29)"
         } else if (this.time > 30) {
+            if (this.levelElement.innerHTML !== "Level: Normal") GameUtil.playNextLevelSound()
             this.difficulty = "normal"
             // increase speed of bombs and coins
             this.bombs.forEach((bomb) => {
@@ -135,6 +138,7 @@ class Game {
             this.levelElement.innerHTML = "Level: Normal"
             this.levelElement.style.color = "rgb(255, 251, 29)"
         } else if (this.time > 10) {
+            if (this.levelElement.innerHTML !== "Level: Easy") GameUtil.playNextLevelSound()
             this.difficulty = "easy"
             this.maxBomb = 3;
             this.maxCoin = 2;
