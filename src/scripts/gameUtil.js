@@ -94,8 +94,8 @@ const GameUtil = {
     },
     stopBackgroundMusic: (intervalId) => {
         const backgroundMusic = document.getElementById('background-music')
+        backgroundMusic.pause()
         clearInterval(intervalId)
-        backgroundMusic.stop()
     },
     playBombSound: () => {
         let bombSound = document.getElementById(`bomb-audio-${bombArr[0]}`)
