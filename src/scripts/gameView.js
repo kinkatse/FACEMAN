@@ -190,6 +190,9 @@ class GameView {
                 clearInterval(this.timerId)
                 GameUtil.stopBackgroundMusic(this.musicIntervalId)
 
+                const levelElement = document.getElementById('level')
+                levelElement.style.display = "none";
+
                 const gameoverEl = document.getElementById("gameover-elements")
 
                 gameoverEl.style.display = "block"
