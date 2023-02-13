@@ -25,6 +25,7 @@ class GameView {
         this.intervalId = null;
         this.loadInstructions();
         this.musicIntervalId = null;
+        this.mute = false;
 
         this.timerId = null;
         this.timerElement = document.getElementById("timer")
@@ -80,6 +81,13 @@ class GameView {
 
         const instructions = document.getElementById("instructions");
         instructions.addEventListener("click", () => this.instructions = !this.instructions)
+
+        const mute = document.getElementById("mute");
+        mute.addEventListener("click", () => {
+            if (mute.innerHTML === "Mute") { mute.innerHTML = "Unmute" }
+            else { mute.innerHTML = "Mute" }
+            this.mute = !this.mute
+        })
     }
 
     setupCamera() {

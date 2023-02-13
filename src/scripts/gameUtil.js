@@ -1,6 +1,7 @@
 const bombArr = [1,2,3,4]
 const coinArr = [1,2,3]
 const playerHurtArr = [1,2,3,4,5]
+// const mute = document.getElementById("mute");
 
 const GameUtil = {
     // Important to remember, this is not the position. This is the
@@ -100,44 +101,61 @@ const GameUtil = {
         // clearInterval(intervalId)
     },
     playBombSound: () => {
+        // debugger
+        const mute = document.getElementById("mute");
+        if (mute.innerHTML === "Unmute") {return}
         let bombSound = document.getElementById(`bomb-audio-${bombArr[0]}`)
         bombSound.volume = 0.1;
         bombSound.play()
         bombArr.push(bombArr.shift())
     },
     playGhostSound: () => {
+        const mute = document.getElementById("mute");
+        if (mute.innerHTML === "Unmute") {return}
         let ghostSound = document.getElementById(`ghost-damage-audio`)
         ghostSound.volume = 0.3;
         ghostSound.play()
     },
     playCoinSound: () => {
+        const mute = document.getElementById("mute");
+        if (mute.innerHTML === "Unmute") {return}
         let coinSound = document.getElementById(`coin-audio-${coinArr[0]}`)
         coinSound.volume = 0.2;
         coinSound.play()
         coinArr.push(coinArr.shift())
     },
     playAppleSound: () => {
+        const mute = document.getElementById("mute");
+        if (mute.innerHTML === "Unmute") {return}
         let appleSound = document.getElementById(`eat-apple-audio`)
         appleSound.volume = 1.0;
         appleSound.play()
     },
     playGameoverSound: () => {
+        const mute = document.getElementById("mute");
+        if (mute.innerHTML === "Unmute") {return}
         let gameoverSound = document.getElementById(`gameover-audio`)
         gameoverSound.volume = 0.3;
         gameoverSound.play()
     },
     playNextLevelSound: () => {
+        const mute = document.getElementById("mute");
+        if (mute.innerHTML === "Unmute") {return}
         let nextLevelSound = document.getElementById(`next-level-audio`)
         nextLevelSound.volume = 0.2;
         nextLevelSound.play()
     },
     playPlayerDamageSound: () => {
+        const mute = document.getElementById("mute");
+        if (mute.innerHTML === "Unmute") {return}
         let playerDamageSound = document.getElementById(`player-damage-audio-${playerHurtArr[0]}`)
         playerDamageSound.volume = 0.25;
         playerDamageSound.play()
         playerHurtArr.push(playerHurtArr.shift())
     },
     playPlayerHealSound: () => {
+        const mute = document.getElementById("mute");
+        if (mute.innerHTML === "Unmute") {return}
         let playerHealSound = document.getElementById(`player-heal-audio`)
         playerHealSound.volume = 0.2;
         playerHealSound.play()
