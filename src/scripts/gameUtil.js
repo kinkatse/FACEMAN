@@ -1,5 +1,6 @@
 const bombArr = [1,2,3,4]
 const coinArr = [1,2,3]
+const playerHurtArr = [1,2,3,4,5]
 
 const GameUtil = {
     // Important to remember, this is not the position. This is the
@@ -100,36 +101,45 @@ const GameUtil = {
     },
     playBombSound: () => {
         let bombSound = document.getElementById(`bomb-audio-${bombArr[0]}`)
+        bombSound.volume = 0.1;
         bombSound.play()
         bombArr.push(bombArr.shift())
     },
     playGhostSound: () => {
         let ghostSound = document.getElementById(`ghost-damage-audio`)
+        ghostSound.volume = 0.3;
         ghostSound.play()
     },
     playCoinSound: () => {
         let coinSound = document.getElementById(`coin-audio-${coinArr[0]}`)
+        coinSound.volume = 0.2;
         coinSound.play()
         coinArr.push(coinArr.shift())
     },
     playAppleSound: () => {
         let appleSound = document.getElementById(`eat-apple-audio`)
+        appleSound.volume = 1.0;
         appleSound.play()
     },
     playGameoverSound: () => {
         let gameoverSound = document.getElementById(`gameover-audio`)
+        gameoverSound.volume = 0.3;
         gameoverSound.play()
     },
     playNextLevelSound: () => {
         let nextLevelSound = document.getElementById(`next-level-audio`)
+        nextLevelSound.volume = 0.2;
         nextLevelSound.play()
     },
     playPlayerDamageSound: () => {
-        let playerDamageSound = document.getElementById(`player-damage-audio`)
+        let playerDamageSound = document.getElementById(`player-damage-audio-${playerHurtArr[0]}`)
+        playerDamageSound.volume = 0.25;
         playerDamageSound.play()
+        playerHurtArr.push(playerHurtArr.shift())
     },
     playPlayerHealSound: () => {
         let playerHealSound = document.getElementById(`player-heal-audio`)
+        playerHealSound.volume = 0.2;
         playerHealSound.play()
     }
 };
