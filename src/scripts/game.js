@@ -93,7 +93,7 @@ class Game {
     }
 
     increaseDifficulty() {
-        if (this.time > 25) {
+        if (this.time > 120) {
             if (this.levelElement.innerHTML !== "Level: MASTER") GameUtil.playNextLevelSound()
             this.difficulty = "master"
             this.maxCoin = 3;
@@ -110,7 +110,7 @@ class Game {
             this.ghosts.forEach((ghost) => ghost.radius = 105)
             this.levelElement.innerHTML = "Level: MASTER"
             this.levelElement.style.color = "rgb(255, 29, 29)"
-         } else if (this.time > 20) {
+         } else if (this.time > 60) {
             if (this.levelElement.innerHTML !== "Level: Hard") GameUtil.playNextLevelSound()
             this.difficulty = "hard"
             this.maxBomb = 4;
@@ -123,7 +123,7 @@ class Game {
             })
             this.levelElement.innerHTML = "Level: Hard"
             this.levelElement.style.color = "rgb(255, 142, 29)"
-        } else if (this.time > 15) {
+        } else if (this.time > 30) {
             if (this.levelElement.innerHTML !== "Level: Normal") GameUtil.playNextLevelSound()
             this.difficulty = "normal"
             // increase speed of bombs and coins
